@@ -1,10 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const GamesContext = createContext();
 
 export const GamesProvider = ({ children }) => {
+
   const [page, setPage] = useState(1);
+  const [gamesList, setGamesList] = useState([]);
 
   const nextPage = () => {
     setPage(page + 1);
@@ -23,12 +25,14 @@ export const GamesProvider = ({ children }) => {
       .then((response) => {
         console.log(response.data.results);
 
-        return response.data.results;
+        setGamesList(response.data.results);
       });
   };
-  const initialState = listGames;
-  const [gamesList, setGamesList] = useState(initialState);
-  console.log(gamesList);
+
+  useEffect(()=>{
+    listGames();
+  },[page])
+
   return (
     <GamesContext.Provider value={{ gamesList, nextPage, previousPage }}>
       {children}
