@@ -1,7 +1,7 @@
-import axios from "axios"
+import axios from "axios";
 
 const app = axios.create({
-    baseURL: 'https://games-hub-api.herokuapp.com/'
+    baseURL: "https://games-hub-api.herokuapp.com/"
 })
 
 export default app
