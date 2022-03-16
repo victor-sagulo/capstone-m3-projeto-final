@@ -1,13 +1,13 @@
 import Header from "../../Components/Header";
 import SingupForm from "../../Components/SingupForm";
 
-const SignUp =()=>{
-    return (
-        <main>
-            <Header/>
-            <SingupForm/>
-        </main>
-    )
-}
+const SignUp = () => {
+  return (
+    <main>
+      <Header />
+      <SingupForm />
+    </main>
+  );
+};
 
-export default SignUp
+export default SignUp;
