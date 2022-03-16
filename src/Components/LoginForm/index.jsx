@@ -12,7 +12,7 @@ const LoginForm = () =>{
     const {user, handleLogin} = useContext(UserContext)
 
     const schema = yup.object().shape({
-        email: yup.string().required("E-mail obrigatório"),
+        email: yup.string().required("E-mail obrigatório").email("E-mail invalido"),
         password: yup.string().required("Senha obrigatória"),
       })
 
@@ -24,14 +24,15 @@ const LoginForm = () =>{
         resolver: yupResolver(schema),
       });
 
-
       if (user) {
         return <Redirect to="/"/>;
       }
 
       const submitLogin =(data)=>{
         handleLogin(data.email,data.password)
-        if(user) {return <Redirect to="/"/>}
+        if(user) {return console.log("foi")}
+        else{return console.log("Erro")}
+        
       }
 
     return(
