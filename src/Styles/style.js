@@ -36,4 +36,8 @@ export const GlobalStyle = createGlobalStyle`
         display: none;
     }
 
+    ul{
+        list-style: none;
+    }
+
 `
