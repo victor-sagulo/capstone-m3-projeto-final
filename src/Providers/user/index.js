@@ -1,12 +1,15 @@
 import app from "../../Services/api.js";
 import { useState, createContext } from "react";
-
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("@GamesHub user")) || false
   );
+
+  const history = useHistory();
 
   const handleLogin = (email, password) => {
     app
@@ -19,14 +22,19 @@ export const UserProvider = ({ children }) => {
           "@GamesHub Token",
           JSON.stringify(response.data.accessToken)
         );
+
         localStorage.setItem(
           "@GamesHub user",
           JSON.stringify(response.data.user)
         );
-      });
+        setUser(response.data.user);
+
+        toast.success("Usuário logado com sucesso!");
+      })
+      .catch(() => toast.error("Email ou senha inválidos"));
   };
 
-  const handleRegister = (username, email, password, plataform) => {
+  const handleRegister = ({ username, email, password, plataform }) => {
     app.post("/register", {
       username,
       email,
@@ -46,9 +54,16 @@ export const UserProvider = ({ children }) => {
     });
   };
 
+  const handleLogOut = () => {
+    localStorage.removeItem("@GamesHub Token");
+    localStorage.removeItem("@GamesHub user");
+    setUser(false);
+    history.push("/");
+  };
+
   return (
     <UserContext.Provider
-      value={{ user, handleLogin, handleRegister, handlePost }}
+      value={{ user, handleLogin, handleLogOut, handleRegister, handlePost }}
     >
       {children}
     </UserContext.Provider>

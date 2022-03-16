@@ -1,91 +1,201 @@
-import { useContext, useEffect, useState } from "react"
-import { UserContext } from "../../Providers/user"
-import {Desktop,Mobile,DefaultNav,LoggedNav} from "./style"
-import g4HUB from "../../images/g4HUB.svg"
-import userImg from "../../images/userImg.svg"
-import gamesHubLogo from "../../images/gamesHubLogo.svg"
-import {FaBars,FaAngleDown,FaAngleUp} from "react-icons/fa"
-import {Link} from "react-router-dom"
-import InputHeader from "../InputHeader"
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../Providers/user";
+import { Desktop, Mobile, DefaultNav, LoggedNav } from "./style";
+import g4HUB from "../../images/g4HUB.svg";
+import userImg from "../../images/userImg.svg";
+import gamesHubLogo from "../../images/gamesHubLogo.svg";
+import { FaBars, FaAngleDown, FaAngleUp,FaArrowRight } from "react-icons/fa";
+import { BiLogOut, BiLogInCircle } from "react-icons/bi";
+import { RiFolderUserFill } from "react-icons/ri";
+import { AiFillHome } from "react-icons/ai";
+import { CgGames } from "react-icons/cg";
+import { MdAccountBox } from "react-icons/md";
+import { VscChromeClose } from "react-icons/vsc";
+import { Link } from "react-router-dom";
+import InputHeader from "../InputHeader";
 
 const Header = () => {
+  const [width, setWidth] = useState("");
 
-    const [width,setWidth] = useState("")
+  const { user } = useContext(UserContext);
 
-    const {user} = useContext(UserContext)
+  window.onresize = window.onload = () => {
+    setWidth(window.innerWidth);
+  };
 
-    window.onresize = window.onload = () => {
-        setWidth(window.innerWidth)
-    }
+  const [userModal, setUserModal] = useState(false);
 
-    const [userModal,setUserModal] = useState(false)
+  const [mobileModal, setMobileModal] = useState(false);
 
-    const handleModal = () =>{
-        setUserModal(!userModal)
-    }
+  const handleModal = () => {
+    setUserModal(!userModal);
+  };
 
-    return(
+  const handleMobileModal = () => {
+    setMobileModal(!mobileModal);
+  };
+
+  return (
     <>
-        {width>768 ? <Desktop>
-            <figure>
-                <img src={gamesHubLogo} alt="GamesHub logo"/>
-                <figcaption>GamesHub logo</figcaption>
-            </figure>
-            {user === false?
-            <>
-                <DefaultNav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/games">Games</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Link to="/signup">Signup</Link></li> 
-                    </ul>
-                    <InputHeader/>
-                </DefaultNav>
-                <div>
-                    <figure>
-                        <img src={userImg} alt="user image" />
-                        <figcaption>user image</figcaption>
-                    </figure>
-                </div>
-            </>
-            :
-            <>
-                <LoggedNav>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/games">Games</Link></li>
-                    </ul>
-                    <InputHeader/>
-                </LoggedNav> 
-                <div>
-                    <figure>
-                        <img src={userImg} alt="user image" />
-                        <figcaption>user image</figcaption>
-                    </figure>
-                    <h3>{user.username}</h3>
-                    {userModal?<FaAngleUp/> : <FaAngleDown/>}
-                </div>
-                {userModal && <div className="modal--user"></div>}
-            </>
-            }
-        </Desktop>
-         : 
-        <Mobile>
-            <figure>
-                <img src={g4HUB} alt="GamesHub logo"/>
-                <figcaption>GamesHub logo</figcaption>
-            </figure>
-            <div>
+      {width > 768 ? (
+        <Desktop>
+          <figure>
+            <img src={gamesHubLogo} alt="GamesHub logo" />
+            <figcaption>GamesHub logo</figcaption>
+          </figure>
+          {user === false ? (
+            <div className="container">
+              <DefaultNav>
+                <ul>
+                  <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/games">Games</Link>
+                  </li>
+                  <li>
+                    <Link to="/login">Login</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup">Signup</Link>
+                  </li>
+                </ul>
+              </DefaultNav>
+              <div className="infos">
+                <InputHeader />
                 <figure>
-                    <img src={userImg} alt="user image" />
-                    <figcaption>User image</figcaption>
+                  <img src={userImg} alt="user image" />
+                  <figcaption>user image</figcaption>
                 </figure>
-                <FaBars/>
+              </div>
             </div>
-        </Mobile>}
+          ) : (
+            <div className="container">
+              <LoggedNav>
+                <ul>
+                  <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/games">Games</Link>
+                  </li>
+                </ul>
+              </LoggedNav>
+              <div className="logged-infos">
+                <InputHeader />
+                <figure>
+                  <img src={user ? user.image : userImg} alt="user image" />
+                  <figcaption>user image</figcaption>
+                </figure>
+                <h3>username</h3>
+                {userModal ? (
+                  <FaAngleUp
+                    className="icon"
+                    size={"20px"}
+                    onClick={handleModal}
+                  />
+                ) : (
+                  <FaAngleDown
+                    className="icon"
+                    size={"20px"}
+                    onClick={handleModal}
+                  />
+                )}
+              </div>
+              {userModal && (
+                <div className="modal--user">
+                  <div>
+                    <h4>Meu Perfil</h4>
+                    <Link to="/profile">
+                      <RiFolderUserFill size={"20px"} />
+                    </Link>
+                  </div>
+                  <div>
+                    <h4>Log out</h4> <BiLogOut size={"20px"} />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </Desktop>
+      ) : (
+        <Mobile>
+          <figure>
+            <img src={g4HUB} alt="GamesHub logo" />
+            <figcaption>GamesHub logo</figcaption>
+          </figure>
+          <div className="infos">
+            <figure>
+              <img src={userImg} alt="user image" />
+              <figcaption>User image</figcaption>
+            </figure>
+            <FaBars
+              className="hamburger"
+              size={"25px"}
+              onClick={handleMobileModal}
+            />
+          </div>
+          {mobileModal && (
+            <div className="mobile--modal">
+              <nav>
+                {user === true ? (
+                  <ul>
+                    <li>
+                      <AiFillHome size={"25px"} className="nav--icon" />
+                      <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                      <CgGames size={"25px"} className="nav--icon" />
+                      <Link to="/games">Games</Link>
+                    </li>
+                    <li>
+                      <BiLogInCircle size={"25px"} className="nav--icon" />
+                      <Link to="/login">Login</Link>
+                    </li>
+                    <li>
+                      <MdAccountBox size={"25px"} className="nav--icon" />
+                      <Link to="/signup">Signup</Link>
+                    </li>
+                  </ul>
+                ) : (
+                  <>
+                    <div className="infos--mobile">
+                        <figure>
+                          <img src={user ? user.image : userImg} alt="user image" />
+                          <figcaption>user image</figcaption>
+                        </figure>
+                        <h3>username</h3>
+                    </div>
+                    <ul>
+                      <li>
+                        <AiFillHome size={"25px"} className="nav--icon" />
+                        <Link to="/">Home</Link>
+                      </li>
+                      <li>
+                        <CgGames size={"25px"} className="nav--icon" />
+                        <Link to="/games">Games</Link>
+                      </li>
+                      <li>
+                        <RiFolderUserFill size={"25px"} className="nav--icon" />
+                        <Link to="/profile">Meu Perfil</Link>
+                      </li>
+                      <li>
+                        <BiLogOut size={"25px"} className="nav--icon" />
+                        <Link to="/profile">Log out</Link>
+                      </li>
+                    </ul>
+                  </>
+                )}
+                <button onClick={handleMobileModal}>
+                  <VscChromeClose size={"40px"} className="close--icon" />
+                </button>
+              </nav>
+            </div>
+          )}
+        </Mobile>
+      )}
     </>
-    )
-}
+  );
+};
 
-export default Header
+export default Header;
