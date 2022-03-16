@@ -17,19 +17,8 @@ const CardComment = ({ img, name, comment, likes }) => {
             <img src={img}></img>
           </div>
           <div className="content-holder">
-            <span className="name">{name}name</span>
-            <p className="comment">
-              {comment}Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's standard
-              dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book. It
-              has survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
+            <span className="name">{name}</span>
+            <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5
               <FaThumbsUp className="like-icon" />
@@ -42,19 +31,8 @@ const CardComment = ({ img, name, comment, likes }) => {
             <img src={img}></img>
           </div>
           <div className="content-holder">
-            <span className="name">{name}name</span>
-            <p className="comment">
-              {comment}Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's standard
-              dummy text ever since the 1500s, when an unknown printer took a
-              galley of type and scrambled it to make a type specimen book. It
-              has survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
+            <span className="name">{name}</span>
+            <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5
               <FaThumbsUp className="like-icon" />
