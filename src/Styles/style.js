@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     :root {
+        --redError: #FF0000;
         --cleanBlack: #222222;
         --white: #FFFFFF;
         --purple: #9D4EDD;

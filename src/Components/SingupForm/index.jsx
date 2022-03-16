@@ -58,7 +58,7 @@ const SingupForm = () => {
           register={register}
           name="username"
           error={errors.username?.message}
-          placeholder="Insira o seu melhor username"
+          placeholder="Seu apelido show!"
         />
         <Input
           label="Sua plataforma favorita"
@@ -88,7 +88,7 @@ const SingupForm = () => {
           name="confirm_password"
           type="password"
           error={errors.confirm_password?.message}
-          placeholder="confirme a sua senha"
+          placeholder="Confirme a sua senha"
         />
         <Buttons type="submit">Cadastrar</Buttons>
       </form>
