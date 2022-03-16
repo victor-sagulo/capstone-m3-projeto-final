@@ -14,7 +14,7 @@ const CardComment = ({ img, name, comment, likes }) => {
       {width < 768 ? (
         <Mobile className="card-comment">
           <div className="img-holder">
-            <img src={img}></img>
+            <img src={img} alt={name}></img>
           </div>
           <div className="content-holder">
             <span className="name">{name}</span>
@@ -28,7 +28,7 @@ const CardComment = ({ img, name, comment, likes }) => {
       ) : (
         <Desktop>
           <div className="img-holder">
-            <img src={img}></img>
+            <img src={img} alt={name}></img>
           </div>
           <div className="content-holder">
             <span className="name">{name}</span>

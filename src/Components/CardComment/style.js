@@ -36,7 +36,7 @@ export const Mobile = styled.div`
     font-size: 7px;
     color: var(--grey);
     text-align: start;
-    height: 58px;
+    min-height: 80px;
     overflow-y: scroll;
   }
 
@@ -62,8 +62,8 @@ export const Desktop = styled.div`
   background-color: var(--blackComment);
 
   .img-holder {
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
     background-color: var(--purple);
     border-radius: 50px;
     margin-left: 5px;
@@ -88,7 +88,7 @@ export const Desktop = styled.div`
     font-size: 10px;
     color: var(--grey);
     text-align: start;
-    height: 58px;
+    min-height: 85px;
     overflow-y: scroll;
   }
 
