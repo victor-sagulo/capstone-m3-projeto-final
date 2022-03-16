@@ -5,7 +5,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || false
+    JSON.parse(localStorage.getItem("@GamesHub user")) || false
   );
 
   const handleLogin = (email, password) => {

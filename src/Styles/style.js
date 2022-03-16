@@ -32,4 +32,8 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
+    figcaption {
+        display: none;
+    }
+
 `

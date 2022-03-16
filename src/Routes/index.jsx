@@ -8,6 +8,7 @@ const Routes = () => {
       <Route path="/signup"></Route>
       <Route path="/dashboard/"></Route>
       <Route path="/profile"></Route>
+      <Route path="/games"></Route>
     </Switch>
   );
 };
