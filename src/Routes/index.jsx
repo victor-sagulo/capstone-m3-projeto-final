@@ -1,4 +1,5 @@
 import { Switch, Route } from "react-router-dom";
+import SingupForm from "../Components/SingupForm";
 
 const Routes = () => {
   return (
@@ -12,3 +13,5 @@ const Routes = () => {
     </Switch>
   );
 };
+
+export default Routes;

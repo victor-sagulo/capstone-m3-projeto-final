@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
       });
   };
 
-  const handleRegister = (username, email, password, plataform) => {
+  const handleRegister = ({ username, email, password, plataform }) => {
     app.post("/register", {
       username,
       email,
