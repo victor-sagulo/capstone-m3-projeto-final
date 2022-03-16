@@ -60,7 +60,7 @@ const Header = () => {
                 </LoggedNav> 
                 <div>
                     <figure>
-                        <img src={userImg} alt="user image" />
+                        <img src={user? user.image : userImg} alt="user image" />
                         <figcaption>user image</figcaption>
                     </figure>
                     <h3>{user.username}</h3>
@@ -81,7 +81,7 @@ const Header = () => {
                     <img src={userImg} alt="user image" />
                     <figcaption>User image</figcaption>
                 </figure>
-                <FaBars/>
+                <FaBars className="hamburger" size={"25px"}/>
             </div>
         </Mobile>}
     </>
