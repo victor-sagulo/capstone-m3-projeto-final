@@ -39,5 +39,9 @@ export const GlobalStyle = createGlobalStyle`
     ul{
         list-style: none;
     }
+    body{
+        background-color: #10002B;
+        height: 100vh;
+    }
 
 `

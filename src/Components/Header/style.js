@@ -1,64 +1,239 @@
 import styled from "styled-components";
 
 export const Desktop = styled.header`
-    margin-top: 25px;
-    width: 95%;
-    max-width: 1166px;
-    height: 84px;
-    border-radius:5px;
+  margin-top: 25px;
+  width: 95%;
+  max-width: 1166px;
+  height: 84px;
+  border-radius: 5px;
+  display: flex;
+  padding-right: 20px;
+  align-items: center;
+  background-color: var(--cleanBlack);
+  margin-inline: auto;
+  justify-content: space-between;
+
+  .container {
+    position: relative;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    background-color: var(--cleanBlack);
-    margin-inline: auto;
-    nav{
-        width: 65%;
-        display: flex;
+    justify-content: space-between;
+    width: 80%;
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: 4px;
     }
-    ul{
+
+    .infos {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .logged-infos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      h3 {
+        font-size: 18px;
+        color: var(--white);
+      }
+      .icon {
+        color: var(--white);
+      }
+    }
+    .modal--user {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      right: -20px;
+      top: 60px;
+      width: 200px;
+      background-color: var(--cleanBlack);
+      padding-top: 8px;
+      padding-bottom: 12px;
+      gap: 12px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      div {
         display: flex;
         justify-content: space-between;
-        width: 40%;
-        min-width: 250px;
-        margin-left: 5px;
-        li{
-            a{
-                color: var(--white);
-                text-decoration: none;
-                font-family: var(--mainFont);
-                font-weight: 700;
-            }
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 30px;
+        background-color: var(--purple);
+        color: var(--white);
+        a {
+          color: var(--white);
         }
+      }
     }
-    form{
-        width: 60%;
-    }
-`
+  }
+`;
 
 export const Mobile = styled.header`
-    margin-top: 25px;
-    width: 95%;
-    height: 84px;
-    border-radius:5px;
+  margin-top: 25px;
+  width: 95%;
+  height: 84px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--cleanBlack);
+  margin-inline: auto;
+  div.infos {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    background-color: var(--cleanBlack);
-    margin-inline: auto;
-    div{
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        .hamburger{
-            color: var(--white);
-        }
+    gap: 12px;
+    .hamburger {
+      color: var(--white);
     }
-`
+  }
+  .mobile--modal {
+    position: fixed;
+    inset: 0 0 0 50%;
+    padding: min(30vh, 10rem) 10px;
+    background-color: hsl(0 0% 0% / 0.5);
+    backdrop-filter: blur(1rem);
+    nav {
+        .infos--mobile {
+        position: absolute;
+        top: 80px;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        color: var(--white);
+      }
+      h3 {
+        font-size: 12px;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        text-align: left;
+        gap: 15px;
+        li {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          .nav--icon {
+            color: var(--purple);
+          }
+          a {
+            color: var(--white);
+            font-family: var(--mainFont);
+            font-size: 20px;
+          }
+        }
+      }
+      button {
+        position: absolute;
+        z-index: 9999;
+        width: 50vw;
+        height:50px;
+        left: 0;
+        margin-right: 50px;
+        margin-top: 30px;
+        border: 0;
+        background-color: var(--purple);
+        padding-top: 5px;
+        .close--icon {
+          color: var(--white);
+        }
+      }
+    }
+  }
+  @supports (backdrop-filter: blur(1rem)) {
+    div.mobile--modal {
+      background-color: hsl(0 0% 100% / 0.1);
+      backdrop-filter: blur(1rem);
+    }
+  }
+  @media screen and (min-width: 566px) {
+    .mobile--modal {
+      padding: min(30vh, 10rem) 100px min(30vh, 10rem) 50px;
+    }
+  }
+  @media screen and (min-width: 410px) {
+    .mobile--modal {
+      nav {
+        h3 {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+`;
 
 export const DefaultNav = styled.nav`
-    
-`
+  ul {
+    display: flex;
+    gap: 30px;
+    min-width: 250px;
+    margin-left: 5px;
+    li {
+      a {
+        color: var(--white);
+        text-decoration: none;
+        font-family: var(--mainFont);
+        font-weight: 700;
+        font-size: 12px;
+      }
+    }
+  }
+  @media screen and (min-width: 950px) {
+    ul {
+      gap: 40px;
+      margin-left: 30px;
+      li {
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1100px) {
+    ul {
+      gap: 45px;
+    }
+  }
+`;
 
 export const LoggedNav = styled.nav`
-    background-color: green;
-`
+  width: fit-content;
+  ul {
+    display: flex;
+    gap: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    li {
+      a {
+        color: var(--white);
+        text-decoration: none;
+        font-family: var(--mainFont);
+        font-weight: 700;
+        font-size: 12px;
+      }
+    }
+  }
+  @media screen and (min-width: 950px) {
+    ul {
+      gap: 40px;
+      margin-left: 30px;
+      li {
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1100px) {
+    ul {
+      margin-left: 100px;
+      gap: 45px;
+    }
+  }
+`;
