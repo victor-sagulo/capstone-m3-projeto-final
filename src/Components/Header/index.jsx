@@ -4,7 +4,7 @@ import { Desktop, Mobile, DefaultNav, LoggedNav } from "./style";
 import g4HUB from "../../images/g4HUB.svg";
 import userImg from "../../images/userImg.svg";
 import gamesHubLogo from "../../images/gamesHubLogo.svg";
-import { FaBars, FaAngleDown, FaAngleUp,FaArrowRight } from "react-icons/fa";
+import { FaBars, FaAngleDown, FaAngleUp, FaArrowRight } from "react-icons/fa";
 import { BiLogOut, BiLogInCircle } from "react-icons/bi";
 import { RiFolderUserFill } from "react-icons/ri";
 import { AiFillHome } from "react-icons/ai";
@@ -35,9 +35,11 @@ const Header = () => {
     setMobileModal(!mobileModal);
   };
 
+  console.log(width);
+
   return (
     <>
-      {width > 768 ? (
+      {width > 768 || !width ? (
         <Desktop>
           <figure>
             <img src={gamesHubLogo} alt="GamesHub logo" />
@@ -160,11 +162,14 @@ const Header = () => {
                 ) : (
                   <>
                     <div className="infos--mobile">
-                        <figure>
-                          <img src={user ? user.image : userImg} alt="user image" />
-                          <figcaption>user image</figcaption>
-                        </figure>
-                        <h3>username</h3>
+                      <figure>
+                        <img
+                          src={user ? user.image : userImg}
+                          alt="user image"
+                        />
+                        <figcaption>user image</figcaption>
+                      </figure>
+                      <h3>username</h3>
                     </div>
                     <ul>
                       <li>

@@ -11,7 +11,7 @@ const HomePage = () => {
       </div>
       <div className="home-bottom">
         <h2>Mais Populares</h2>
-        <GamesList type={"home"} />
+        <GamesList type="home" />
       </div>
     </main>
   );
