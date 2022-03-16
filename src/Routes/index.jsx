@@ -3,6 +3,7 @@ import SingupForm from "../Components/SingupForm";
 import Login from "../Pages/Login";
 import SignUp from "../Pages/Signup";
 import HomePage from "../Pages/Home";
+import GamesPage from "../Pages/Games";
 
 const Routes = () => {
   return (
@@ -18,7 +19,9 @@ const Routes = () => {
       </Route>
       <Route path="/dashboard/"></Route>
       <Route path="/profile"></Route>
-      <Route path="/games"></Route>
+      <Route path="/games">
+        <GamesPage/>
+      </Route>
     </Switch>
   );
 };
