@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { GamesContext } from "../../Providers/Games";
 
 const GamesList = ({ type }) => {
-  const { gamesList, listAllgames, previousPage, nextPage } =
+  const { gamesList, listAllGames, previousPage, nextPage } =
     useContext(GamesContext);
 
   return (
@@ -16,7 +16,7 @@ const GamesList = ({ type }) => {
           ))}
 
         {type === "games" &&
-          listAllgames.map((game) => (
+          listAllGames.map((game) => (
             <li>
               <img src={game.background_image} style={{ maxWidth: "300px" }} />
             </li>
