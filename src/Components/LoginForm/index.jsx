@@ -7,9 +7,11 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const LoginForm = () => {
   const { user, handleLogin } = useContext(UserContext);
+  const history = useHistory()
 
   const schema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail invalido"),
@@ -25,16 +27,12 @@ const LoginForm = () => {
   });
 
   if (user) {
-    return <Redirect to="/" />;
+    history.push("/")
   }
 
   const submitLogin = (data) => {
     handleLogin(data.email, data.password);
-    if (user) {
-      return console.log("foi");
-    } else {
-      return console.log("Erro");
-    }
+    history.push("/")
   };
 
   return (
