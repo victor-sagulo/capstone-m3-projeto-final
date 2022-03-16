@@ -1,9 +1,9 @@
 import app from "../../Services/api.js";
 import { useState, createContext } from "react";
 
-export const userContext = createContext();
+export const UserContext = createContext();
 
-export const userProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || false
   );
@@ -47,10 +47,10 @@ export const userProvider = ({ children }) => {
   };
 
   return (
-    <userContext.Provider
+    <UserContext.Provider
       value={{ user, handleLogin, handleRegister, handlePost }}
     >
       {children}
-    </userContext.Provider>
+    </UserContext.Provider>
   );
 };
