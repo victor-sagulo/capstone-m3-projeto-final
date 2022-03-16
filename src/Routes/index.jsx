@@ -1,6 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 import SingupForm from "../Components/SingupForm";
 import Login from "../Pages/Login";
+import SignUp from "../Pages/Signup";
 
 const Routes = () => {
   return (
@@ -9,7 +10,9 @@ const Routes = () => {
       <Route path="/login">
         <Login/>
       </Route>
-      <Route path="/signup"></Route>
+      <Route path="/signup">
+        <SignUp/>
+      </Route>
       <Route path="/dashboard/"></Route>
       <Route path="/profile"></Route>
       <Route path="/games"></Route>
