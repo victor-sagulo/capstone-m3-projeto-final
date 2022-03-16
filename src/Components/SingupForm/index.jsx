@@ -51,24 +51,28 @@ const SingupForm = () => {
 
   return (
     <FormDivContainer>
+      <h1>Cadastre-se</h1>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         <Input
           label="Username"
           register={register}
           name="username"
           error={errors.username?.message}
+          placeholder="Insira seu melhor username"
         />
         <Input
           label="Sua plataforma favorita"
           register={register}
           name="plataform"
           error={errors.plataform?.message}
+          placeholder="Melhor plataforma"
         />
         <Input
           label="E-mail"
           register={register}
           name="email"
           error={errors.email?.message}
+          placeholder="Insira seu e-mail"
         />
         <Input
           label="Senha"
@@ -76,6 +80,7 @@ const SingupForm = () => {
           name="password"
           type="password"
           error={errors.password?.message}
+          placeholder="Insira a sua senha"
         />
         <Input
           label="Confirma Senha"
@@ -83,6 +88,7 @@ const SingupForm = () => {
           name="confirm_password"
           type="password"
           error={errors.confirm_password?.message}
+          placeholder="Confirme a sua senha"
         />
         <Buttons type="submit">Cadastrar</Buttons>
       </form>
