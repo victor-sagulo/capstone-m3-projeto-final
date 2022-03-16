@@ -2,11 +2,14 @@ import { Switch, Route } from "react-router-dom";
 import SingupForm from "../Components/SingupForm";
 import Login from "../Pages/Login";
 import SignUp from "../Pages/Signup";
+import HomePage from "../Pages/Home";
 
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/"></Route>
+      <Route exact path="/">
+        <HomePage/>
+      </Route>
       <Route path="/login">
         <Login/>
       </Route>
