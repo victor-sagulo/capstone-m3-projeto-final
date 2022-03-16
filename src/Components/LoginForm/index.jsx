@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { FormDivContainer } from "./style";
 
 const LoginForm = () => {
   const { user, handleLogin } = useContext(UserContext);
@@ -36,8 +37,8 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <FormDivContainer>
+      <h1>Login</h1>
       <form className="form" onSubmit={handleSubmit(submitLogin)}>
         <Input
           name="email"
@@ -54,13 +55,13 @@ const LoginForm = () => {
           type="password"
           error={errors.password?.message}
         />
-        <Buttons type="submit">Realizar Login</Buttons>
+        <Buttons type="submit">Login</Buttons>
       </form>
       <span>
         Ainda não possui uma conta?
         <Link to="/signup">Cadastre-se</Link>
       </span>
-    </div>
+    </FormDivContainer>
   );
 };
 export default LoginForm;

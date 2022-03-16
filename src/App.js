@@ -1,6 +1,5 @@
 import "./App.css";
 import { GlobalStyle } from "./Styles/style";
-import Header from "./Components/Header";
 import Routes from "./Routes";
 import { ToastContainer } from "react-toastify";
 
@@ -12,7 +11,7 @@ function App() {
       <GlobalStyle />
       <ToastContainer />
       <div className="App">
-        <Header />
+        <Routes />
       </div>
     </>
   );
