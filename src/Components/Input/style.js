@@ -26,6 +26,12 @@ export const InputContainer = styled.div`
     }
   }
 
+  span {
+    display: inline-block;
+    margin: 2px 0 15px 0;
+    color: var(--redError);
+  }
+
   form {
     margin: auto 0;
   }

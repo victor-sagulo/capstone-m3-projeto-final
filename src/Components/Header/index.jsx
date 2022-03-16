@@ -35,8 +35,6 @@ const Header = () => {
     setMobileModal(!mobileModal);
   };
 
-  console.log(width);
-
   return (
     <>
       {width > 768 || !width ? (
