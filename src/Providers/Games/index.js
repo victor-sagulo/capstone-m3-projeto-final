@@ -23,7 +23,7 @@ export const GamesProvider = ({ children }) => {
   const listGames = () => {
     axios
       .get(
-        `https://api.rawg.io/api/games?metacritc>90&key=870a1b01479c4490b54b590b47f030f9&dates=2021-12-01,2022-02-25&page_size=8&page=${page}`
+        `https://api.rawg.io/api/games?metacritc>90&key=870a1b01479c4490b54b590b47f030f9&dates=2021-12-01,2022-02-25&page_size=8&page=1`
       )
       .then((response) => {
         setGamesList(response.data.results);
