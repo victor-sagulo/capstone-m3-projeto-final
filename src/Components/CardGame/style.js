@@ -46,7 +46,7 @@ export const ContainerCardGame = styled.div`
     transition: 0.3s;
     position: relative;
     overflow: hidden;
-    z-index: 1;
+    z-index: -1;
     color: var(--purple);
     border: 0;
     border-radius: 0px 0px 5px 5px;

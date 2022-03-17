@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
-export const Modal = styled.section`
+export const Modal = styled.div`
 
     display: flex;
     flex-direction: column;
     background-color: var(--cleanBlack);
     padding: 15px;
     width: 95%;
-    height: 200px;
     max-width: 500px;
     margin: 25px auto;
     border-radius: 5px;
@@ -20,6 +19,7 @@ export const Modal = styled.section`
     }
 
     p {
+        font-size:14px;
         margin: 15px;
         color: var(--white);
     }
@@ -34,6 +34,18 @@ export const Modal = styled.section`
         text-decoration: none;
         color: var(--purple);
         text-transform: uppercase;
+    }
+
+    @media screen and (min-width:489px){
+        p{
+            font-size:16px;
+        }
+    }
+
+    @media screen and (min-width:768px){
+        p{
+            font-size:18px;
+        }
     }
 
 `
