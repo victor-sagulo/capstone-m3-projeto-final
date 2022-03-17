@@ -42,7 +42,6 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         background-color: #10002B;
-        height: 100vh;
     }
 
 `
