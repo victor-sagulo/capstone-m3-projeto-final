@@ -48,7 +48,7 @@ export const GamesProvider = ({ children }) => {
       )
       .then((response) => {
         setGameInfo(response.data.results);
-        history.push("/gameInfo");
+        history.push(`/gameInfo/:${gameIndex.id}`);
       });
   };
 
