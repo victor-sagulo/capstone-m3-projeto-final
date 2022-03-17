@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { GamesContext } from "../../Providers/Games";
+import Buttons from "../Buttons";
 import CardGame from "../CardGame";
-import { GamesListUl } from "./style";
+import { GamesListUl,Container } from "./style";
+import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai"
 
 const GamesList = ({ type }) => {
   const { gamesList, listAllGames, previousPage, nextPage } =
@@ -25,10 +27,10 @@ const GamesList = ({ type }) => {
           ))}
       </GamesListUl>
       {type !== "home" && (
-        <div>
-          <button onClick={previousPage}>previous</button>
-          <button onClick={nextPage}>next</button>
-        </div>
+        <Container>
+          <Buttons onClick={previousPage} className="btn--games"><AiOutlineArrowLeft size={"30px"}/></Buttons>
+          <Buttons onClick={nextPage} className="btn--games"><AiOutlineArrowRight size={"30px"}/></Buttons>
+        </Container>
       )}
     </div>
   );
