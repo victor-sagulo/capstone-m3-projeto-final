@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { GamesContext } from "../../Providers/Games";
 import CardGame from "../GameCard";
+import { GamesListUl } from "./style";
 
 const GamesList = ({ type }) => {
   const { gamesList, listAllGames, previousPage, nextPage } =
@@ -8,7 +9,7 @@ const GamesList = ({ type }) => {
 
   return (
     <div>
-      <ul>
+      <GamesListUl>
         {type === "home" &&
           gamesList.map((game, index) => <CardGame game={game} key={index} />)}
 
@@ -16,7 +17,7 @@ const GamesList = ({ type }) => {
           listAllGames.map((game, index) => (
             <CardGame game={game} key={index} />
           ))}
-      </ul>
+      </GamesListUl>
       <div>
         <button onClick={previousPage}>previous</button>
         <button onClick={nextPage}>next</button>
