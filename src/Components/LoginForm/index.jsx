@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { FormDivContainer } from "./style";
+import { Body, FormDivContainer } from "./style";
 
 const LoginForm = () => {
   const { user, handleLogin } = useContext(UserContext);
@@ -36,7 +36,9 @@ const LoginForm = () => {
   };
 
   return (
-    <FormDivContainer>
+    <>
+    <Body />
+        <FormDivContainer>
       <h1>Login</h1>
       <form className="form" onSubmit={handleSubmit(submitLogin)}>
         <Input
@@ -61,6 +63,8 @@ const LoginForm = () => {
         <Link to="/signup">Cadastre-se</Link>
       </span>
     </FormDivContainer>
+    </>
+    
   );
 };
 export default LoginForm;
