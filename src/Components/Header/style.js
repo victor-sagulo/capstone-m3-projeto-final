@@ -97,6 +97,7 @@ export const Mobile = styled.header`
     padding: min(30vh, 10rem) 10px;
     background-color: hsl(0 0% 0% / 0.5);
     backdrop-filter: blur(1rem);
+    z-index: 9999;
     nav {
         .infos--mobile {
         position: absolute;
