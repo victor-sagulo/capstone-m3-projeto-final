@@ -5,14 +5,15 @@ export const Modal = styled.section`
     display: flex;
     flex-direction: column;
     background-color: var(--cleanBlack);
-    padding: 10px 15px;
+    padding: 15px;
     width: 95%;
+    height: 200px;
     max-width: 500px;
     margin: 25px auto;
     border-radius: 5px;
 
     h2 {
-        margin: 5px;
+        margin: 15px;
         color: var(--white);
         padding: 5px;
         border-bottom: 2px solid var(--purple);
