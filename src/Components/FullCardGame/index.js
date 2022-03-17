@@ -7,6 +7,8 @@ import { RiStarFill, RiStarHalfFill, RiStarLine } from "react-icons/ri";
 const FullCardGame = ({ game, grade }) => {
   const [isClicked, setIsClicked] = useState(false);
 
+  console.log(game);
+
   const handleClick = () => {
     if (isClicked) {
       setIsClicked(false);
@@ -29,15 +31,21 @@ const FullCardGame = ({ game, grade }) => {
   return (
     <Mobile>
       <div className="img-holder">
-        <img src={game.background_image} alt={game.name} />
+        <img
+          className="game-image"
+          src={game.background_image}
+          alt={game.name}
+        />
       </div>
-      <div>
-        <span>{game.name}</span>
-        <div>Plataform: {plataformsString}</div>
-      </div>
-      <div>{game.description}</div>
-      <div onClick={handleClick}>
-        {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
+      <div className="info-holder">
+        <div>
+          <span>{game.name}</span>
+          <div>Plataform: {plataformsString}</div>
+        </div>
+        <div>{game.description}</div>
+        <div className="arrow-buttom" onClick={handleClick}>
+          {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
+        </div>
       </div>
       <>
         {isClicked ? (
