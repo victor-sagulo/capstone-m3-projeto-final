@@ -24,10 +24,12 @@ const GamesList = ({ type }) => {
             </li>
           ))}
       </GamesListUl>
-      <div>
-        <button onClick={previousPage}>previous</button>
-        <button onClick={nextPage}>next</button>
-      </div>
+      {type !== "home" && (
+        <div>
+          <button onClick={previousPage}>previous</button>
+          <button onClick={nextPage}>next</button>
+        </div>
+      )}
     </div>
   );
 };

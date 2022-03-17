@@ -4,7 +4,7 @@ import SignUp from "../Pages/Signup";
 import HomePage from "../Pages/Home";
 import GamesPage from "../Pages/Games";
 import Game from "../Pages/Game";
-import Profile from "../Pages/Profile";
+// import Profile from "../Pages/Profile";
 
 const Routes = () => {
   return (
@@ -19,7 +19,7 @@ const Routes = () => {
         <SignUp />
       </Route>
       <Route path="/profile">
-        <Profile />
+        {/* <Profile /> */}
       </Route>
       <Route path="/games">
         <GamesPage />
