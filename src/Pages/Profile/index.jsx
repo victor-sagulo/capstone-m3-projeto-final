@@ -4,13 +4,13 @@ import LikedGames from "../../Components/LikedGames";
 
 const Profile = () =>{
     return (
-        <body>
+        <div>
             <div>
                 <UserInfo/>
                 <LikedGames/>
             </div>
             {/* <RecentComents/> */}
-        </body>
+        </div>
     )
 }
 

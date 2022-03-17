@@ -5,10 +5,10 @@ const GamesPage = () =>{
     return(
         <main>
             <Header/>
-            <body>
+            <div>
                 <h2>Games</h2>
                 <GamesList type={"games"}/>
-            </body>
+            </div>
         </main>
     )
 
