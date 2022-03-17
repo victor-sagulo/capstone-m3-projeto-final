@@ -5,5 +5,9 @@ export const GamesListUl = styled.ul`
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin: 0 auto;
-  width: 70%;
+  width: 75%;
+  li{
+    width: 300px;
+    margin-top: 50px;
+  }
 `;

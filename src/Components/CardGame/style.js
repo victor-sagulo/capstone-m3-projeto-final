@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LiCardGame = styled.li`
+export const ContainerCardGame = styled.div`
   height: 350px;
   width: 22.5%;
   min-width: 300px;
@@ -10,7 +10,6 @@ export const LiCardGame = styled.li`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 10px auto;
   filter: drop-shadow(0px 0px 8px var(--purple));
   border-radius: 5px;
 

@@ -1,4 +1,4 @@
-import { LiCardGame } from "./style";
+import { ContainerCardGame } from "./style";
 import {useContext} from "react"
 import { GamesContext } from "../../Providers/Games";
 
@@ -26,7 +26,7 @@ const CardGame = ({ game }) => {
   const nameStyle = nameLength > 28 ? "min" : "regular";
 
   return (
-    <LiCardGame nameStyle={nameStyle}>
+    <ContainerCardGame nameStyle={nameStyle}>
       <img src={background_image} alt="Game card" />
       <h2>{name}</h2>
       <p>
@@ -39,7 +39,7 @@ const CardGame = ({ game }) => {
         Lançamento: <span>{formatedDate}</span>
       </p>
       <button className="view--more" onClick={()=>getGameInfo(game)}>Ver Mais</button>
-    </LiCardGame>
+    </ContainerCardGame>
   );
 };
 
