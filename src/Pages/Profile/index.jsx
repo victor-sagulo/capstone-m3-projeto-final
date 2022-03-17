@@ -1,6 +1,6 @@
 import UserInfo from "../../Components/UserInfo";
 import LikedGames from "../../Components/LikedGames";
-import RecentComents from "../../Components/RecentComents"
+// import RecentComents from "../../Components/RecentComents"
 
 const Profile = () =>{
     return (
@@ -9,7 +9,7 @@ const Profile = () =>{
                 <UserInfo/>
                 <LikedGames/>
             </div>
-            <RecentComents/>
+            {/* <RecentComents/> */}
         </body>
     )
 }
