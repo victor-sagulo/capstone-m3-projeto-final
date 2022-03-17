@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FormDivContainer = styled.div`
   width: 75%;
   min-width: 280px;
-  max-width: 400px;
+  max-width: 450px;
   background-color: var(--cleanBlack);
   box-shadow: -4px 4px 3px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
