@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GamesContext } from "../../Providers/Games";
+import CardGame from "../GameCard";
 
 const GamesList = ({ type }) => {
   const { gamesList, listAllGames, previousPage, nextPage } =
@@ -9,17 +10,11 @@ const GamesList = ({ type }) => {
     <div>
       <ul>
         {type === "home" &&
-          gamesList.map((game) => (
-            <li>
-              <img src={game.background_image} style={{ maxWidth: "300px" }} />
-            </li>
-          ))}
+          gamesList.map((game, index) => <CardGame game={game} key={index} />)}
 
         {type === "games" &&
-          listAllGames.map((game) => (
-            <li>
-              <img src={game.background_image} style={{ maxWidth: "300px" }} />
-            </li>
+          listAllGames.map((game, index) => (
+            <CardGame game={game} key={index} />
           ))}
       </ul>
       <div>
