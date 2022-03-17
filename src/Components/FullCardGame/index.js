@@ -15,6 +15,17 @@ const FullCardGame = (game, { grade }) => {
     }
   };
 
+  const [plataformArray, setPlataformArray] = useState(
+    game.plataforms.map((plataform) => {
+      return plataform.platform.name;
+    })
+  );
+  const [plataformsString, setPlataformString] = useState(
+    plataformArray.join(", ")
+  );
+
+  setPlataformString.map();
+
   return (
     <Mobile>
       <div className="img-holder">
@@ -22,16 +33,9 @@ const FullCardGame = (game, { grade }) => {
       </div>
       <div>
         <span>{game.name}</span>
-        <div>
-          Plataform:{" "}
-          <>
-            {game.plataforms.map((plataform) => {
-              return <> {plataform.platform.name} </>;
-            })}
-          </>
-        </div>
+        <div>Plataform: {plataformsString}</div>
       </div>
-      <p>{game.description_raw}</p>
+      <div>{game.description}</div>
       <div onClick={handleClick}>
         {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
       </div>
