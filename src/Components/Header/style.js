@@ -122,6 +122,14 @@ export const Mobile = styled.header`
           .nav--icon {
             color: var(--purple);
           }
+          button{
+              border: 0;
+              background-color: transparent;
+              color: var(--white);
+              font-family: var(--mainFont);
+              font-size: 20px;
+              text-decoration: underline;
+          }
           a {
             color: var(--white);
             font-family: var(--mainFont);
@@ -129,7 +137,7 @@ export const Mobile = styled.header`
           }
         }
       }
-      button {
+      button.close--btn{
         position: absolute;
         z-index: 9999;
         width: 50vw;

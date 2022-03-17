@@ -23,6 +23,10 @@ const Header = () => {
     setWidth(window.innerWidth);
   };
 
+  useEffect(()=>{
+    setWidth(window.innerWidth);
+  })
+
   const [userModal, setUserModal] = useState(false);
 
   const [mobileModal, setMobileModal] = useState(false);
@@ -37,7 +41,7 @@ const Header = () => {
 
   return (
     <>
-      {width > 768 || !width ? (
+      {width > 768 ?(
         <Desktop>
           <figure>
             <img src={gamesHubLogo} alt="GamesHub logo" />
@@ -87,7 +91,7 @@ const Header = () => {
                   <img src={user ? user.image : userImg} alt="user image" />
                   <figcaption>user image</figcaption>
                 </figure>
-                <h3>username</h3>
+                <h3>{user.username}</h3>
                 {userModal ? (
                   <FaAngleUp
                     className="icon"
@@ -167,7 +171,7 @@ const Header = () => {
                         />
                         <figcaption>user image</figcaption>
                       </figure>
-                      <h3>username</h3>
+                      <h3>{user.username}</h3>
                     </div>
                     <ul>
                       <li>
@@ -184,12 +188,12 @@ const Header = () => {
                       </li>
                       <li>
                         <BiLogOut size={"25px"} className="nav--icon" />
-                        <Link to="/profile">Log out</Link>
+                        <button onClick={()=>console.log('Log')}>Log out</button>
                       </li>
                     </ul>
                   </>
                 )}
-                <button onClick={handleMobileModal}>
+                <button onClick={handleMobileModal} className="close--btn">
                   <VscChromeClose size={"40px"} className="close--icon" />
                 </button>
               </nav>
