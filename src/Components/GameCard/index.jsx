@@ -1,10 +1,40 @@
 import { LiCardGame } from "./style";
 
 const CardGame = ({ game }) => {
+  const { background_image, name, genres, released, parent_platforms } = game;
+
+  const plataformsText = parent_platforms.reduce(
+    (acc, plat, index) => (index === 0 ? acc + plat.platform.name : acc + ", " + plat.platform.name),
+    ""
+  );
+
+  const genresText = genres.reduce(
+    (acc, gen, index) => (index === 0 ? acc + gen.name : acc + ", " + gen.name),
+    ""
+  );
+
+  const formatedDate = new Date(released).toLocaleDateString("pt-BR", {
+    timeZone: "UTC",
+  });
+
+  const nameLength = name.length;
+
+  const nameStyle = nameLength > 28 ? "min" : "regular";
+
   return (
-    <LiCardGame>
-      <img src={game.background_image} alt="Game card" />
-      <h2>{game.name}</h2>
+    <LiCardGame nameStyle={nameStyle}>
+      <img src={background_image} alt="Game card" />
+      <h2>{name}</h2>
+      <p>
+        Gêneros: <span>{genresText}</span>
+      </p>
+      <p>
+        Plataformas: <span>{plataformsText}</span>
+      </p>
+      <p>
+        Lançamento: <span>{formatedDate}</span>
+      </p>
+      <button className="view--more">Ver Mais</button>
     </LiCardGame>
   );
 };
