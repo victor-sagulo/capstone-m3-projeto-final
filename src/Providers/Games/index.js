@@ -56,7 +56,14 @@ export const GamesProvider = ({ children }) => {
 
   return (
     <GamesContext.Provider
-      value={{ gamesList, listAllGames, nextPage, previousPage, getGameInfo }}
+      value={{
+        gamesList,
+        listAllGames,
+        gameInfo,
+        nextPage,
+        previousPage,
+        getGameInfo,
+      }}
     >
       {children}
     </GamesContext.Provider>
