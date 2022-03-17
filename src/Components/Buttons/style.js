@@ -39,7 +39,7 @@ export const Button = styled.button`
   }
 
   @media screen and (min-width: 768px){
-      width: 350px;
+      width: 365.5px;
       :hover::before {
         width: 300px;
         height: 300px;
