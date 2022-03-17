@@ -1,5 +1,5 @@
 import app from "../../Services/api.js";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import userImg from "../../images/userImg.svg";
@@ -9,8 +9,33 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("@GamesHub user")) || false
   );
+  const [postsList, setPostsList] = useState([]);
+  const [userList, setUserList] = useState([]);
 
   const history = useHistory();
+
+  const listPosts = () => {
+    app
+      .get("/posts")
+      .then((response) => {
+        setPostsList(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const listUsers = () => {
+    app
+      .get("/users/?_embed=posts")
+      .then((response) => {
+        setUserList(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    listPosts();
+    listUsers();
+  }, []);
 
   const handleLogin = (email, password) => {
     app
@@ -50,7 +75,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const handlePost = (text, game) => {
-    app.post("/post", {
+    app.post("/posts", {
       text,
       game,
       userId: user.id,
@@ -69,7 +94,15 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, handleLogin, handleLogOut, handleRegister, handlePost }}
+      value={{
+        user,
+        postsList,
+        userList,
+        handleLogin,
+        handleLogOut,
+        handleRegister,
+        handlePost,
+      }}
     >
       {children}
     </UserContext.Provider>
