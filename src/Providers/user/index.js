@@ -2,6 +2,7 @@ import app from "../../Services/api.js";
 import { useState, createContext } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import userImg from "../../images/userImg.svg";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -42,6 +43,8 @@ export const UserProvider = ({ children }) => {
       email,
       password,
       plataform,
+      img: userImg,
+      description: "Olá eu estou usando o G4Hub",
       likedGames: [],
     });
   };
