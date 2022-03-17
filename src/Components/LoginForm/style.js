@@ -1,26 +1,22 @@
 import styled from "styled-components";
 
-
 export const Body = styled.div`
-
-background: url("https://i.imgur.com/5FboDfi.png");
-filter: blur(6px) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-width: 100vw;
-height: 100vh;
-position: absolute;
-top: 0;
-left: 0;
-z-index: -1;
-
-`
+  background: url("https://i.imgur.com/5FboDfi.png");
+  filter: blur(6px) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+`;
 
 export const FormDivContainer = styled.div`
-
   background-color: var(--cleanBlack);
   box-shadow: -4px 4px 3px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   width: 75%;
-  min-width:280px;
+  min-width: 280px;
   max-width: 400px;
   margin: 46px auto;
   color: var(--white);
@@ -34,7 +30,7 @@ export const FormDivContainer = styled.div`
     color: var(--purple);
   }
 
-  form{
+  form {
     padding-top: 20px;
     display: flex;
     flex-direction: column;
@@ -47,16 +43,15 @@ export const FormDivContainer = styled.div`
     margin: 15px;
     margin-top: 15px;
     a {
-        margin: 0 5px;
-        text-decoration: none;
-        text-transform: uppercase;
+      margin: 0 5px;
+      text-decoration: none;
+      text-transform: uppercase;
     }
-
   }
   @media screen and (min-width: 768px) {
     height: 600px;
     max-width: 450px;
-    span{
+    span {
       margin-top: 60px;
     }
   }
