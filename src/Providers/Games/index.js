@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export const GamesContext = createContext();
@@ -8,6 +9,7 @@ export const GamesProvider = ({ children }) => {
   const [gamesList, setGamesList] = useState([]);
   const [listAllGames, setListAllGames] = useState([]);
   const [gameInfo, setGameInfo] = useState([]);
+  const history = useHistory();
 
   const nextPage = () => {
     setPage(page + 1);
@@ -46,6 +48,7 @@ export const GamesProvider = ({ children }) => {
       )
       .then((response) => {
         setGameInfo(response.data.results);
+        history.push("/gameInfo");
       });
   };
 
