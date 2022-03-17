@@ -1,8 +1,23 @@
 import styled from "styled-components";
 
 export const Mobile = styled.div`
-  .teste {
-    background-color: #222222;
+  width: 300px;
+  height: 214px;
+  background-color: #222222;
+
+  .img-holder {
+    height: 122px;
+    width: 95px;
+  }
+
+  .game-image {
+    height: 122px;
+    width: 95px;
+  }
+
+  .info-holder {
+    width: 172px;
+    height: 168px;
   }
 `;
 
