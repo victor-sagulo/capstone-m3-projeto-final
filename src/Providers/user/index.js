@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
 
         toast.success("Usuário logado com sucesso!");
 
-        history.push("/")
+        history.push("/");
       })
       .catch(() => toast.error("Email ou senha inválidos"));
   };
@@ -42,6 +42,7 @@ export const UserProvider = ({ children }) => {
       email,
       password,
       plataform,
+      likedGames: [],
     });
   };
 
