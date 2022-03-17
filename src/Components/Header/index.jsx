@@ -138,7 +138,7 @@ const Header = () => {
           {mobileModal && (
             <div className="mobile--modal">
               <nav>
-                {user === true ? (
+                {user === false ? (
                   <ul>
                     <li>
                       <AiFillHome size={"25px"} className="nav--icon" />
