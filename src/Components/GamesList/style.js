@@ -9,6 +9,7 @@ export const GamesListUl = styled.ul`
   li{
     width: 300px;
     margin-top: 50px;
+    margin-inline: 10px;
   }
 `;
 
