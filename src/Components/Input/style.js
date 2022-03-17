@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const InputContainer = styled.div`
   width: 100%;
-
+  height: 100px;
   label {
     text-align: left;
     display: block;
@@ -26,10 +26,19 @@ export const InputContainer = styled.div`
     }
   }
 
-  span {
-    display: inline-block;
-    margin: 2px 0 15px 0;
-    color: var(--redError);
+  div{
+    max-height: 35px;
+    display: flex;
+    align-items: left;
+    padding-left: 32px;
+    width: 85%;
+    span {
+      display: inline-block;
+      margin: -5px 0 15px 0;
+      font-size: 10.5px;
+      color: var(--redError);
+      text-align: left;
+    }
   }
 
   form {
@@ -43,6 +52,11 @@ export const InputContainer = styled.div`
     }
     input {
       height: 46px;
+    }
+    div{
+      span{
+        font-size: 12px;
+      }
     }
   }
 `;
