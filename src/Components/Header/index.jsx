@@ -12,11 +12,12 @@ import { CgGames } from "react-icons/cg";
 import { MdAccountBox } from "react-icons/md";
 import { VscChromeClose } from "react-icons/vsc";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import InputHeader from "../InputHeader";
 
 const Header = () => {
   const [width, setWidth] = useState("");
-
+  const history = useHistory()
   const { user,handleLogOut } = useContext(UserContext);
 
   window.onresize = window.onload = () => {
@@ -108,7 +109,7 @@ const Header = () => {
               </div>
               {userModal && (
                 <div className="modal--user">
-                  <div>
+                  <div onClick={()=>history.push("/profile")}>
                     <h4>Meu Perfil</h4>
                     <Link to="/profile">
                       <RiFolderUserFill size={"20px"} />

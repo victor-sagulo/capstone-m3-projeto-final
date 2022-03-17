@@ -30,6 +30,8 @@ export const UserProvider = ({ children }) => {
         setUser(response.data.user);
 
         toast.success("Usuário logado com sucesso!");
+
+        history.push("/")
       })
       .catch(() => toast.error("Email ou senha inválidos"));
   };

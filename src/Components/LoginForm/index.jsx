@@ -33,7 +33,6 @@ const LoginForm = () => {
 
   const submitLogin = (data) => {
     handleLogin(data.email, data.password);
-    history.push("/")
   };
 
   return (
