@@ -17,7 +17,7 @@ import InputHeader from "../InputHeader";
 const Header = () => {
   const [width, setWidth] = useState("");
 
-  const { user } = useContext(UserContext);
+  const { user,handleLogOut } = useContext(UserContext);
 
   window.onresize = window.onload = () => {
     setWidth(window.innerWidth);
@@ -114,7 +114,7 @@ const Header = () => {
                       <RiFolderUserFill size={"20px"} />
                     </Link>
                   </div>
-                  <div>
+                  <div onClick={handleLogOut}>
                     <h4>Log out</h4> <BiLogOut size={"20px"} />
                   </div>
                 </div>
@@ -188,7 +188,8 @@ const Header = () => {
                       </li>
                       <li>
                         <BiLogOut size={"25px"} className="nav--icon" />
-                        <button onClick={()=>console.log('Log')}>Log out</button>
+                        <button onClick={()=>{handleMobileModal()
+                        handleLogOut()}}>Log out</button>
                       </li>
                     </ul>
                   </>
