@@ -6,14 +6,14 @@ import FullCardGame from "../../Components/FullCardGame";
 
 const Game = () => {
   const { gameInfo } = useContext(GamesContext);
+  console.log(gameInfo);
 
   return (
     <main>
       <div className="home-top">
         <Header />
-        <Modals />
       </div>
-      <FullCardGame />
+      <FullCardGame game={gameInfo} grade={5} />
     </main>
   );
 };

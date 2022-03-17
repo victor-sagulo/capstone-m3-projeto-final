@@ -7,7 +7,7 @@ import { RiStarFill, RiStarHalfFill, RiStarLine } from "react-icons/ri";
 const FullCardGame = ({ game, grade }) => {
   const [isClicked, setIsClicked] = useState(false);
 
-  console.log(game);
+  console.log(game.plataforms);
 
   const handleClick = () => {
     if (isClicked) {
@@ -16,17 +16,6 @@ const FullCardGame = ({ game, grade }) => {
       setIsClicked(true);
     }
   };
-
-  const [plataformArray, setPlataformArray] = useState(
-    game.plataforms.map((plataform) => {
-      return plataform.platform.name;
-    })
-  );
-  const [plataformsString, setPlataformString] = useState(
-    plataformArray.join(", ")
-  );
-
-  setPlataformString.map();
 
   return (
     <Mobile>
@@ -40,7 +29,9 @@ const FullCardGame = ({ game, grade }) => {
       <div className="info-holder">
         <div>
           <span>{game.name}</span>
-          <div>Plataform: {plataformsString}</div>
+          {game.parent_platforms.map((platforms) => (
+            <span>Plataformas: {platforms.platform.name}</span>
+          ))}
         </div>
         <div>{game.description}</div>
         <div className="arrow-buttom" onClick={handleClick}>

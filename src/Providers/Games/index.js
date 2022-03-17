@@ -46,7 +46,7 @@ export const GamesProvider = ({ children }) => {
         `https://api.rawg.io/api/games/${game.slug}?key=870a1b01479c4490b54b590b47f030f9`
       )
       .then((response) => {
-        setGameInfo(response.data.results);
+        setGameInfo(response.data);
         history.push(`/gameInfo/${game.slug}`);
       });
   };
