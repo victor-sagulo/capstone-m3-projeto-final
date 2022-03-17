@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { GamesContext } from "../../Providers/Games";
-import CardGame from "../GameCard";
+import CardGame from "../CardGame";
 import { GamesListUl } from "./style";
 
 const GamesList = ({ type }) => {

@@ -1,7 +1,11 @@
 import { LiCardGame } from "./style";
+import {useContext} from "react"
+import { GamesContext } from "../../Providers/Games";
 
 const CardGame = ({ game }) => {
   const { background_image, name, genres, released, parent_platforms } = game;
+
+  const {getGameInfo} = useContext(GamesContext)
 
   const plataformsText = parent_platforms.reduce(
     (acc, plat, index) => (index === 0 ? acc + plat.platform.name : acc + ", " + plat.platform.name),
@@ -34,7 +38,7 @@ const CardGame = ({ game }) => {
       <p>
         Lançamento: <span>{formatedDate}</span>
       </p>
-      <button className="view--more">Ver Mais</button>
+      <button className="view--more" onClick={()=>getGameInfo(game)}>Ver Mais</button>
     </LiCardGame>
   );
 };
