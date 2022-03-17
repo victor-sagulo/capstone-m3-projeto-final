@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LiCardGame = styled.li`
   height: 350px;
-  width: 20%;
+  width: 22.5%;
   min-width: 300px;
   border-radius: 8px;
   background: var(--blackComment);
