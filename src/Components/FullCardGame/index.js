@@ -4,7 +4,7 @@ import { Mobile, More, MoreHide } from "./style";
 import gamesHubLogo from "../../images/gamesHubLogo.svg";
 import { RiStarFill, RiStarHalfFill, RiStarLine } from "react-icons/ri";
 
-const CardGame = (game, { grade }) => {
+const FullCardGame = (game, { grade }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -64,4 +64,4 @@ const CardGame = (game, { grade }) => {
   );
 };
 
-export default CardGame;
+export default FullCardGame;
