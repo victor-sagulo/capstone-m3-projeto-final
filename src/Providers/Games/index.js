@@ -13,11 +13,13 @@ export const GamesProvider = ({ children }) => {
 
   const nextPage = () => {
     setPage(page + 1);
+    window.scrollTo({top:0,behavior:'smooth'})
   };
 
   const previousPage = () => {
     if (page > 1) {
       setPage(page - 1);
+      window.scrollTo({top:0,behavior:'smooth'})
     }
   };
   const listGames = () => {
