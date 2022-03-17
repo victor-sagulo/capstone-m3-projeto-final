@@ -33,7 +33,7 @@ export const GamesProvider = ({ children }) => {
   const listMoreGames = () => {
     axios
       .get(
-        `https://api.rawg.io/api/games?key=870a1b01479c4490b54b590b47f030f9&dates=2019-09-01,2019-09-30&page_size=24&page=${page}`
+        `https://api.rawg.io/api/games?key=870a1b01479c4490b54b590b47f030f9&page_size=24&page=${page}`
       )
       .then((response) => {
         setListAllGames(response.data.results);
