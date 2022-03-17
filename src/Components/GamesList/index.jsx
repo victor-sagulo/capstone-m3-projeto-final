@@ -14,14 +14,14 @@ const GamesList = ({ type }) => {
       <GamesListUl>
         {type === "home" &&
           gamesList.map((game, index) => (
-            <li>
+            <li key={index}>
               <CardGame game={game} key={index} />
             </li>
           ))}
 
         {type === "games" &&
           listAllGames.map((game, index) => (
-            <li>
+            <li key={index}>
               <CardGame game={game} key={index} />
             </li>
           ))}
