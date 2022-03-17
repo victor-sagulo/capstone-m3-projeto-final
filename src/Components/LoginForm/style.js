@@ -31,7 +31,7 @@ export const FormDivContainer = styled.div`
   span {
     display: inline-block;
     margin: 15px;
-    margin-top: 60px;
+    margin-top: 15px;
     a {
         margin: 0 5px;
         text-decoration: none;
@@ -42,5 +42,8 @@ export const FormDivContainer = styled.div`
   @media screen and (min-width: 768px) {
     height: 600px;
     max-width: 450px;
+    span{
+      margin-top: 60px;
+    }
   }
 `;
