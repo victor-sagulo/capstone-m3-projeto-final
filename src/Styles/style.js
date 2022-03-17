@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
         --black: #000000;
         --grey: #C4C4C4;
         --blackComment: #111111;
+        --background:#10002B;
         --mainFont: "Inter", sans-serif;
         --blackOpsFont: "Black Ops One", cursive;
     }
@@ -41,7 +42,15 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
     }
     body{
-        background-color: #10002B;
+        background-color: var(--background);
     }
-
-`
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--background); 
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--purple); 
+    }
+`;
