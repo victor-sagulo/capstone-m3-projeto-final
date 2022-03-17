@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const Body = styled.div`
+  background: url("https://i.imgur.com/5FboDfi.png");
+  filter: blur(6px) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+`;
+
 export const FormDivContainer = styled.div`
   width: 75%;
   min-width: 280px;
@@ -7,7 +18,7 @@ export const FormDivContainer = styled.div`
   background-color: var(--cleanBlack);
   box-shadow: -4px 4px 3px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  margin-top:46px;
+  margin-top: 46px;
   margin-inline: auto;
   color: var(--white);
   padding: 10px;
@@ -18,5 +29,4 @@ export const FormDivContainer = styled.div`
     margin-bottom: 15px;
     color: var(--purple);
   }
-
 `;
