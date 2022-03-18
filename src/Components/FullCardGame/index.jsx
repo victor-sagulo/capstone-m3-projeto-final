@@ -29,11 +29,12 @@ const FullCardGame = ({ game, grade }) => {
       <div className="info-holder">
         <div>
           <span>{game.name}</span>
+          <h4>Plataformas:</h4>
           {game.parent_platforms.map((platforms) => (
-            <span>Plataformas: {platforms.platform.name}</span>
+            <span> {platforms.platform.name}</span>
           ))}
         </div>
-        <div>{game.description}</div>
+        <div>{game.description.replace(/[<p>\\/&/;]/g, "")}</div>
         <div className="arrow-buttom" onClick={handleClick}>
           {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
         </div>
