@@ -6,20 +6,18 @@ import FullCardGame from "../../Components/FullCardGame";
 import CardComment from "../../Components/CardComment";
 import CommentsList from "../../Components/CommentsList";
 
-
 const Game = () => {
-
-  const arrayOfComments = () => {
+  /* const arrayOfComments = () => {
     return postsList.map((post) => post.game === gameInfo.name);
-  };
+  }; */
 
   return (
     <main>
       <div className="home-top">
         <Header />
       </div>
-      <FullCardGame  grade={5} />
-      <CommentsList comments={arrayOfComments} />
+      <FullCardGame grade={5} />
+      {/* <CommentsList comments={arrayOfComments} /> */}
     </main>
   );
 };
