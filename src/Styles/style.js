@@ -22,10 +22,10 @@ export const GlobalStyle = createGlobalStyle`
         --blackOpsFont:'Black Ops One', cursive;
         --toastify-color-success: #9D4EDD;
         --toastify-color-error: #9D4EDD;
-        --toastify-color-dark: #0a011b;
+        --toastify-color-dark: #0A011B;
         --toastify-toast-min-height: 85px;
         --toastify-text-color-dark: #FFF;
-        --toastify-font-family: 'Inter', sans-serif 20px;
+        --toastify-font-family: 'Inter', sans-serif;
     }
 
     body, input, button {
@@ -49,6 +49,11 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         background-color: var(--background);
+        margin: 0;
+        font-family: var(--mainFont), 'Segoe UI', 'Roboto', 'Oxygen',
+            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+            sans-serif;
+        font-size: 14px;
     }
     ::-webkit-scrollbar {
         width: 12px;
@@ -58,5 +63,8 @@ export const GlobalStyle = createGlobalStyle`
     }
     ::-webkit-scrollbar-thumb {
         background: var(--purple); 
+    }
+    .App {
+        text-align: center;
     }
 `;
