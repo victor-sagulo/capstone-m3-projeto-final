@@ -38,7 +38,7 @@ const UserEdit = ({ handleModal }) => {
     if (data.description === "") {
       delete data.description;
     }
-    handleEditUser(data,handleModal);
+    handleEditUser(data, handleModal);
   };
 
   return (
@@ -79,8 +79,10 @@ const UserEdit = ({ handleModal }) => {
         <Input
           name="password"
           register={register}
-          label="Para fazer a alteração coloque sua senha"
-          placeholder="Senha"
+          label="Para sua segurança, coloque sua senha"
+          icon
+          placeholder="Insira a sua senha"
+          type="password"
           error={errors.password?.message}
         />
         <div>
