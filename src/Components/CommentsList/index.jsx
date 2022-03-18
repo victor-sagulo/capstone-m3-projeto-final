@@ -1,8 +1,12 @@
-const CommentsList = () => {
+import CardComment from "../CardComment";
 
-    return(<ul>
-        {}
-    </ul>)
+const CommentsList = (comments) => {
+
+    return(<div>
+        {comments.map{(comment) =>{
+            <CardComment img={comment.img} name={comment.game} comment={comment.text} likes={comment.likes} />
+        }}
+    </div>)
 };
 
 export default CommentsList;
