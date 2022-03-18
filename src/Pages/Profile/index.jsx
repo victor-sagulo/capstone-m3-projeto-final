@@ -1,18 +1,21 @@
 import UserInfo from "../../Components/UserInfo";
 import LikedGames from "../../Components/LikedGames";
 import Header from "../../Components/Header";
-// import RecentComents from "../../Components/RecentComents"
+import { ContentWraper, DivProfileContainer } from "./style";
+import RecentComents from "../../Components/RecentComents";
 
 const Profile = () => {
   return (
-    <div>
+    <>
       <Header />
-      <div>
-        <UserInfo />
-        <LikedGames />
-      </div>
-      {/* <RecentComents/> */}
-    </div>
+      <DivProfileContainer>
+        <ContentWraper>
+          <UserInfo />
+          <LikedGames />
+        </ContentWraper>
+        <RecentComents />
+      </DivProfileContainer>
+    </>
   );
 };
 
