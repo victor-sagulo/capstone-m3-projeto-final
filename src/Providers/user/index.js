@@ -55,11 +55,11 @@ export const UserProvider = ({ children }) => {
         );
         setUser(response.data.user);
 
-        toast.success("Usuário logado com sucesso!");
+        toast.success("Usuário logado com sucesso!",{theme:"dark"});
 
         history.push("/");
       })
-      .catch(() => toast.error("Email ou senha inválidos"));
+      .catch(() => toast.error("Email ou senha inválidos",{theme:"dark"}));
   };
 
   const handleRegister = ({ username, email, password, plataform }) => {
