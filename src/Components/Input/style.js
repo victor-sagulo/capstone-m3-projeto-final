@@ -14,7 +14,7 @@ export const InputContainer = styled.div`
 
   input {
     width: 85%;
-    background: #c4c4c4;
+    background: var(--grey);
     border-radius: 5px;
     border: none;
     height: 32px;
@@ -30,8 +30,8 @@ export const InputContainer = styled.div`
     max-height: 35px;
     display: flex;
     align-items: left;
-    padding-left: 32px;
-    width: 85%;
+    padding-left: 20px;
+    width: 95%;
     span {
       display: inline-block;
       margin: -5px 0 15px 0;
@@ -44,7 +44,16 @@ export const InputContainer = styled.div`
   form {
     margin: auto 0;
   }
-
+  @media (min-width: 420px) {
+    div{
+      padding-left: 23px;
+    }
+  }
+  @media (min-width: 450px) {
+    div{
+      padding-left: 32px;
+    }
+  }
   @media (min-width: 768px) {
     margin: 12px 0;
     label {

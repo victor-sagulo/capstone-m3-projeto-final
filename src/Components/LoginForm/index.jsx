@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Body, FormDivContainer } from "./style";
+import { Background, FormDivContainer } from "./style";
 
 const LoginForm = () => {
   const { user, handleLogin } = useContext(UserContext);
@@ -37,7 +37,7 @@ const LoginForm = () => {
 
   return (
     <>
-    <Body />
+    <Background />
         <FormDivContainer>
       <h1>Login</h1>
       <form className="form" onSubmit={handleSubmit(submitLogin)}>

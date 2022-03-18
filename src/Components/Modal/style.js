@@ -8,7 +8,7 @@ export const Modal = styled.div`
     padding: 15px;
     width: 95%;
     max-width: 500px;
-    margin: 25px auto;
+    margin: 50px auto;
     border-radius: 5px;
 
     h2 {
@@ -27,7 +27,6 @@ export const Modal = styled.div`
     span {
         display: inline-block;
         color: var(--purple);
-        cursor: pointer;
     }
 
     a {
