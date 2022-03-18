@@ -1,15 +1,15 @@
-import { GamesContext } from "../../Providers/Games";
-import { useContext, useEffect, useState } from "react";
 import Header from "../../Components/Header";
-import Modals from "../../Components/Modal";
 import FullCardGame from "../../Components/FullCardGame";
-import CardComment from "../../Components/CardComment";
+import {useContext} from "react"
+import { UserContext } from "../../Providers/user";
 import CommentsList from "../../Components/CommentsList";
+import { useParams } from "react-router-dom";
 
 const Game = () => {
-  /* const arrayOfComments = () => {
-    return postsList.map((post) => post.game === gameInfo.name);
-  }; */
+
+  const { slug } = useParams();
+  const {postsList} = useContext(UserContext)
+  const filteredComments = postsList.filter((post)=>post.game === slug)
 
   return (
     <main>
@@ -17,7 +17,7 @@ const Game = () => {
         <Header />
       </div>
       <FullCardGame grade={5} />
-      {/* <CommentsList comments={arrayOfComments} /> */}
+      <CommentsList comments={filteredComments} />
     </main>
   );
 };
