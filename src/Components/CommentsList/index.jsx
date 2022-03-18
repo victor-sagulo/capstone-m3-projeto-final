@@ -1,12 +1,15 @@
 import CardComment from "../CardComment";
 
-const CommentsList = ({ comments }) => {
+const CommentsList = ({ comments ,profile}) => {
   return (
     <div>
       {comments.map((comment) => (
         <CardComment
+          profile={profile}
           img={comment.img}
-          name={comment.game}
+          username={comment.username}
+          gameName={comment.gameName}
+          gameSlug={comment.gameSlug}
           comment={comment.text}
           likes={comment.likes}
         />
