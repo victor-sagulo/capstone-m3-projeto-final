@@ -62,7 +62,7 @@ const FullCardGame = ({ grade }) => {
                     .replace(/[\\/&/;]/g, "")
                     .replace(/[q][u][o][t]/g, "")
                     .replace(/[<][p][>]/g, "")
-                    .replace(/[<][b][r][>]/g, "")
+                    .replace(/[<][b][r][ ][>]/g, "")
                     .replace(/[#][3][9]/g, "'")}
                 </div>
                 <div className="arrow-buttom" onClick={handleClick}>
