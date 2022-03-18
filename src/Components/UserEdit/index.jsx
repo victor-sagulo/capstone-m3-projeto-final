@@ -38,8 +38,7 @@ const UserEdit = ({ handleModal }) => {
     if (data.description === "") {
       delete data.description;
     }
-    console.log(data);
-    handleEditUser(data);
+    handleEditUser(data,handleModal);
   };
 
   return (

@@ -83,7 +83,7 @@ export const UserProvider = ({ children }) => {
     description = user.description,
     password,
     email=user.email
-  }) => {
+  },handleModal) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
     app
       .put(
@@ -97,9 +97,11 @@ export const UserProvider = ({ children }) => {
       )
       .then((response) => {
         setUser(response.data);
+        localStorage.setItem("@GamesHub user",JSON.stringify(response.data));
         toast.success("Informações de usuário alteradas com sucesso!", {
           theme: "dark",
         });
+        handleModal()
       })
       .catch((_) =>
         toast.error("Ops, algo deu errado, revise as infromaçoes passadas", {

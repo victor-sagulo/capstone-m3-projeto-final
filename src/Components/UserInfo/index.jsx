@@ -28,7 +28,7 @@ const UserInfo = () => {
         <InfosBox>
           <InfosContainer>
             <figure>
-              <img src={user.img} alt="Imagem de perfil do usuário" />
+              <img src={user.img} alt="Imagem de perfil do usuário" className="user--profile--img"/>
             </figure>
             <div>
               <h2>{user.username}</h2>

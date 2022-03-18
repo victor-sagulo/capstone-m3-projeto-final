@@ -25,6 +25,11 @@ export const Desktop = styled.header`
       justify-content: space-between;
       margin-left: 4px;
     }
+    .user--img{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
 
     .infos {
       display: flex;
@@ -90,6 +95,11 @@ export const Mobile = styled.header`
     .hamburger {
       color: var(--white);
     }
+  }
+  .user--img{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
   }
   .mobile--modal {
     position: fixed;
