@@ -11,6 +11,7 @@ export const UserProvider = ({ children }) => {
   );
   const [postsList, setPostsList] = useState([]);
   const [userList, setUserList] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
 
   const history = useHistory();
 
@@ -32,11 +33,6 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    listPosts();
-    listUsers();
-  }, []);
-
   const handleLogin = (email, password) => {
     app
       .post("/login", {
@@ -55,28 +51,67 @@ export const UserProvider = ({ children }) => {
         );
         setUser(response.data.user);
 
-        toast.success("Usuário logado com sucesso!",{theme:"dark"});
+        toast.success("Usuário logado com sucesso!", { theme: "dark" });
 
         history.push("/");
       })
-      .catch(() => toast.error("Email ou senha inválidos",{theme:"dark"}));
+      .catch(() => toast.error("Email ou senha inválidos", { theme: "dark" }));
   };
 
   const handleRegister = ({ username, email, password, plataform }) => {
-    app.post("/register", {
-      username,
-      email,
-      password,
-      plataform,
-      img: userImg,
-      description: "Olá eu estou usando o G4Hub",
-      likedGames: [],
-    })
-    .then((_) => {
-      toast.success("Conta criada com sucesso!",{theme:"dark"});
-      history.push("/login");
-    })
-    .catch((_)=>toast.error("Usuário já cadastrado",{theme:"dark"}))
+    app
+      .post("/register", {
+        username,
+        email,
+        password,
+        plataform,
+        img: userImg,
+        description: "Olá eu estou usando o G4Hub",
+        likedGames: [],
+      })
+      .then((_) => {
+        toast.success("Conta criada com sucesso!", { theme: "dark" });
+        history.push("/login");
+      })
+      .catch((_) => toast.error("Usuário já cadastrado", { theme: "dark" }));
+  };
+
+  const handleEditUser = ({
+    username = user.username,
+    plataform = user.plataform,
+    img = user.img,
+    description = user.description,
+  }) => {
+    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+
+    app
+      .put(
+        "/users",
+        { username, plataform, img, description },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setUser(response.data);
+        toast.success("Informações de usuário alteradas com sucesso!", {
+          theme: "dark",
+        });
+      })
+      .catch((_) =>
+        toast.error("Ops, algo deu errado, revise as infromaçoes passadas", {
+          theme: "dark",
+        })
+      );
+  };
+
+  const listUserPosts = () => {
+    app
+      .get(`/users/${user.id}?_embed=posts`)
+      .then((response) => setUserPosts(response.data.posts))
+      .catch((err) => console.log(err));
   };
 
   const handlePost = (text, game) => {
@@ -93,20 +128,28 @@ export const UserProvider = ({ children }) => {
   const handleLogOut = () => {
     localStorage.removeItem("@GamesHub Token");
     localStorage.removeItem("@GamesHub user");
-    toast(`Até mais, ${user.username}! 👋`,{theme:"dark"})
+    toast(`Até mais, ${user.username}! 👋`, { theme: "dark" });
     setUser(false);
     history.push("/");
   };
+
+  useEffect(() => {
+    listPosts();
+    listUsers();
+    listUserPosts();
+  }, []);
 
   return (
     <UserContext.Provider
       value={{
         user,
+        userPosts,
         postsList,
         userList,
         handleLogin,
         handleLogOut,
         handleRegister,
+        handleEditUser,
         handlePost,
       }}
     >
