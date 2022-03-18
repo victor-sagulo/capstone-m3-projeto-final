@@ -17,7 +17,7 @@ const Game = () => {
         <Header />
       </div>
       <FullCardGame grade={5} />
-      <CommentsList comments={filteredComments} />
+      <CommentsList comments={filteredComments} profile/>
     </main>
   );
 };
