@@ -45,8 +45,6 @@ const SingupForm = () => {
   const handleFormSubmit = (data) => {
     delete data.confirm_password;
     handleRegister(data);
-    toast.success("Conta criada com sucesso!");
-    history.push("/login");
   };
 
   return (

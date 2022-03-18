@@ -71,7 +71,12 @@ export const UserProvider = ({ children }) => {
       img: userImg,
       description: "Olá eu estou usando o G4Hub",
       likedGames: [],
-    });
+    })
+    .then((_) => {
+      toast.success("Conta criada com sucesso!",{theme:"dark"});
+      history.push("/login");
+    })
+    .catch((_)=>toast.error("Usuário já cadastrado",{theme:"dark"}))
   };
 
   const handlePost = (text, game) => {
