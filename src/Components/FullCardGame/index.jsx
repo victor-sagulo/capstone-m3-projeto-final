@@ -58,7 +58,7 @@ const FullCardGame = ({ grade }) => {
                 </h4>
               </div>
               <div className="game-description">
-                <div>{description.replace(/[<p>\\/&/;]/g, "")}</div>
+                <div>{description.replace(/[\\/&/;]/g, "").replace(/[q][u][o][t]/g, "").replace(/[<][p][>]/g, "").replace(/[#][3][9]/g, "'")}</div>
                 <div className="arrow-buttom" onClick={handleClick}>
                   {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
                 </div>
