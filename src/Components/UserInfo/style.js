@@ -13,6 +13,12 @@ export const DivInfosContainer = styled.div`
   gap: 15px;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  .user--profile--img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid var(--purple);
+  }
 
   @media (min-width: 700px) {
     gap: 5px;

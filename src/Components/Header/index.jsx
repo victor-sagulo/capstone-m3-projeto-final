@@ -69,7 +69,7 @@ const Header = () => {
               <div className="infos">
                 <InputHeader />
                 <figure>
-                  <img src={userImg} alt="user image" />
+                  <img src={userImg} alt="user image" className="user--img"/>
                   <figcaption>user image</figcaption>
                 </figure>
               </div>
@@ -89,7 +89,7 @@ const Header = () => {
               <div className="logged-infos">
                 <InputHeader />
                 <figure>
-                  <img src={user ? user.img : userImg} alt="user image" />
+                  <img src={user ? user.img : userImg} alt="user image" className="user--img"/>
                   <figcaption>user image</figcaption>
                 </figure>
                 <h3>{user.username}</h3>
@@ -131,7 +131,7 @@ const Header = () => {
           </figure>
           <div className="infos">
             <figure>
-              <img src={userImg} alt="user image" />
+              <img src={userImg} alt="user image" className="user--img"/>
               <figcaption>User image</figcaption>
             </figure>
             <FaBars
