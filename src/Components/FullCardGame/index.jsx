@@ -1,47 +1,58 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { Mobile, More, MoreHide } from "./style";
 import gamesHubLogo from "../../images/gamesHubLogo.svg";
 import { RiStarFill, RiStarHalfFill, RiStarLine } from "react-icons/ri";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
-const FullCardGame = ({ game, grade }) => {
+const FullCardGame = ({grade }) => {
   const [isClicked, setIsClicked] = useState(false);
+  const {slug} = useParams();
+  const [gameInfo,setGameInfo] = useState([])
 
-  console.log(game.plataforms);
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.rawg.io/api/games/${slug}?key=870a1b01479c4490b54b590b47f030f9`
+      )
+      .then((response) => {
+        setGameInfo(response.data)
+      })
+      .catch((error) => {toast.error("Ops! Página não encontrada",{theme:"dark"})})
+  },[gameInfo])
 
   const handleClick = () => {
-    if (isClicked) {
-      setIsClicked(false);
-    } else {
-      setIsClicked(true);
-    }
+    setIsClicked(!isClicked);
   };
 
   return (
-    <Mobile>
+    <>
+      {gameInfo && <><Mobile>
       <div className="img-holder">
         <img
           className="game-image"
-          src={game.background_image}
-          alt={game.name}
+          src={gameInfo.background_image}
+          alt={gameInfo.name}
         />
       </div>
       <div className="info-holder">
         <div>
-          <span>{game.name}</span>
+          <span>{gameInfo.name}</span>
         </div>
         <div className="game-plataform">
-          <h4>
+          { gameInfo && <h4>
             Plataformas:
-            {game.parent_platforms.map((platforms) => (
+            {gameInfo.parent_platforms.map((platforms) => (
               <span> {platforms.platform.name}</span>
             ))}
-          </h4>
+          </h4>}
         </div>
         <div className="game-description">
-          <div>
-            {game.description.replace(/[<p>\\/&/;]/g, "")}
-          </div>
+          {/* <div>
+            {gameInfo.description.replace(/[<p>\\/&/;]/g, "")}
+          </div> */}
           <div className="arrow-buttom" onClick={handleClick}>
             {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
           </div>
@@ -60,7 +71,7 @@ const FullCardGame = ({ game, grade }) => {
                   src="https://www.metacritic.com/images/icons/metacritic-icon.svg"
                   alt="metacritic"
                 ></img>
-                <span>{game.metacritic}</span>
+                <span>{gameInfo.metacritic}</span>
               </div>
             </div>
             <div>
@@ -72,7 +83,8 @@ const FullCardGame = ({ game, grade }) => {
           <MoreHide></MoreHide>
         )}
       </>
-    </Mobile>
+    </Mobile></>}
+    </>
   );
 };
 

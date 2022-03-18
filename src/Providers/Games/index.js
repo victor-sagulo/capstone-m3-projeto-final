@@ -67,15 +67,9 @@ export const GamesProvider = ({ children }) => {
   };
 
   const getGameInfo = (game) => {
-    axios
-      .get(
-        `https://api.rawg.io/api/games/${game.slug}?key=870a1b01479c4490b54b590b47f030f9`
-      )
-      .then((response) => {
-        setGameInfo(response.data);
-        history.push(`/gameInfo/${game.slug}`);
-        window.scrollTo({top:0,behavior:'smooth'})
-      });
+    
+      history.push(`/gameInfo/${game.slug}`);
+      window.scrollTo({top:0,behavior:'smooth'})
   };
 
   useEffect(()=>{
