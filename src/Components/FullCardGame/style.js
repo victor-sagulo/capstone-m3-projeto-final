@@ -7,7 +7,11 @@ export const Mobile = styled.div`
   margin: 15px auto;
   border-radius: 5px;
   background-color: var(--cleanBlack);
-  height: 480px;
+  height: 400px;
+
+  @media(min-width: 768px) {
+    height: 310px;
+  }
 
   .game-image {
     border-radius: 5px 5px 0px 0px;
@@ -19,13 +23,13 @@ export const Mobile = styled.div`
   }
 
   .info-holder {
-    margin: 5px 0;
 
     display: flex;
     flex-direction: column;
+    font-size: 1rem;
 
     span {
-      margin: 5px;
+      margin: 5px 0 5px 5px;
       color: var(--purple);
     }
 
@@ -33,7 +37,6 @@ export const Mobile = styled.div`
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      font-size: 12px;
     }
   }
 
@@ -54,9 +57,14 @@ export const Mobile = styled.div`
   .game-description {
     padding: 5px;
     color: var(--white);
+    font-size: 0.53rem;
 
     div {
       margin: 10px 0;
+    }
+
+    @media(min-width: 780px) {
+      font-size: 0.9rem;
     }
 
   }
