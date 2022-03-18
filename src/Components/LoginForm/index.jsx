@@ -52,6 +52,7 @@ const LoginForm = () => {
           name="password"
           register={register}
           label="Senha"
+          icon
           placeholder="Insira a sua senha"
           type="password"
           error={errors.password?.message}

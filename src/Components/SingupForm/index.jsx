@@ -81,6 +81,7 @@ const SingupForm = () => {
             register={register}
             name="password"
             type="password"
+            icon
             error={errors.password?.message}
             placeholder="Insira sua senha"
           />
@@ -89,6 +90,7 @@ const SingupForm = () => {
             register={register}
             name="confirm_password"
             type="password"
+            icon
             error={errors.confirm_password?.message}
             placeholder="Confirme a sua senha"
           />
