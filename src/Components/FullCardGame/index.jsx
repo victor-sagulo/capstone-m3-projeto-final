@@ -29,14 +29,22 @@ const FullCardGame = ({ game, grade }) => {
       <div className="info-holder">
         <div>
           <span>{game.name}</span>
-          <h4>Plataformas:</h4>
-          {game.parent_platforms.map((platforms) => (
-            <span> {platforms.platform.name}</span>
-          ))}
         </div>
-        <div>{game.description.replace(/[<p>\\/&/;]/g, "")}</div>
-        <div className="arrow-buttom" onClick={handleClick}>
-          {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
+        <div className="game-plataform">
+          <h4>
+            Plataformas:
+            {game.parent_platforms.map((platforms) => (
+              <span> {platforms.platform.name}</span>
+            ))}
+          </h4>
+        </div>
+        <div className="game-description">
+          <div>
+            {game.description.replace(/[<p>\\/&/;]/g, "")}
+          </div>
+          <div className="arrow-buttom" onClick={handleClick}>
+            {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
+          </div>
         </div>
       </div>
       <>
