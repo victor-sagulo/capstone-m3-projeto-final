@@ -26,7 +26,7 @@ const UserEdit = ({ handleModal }) => {
   });
 
   const handleEdit = (data) => {
-    
+
     if(data.username===""){delete data.username}
     if(data.plataform===""){delete data.plataform}
     if(data.img===""){delete data.img}
@@ -36,6 +36,7 @@ handleEditUser(data)
   }
 
   return (
+    <FormDivContainer>
         <form onSubmit={handleSubmit(handleEdit)}>
           <Input
             name="username"
@@ -81,6 +82,7 @@ handleEditUser(data)
             <Buttons onClick={handleModal}>Cancelar</Buttons>
           </div>
         </form>
+        </FormDivContainer>
   );
 };
 

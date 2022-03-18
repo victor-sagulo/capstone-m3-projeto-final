@@ -6,6 +6,7 @@ import { RiStarFill, RiStarHalfFill, RiStarLine } from "react-icons/ri";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import key from "../../Services/key"
 
 const FullCardGame = ({ grade }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -17,7 +18,7 @@ const FullCardGame = ({ grade }) => {
   useEffect(() => {
     axios
       .get(
-        `https://api.rawg.io/api/games/${slug}?key=870a1b01479c4490b54b590b47f030f9`
+        `https://api.rawg.io/api/games/${slug}?key=${key}`
       )
       .then((response) => {
         setGameInfo(response.data);

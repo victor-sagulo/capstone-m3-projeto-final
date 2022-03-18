@@ -114,14 +114,17 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const handlePost = (text, game) => {
+  const handlePost = (text, gameName, gameSlug) => {
     app.post("/posts", {
       text,
-      game,
+      gameName,
+      gameSlug,
       userId: user.id,
       likes: 0,
       usefullPost: 0,
       comments: [],
+      img: user.img,
+      username: user.username
     });
   };
 
