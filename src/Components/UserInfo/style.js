@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const DivInfosContainer = styled.div`
-  width: 90%;
+  width: 100%;
   height: 10%;
   min-height: 215px;
   padding: 10px;
   background-color: var(--cleanBlack);
   display: flex;
-  margin: 30px auto;
+  margin: 30px 0;
   color: white;
   flex-flow: column;
   gap: 15px;
