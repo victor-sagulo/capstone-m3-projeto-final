@@ -93,7 +93,7 @@ export const UserProvider = ({ children }) => {
   const handleLogOut = () => {
     localStorage.removeItem("@GamesHub Token");
     localStorage.removeItem("@GamesHub user");
-    toast(`Até mais,${user.username}!`,{theme:"dark"})
+    toast(`Até mais, ${user.username}! 👋`,{theme:"dark"})
     setUser(false);
     history.push("/");
   };

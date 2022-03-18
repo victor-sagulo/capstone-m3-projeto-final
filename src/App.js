@@ -1,4 +1,3 @@
-import "./App.css";
 import { GlobalStyle } from "./Styles/style";
 import Routes from "./Routes";
 import { ToastContainer } from "react-toastify";
@@ -9,7 +8,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <ToastContainer style={{marginTop:"5px"}}/>
+      <ToastContainer style={{marginTop:"5px",fontSize:"18px"}}/>
       <div className="App">
         <Routes />
       </div>
