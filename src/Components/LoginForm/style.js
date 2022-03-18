@@ -46,6 +46,7 @@ export const FormDivContainer = styled.div`
       margin: 0 5px;
       text-decoration: none;
       text-transform: uppercase;
+      color: var(--purple);
     }
   }
   @media screen and (min-width: 768px) {

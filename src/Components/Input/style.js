@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const InputContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 100px;
   label {
@@ -16,7 +17,7 @@ export const InputContainer = styled.div`
     width: 85%;
     background: var(--grey);
     border-radius: 5px;
-    border: none;
+    border: 1px solid transparent;
     height: 32px;
     margin: 13px 0;
     padding-left: 24px;
@@ -24,9 +25,43 @@ export const InputContainer = styled.div`
     &::placeholder {
       color: black;
     }
+    &:focus{
+      color: var(--purple);
+      border: 1px solid var(--purple);
+      ::placeholder{
+        color: var(--purple);
+      }
+    }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    &:-webkit-autofill {
+      -webkit-text-fill-color: var(--black);
+    }
+
+    &:-webkit-autofill:focus {
+      -webkit-text-fill-color: var(--purple);
+    }
   }
 
-  div{
+  .btn-show-hide {
+    position: absolute;
+    top: 35px;
+    right: 30px;
+    cursor: pointer;
+    color: var(--cleanBlack);
+    transition: 0.6s;
+    &:hover {
+      transition: 0.6s;
+      color: var(--purple);
+    }
+  }
+
+  div.error {
     max-height: 35px;
     display: flex;
     align-items: left;
@@ -45,12 +80,12 @@ export const InputContainer = styled.div`
     margin: auto 0;
   }
   @media (min-width: 420px) {
-    div{
+    div.error {
       padding-left: 23px;
     }
   }
   @media (min-width: 450px) {
-    div{
+    div.error {
       padding-left: 32px;
     }
   }
@@ -62,8 +97,12 @@ export const InputContainer = styled.div`
     input {
       height: 46px;
     }
-    div{
-      span{
+    .btn-show-hide {
+      top: 50px;
+      right: 50px;
+    }
+    div.error {
+      span {
         font-size: 12px;
       }
     }
