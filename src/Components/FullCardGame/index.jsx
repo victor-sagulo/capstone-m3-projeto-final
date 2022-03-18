@@ -6,24 +6,22 @@ import { RiStarFill, RiStarHalfFill, RiStarLine } from "react-icons/ri";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
-import key from "../../Services/key"
+import key from "../../Services/key";
 
 const FullCardGame = ({ grade }) => {
   const [isClicked, setIsClicked] = useState(false);
   const { slug } = useParams();
   const [gameInfo, setGameInfo] = useState([]);
-  const [plataforms,setPlataforms] = useState([]);
+  const [plataforms, setPlataforms] = useState([]);
   const [description, setDescription] = useState("");
 
   useEffect(() => {
     axios
-      .get(
-        `https://api.rawg.io/api/games/${slug}?key=${key}`
-      )
+      .get(`https://api.rawg.io/api/games/${slug}?key=${key}`)
       .then((response) => {
         setGameInfo(response.data);
         setPlataforms(response.data.parent_platforms);
-        setDescription(response.data.description)
+        setDescription(response.data.description);
       })
       .catch((error) => {
         toast.error("Ops! Página não encontrada", { theme: "dark" });
@@ -53,13 +51,20 @@ const FullCardGame = ({ grade }) => {
               <div className="game-plataform">
                 <h4>
                   Plataformas:
-                  {plataforms.map((platforms,index) => (
+                  {plataforms.map((platforms, index) => (
                     <span key={index}> {platforms.platform.name}</span>
                   ))}
                 </h4>
               </div>
               <div className="game-description">
-                <div>{description.replace(/[\\/&/;]/g, "").replace(/[q][u][o][t]/g, "").replace(/[<][p][>]/g, "").replace(/[#][3][9]/g, "'")}</div>
+                <div>
+                  {description
+                    .replace(/[\\/&/;]/g, "")
+                    .replace(/[q][u][o][t]/g, "")
+                    .replace(/[<][p][>]/g, "")
+                    .replace(/[<][b][r][>]/g, "")
+                    .replace(/[#][3][9]/g, "'")}
+                </div>
                 <div className="arrow-buttom" onClick={handleClick}>
                   {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
                 </div>
