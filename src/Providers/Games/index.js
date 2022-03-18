@@ -14,6 +14,10 @@ export const GamesProvider = ({ children }) => {
   const [gameInfo, setGameInfo] = useState([]);
   const history = useHistory();
 
+  const searchGame = (game) =>{
+    `https://api.rawg.io/api/games?key=${key}&search=${game}`
+  }
+
   const nextPage = () => {
     setPage(page + 1);
     setListAllGames(nextList)
