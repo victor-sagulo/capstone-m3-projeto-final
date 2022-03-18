@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import key from "../../Services/key"
+import key from "../../Services/key";
 
 export const GamesContext = createContext();
 
@@ -9,26 +9,28 @@ export const GamesProvider = ({ children }) => {
   const [page, setPage] = useState(1);
   const [gamesList, setGamesList] = useState([]);
   const [listAllGames, setListAllGames] = useState([]);
-  const [nextList,setNextList] = useState([]);
-  const [prevList,setPrevList] = useState([]);
+  const [nextList, setNextList] = useState([]);
+  const [prevList, setPrevList] = useState([]);
   const [gameInfo, setGameInfo] = useState([]);
   const history = useHistory();
 
-  const searchGame = (game) =>{
-    `https://api.rawg.io/api/games?key=${key}&search=${game}`
-  }
+  const searchGame = (e,game) => {
+    e.preventDefault();
+    axios.get(`https://api.rawg.io/api/games?key=${key}&search=${game}`)
+    .then((response)=>response.data.results)
+  };
 
   const nextPage = () => {
     setPage(page + 1);
-    setListAllGames(nextList)
-    window.scrollTo({top:0,behavior:'smooth'})
+    setListAllGames(nextList);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const previousPage = () => {
     if (page > 1) {
       setPage(page - 1);
-      setListAllGames(prevList)
-      window.scrollTo({top:0,behavior:'smooth'})
+      setListAllGames(prevList);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
   const listGames = () => {
@@ -43,9 +45,7 @@ export const GamesProvider = ({ children }) => {
 
   const listMoreGames = () => {
     axios
-      .get(
-        `https://api.rawg.io/api/games?key=${key}&page_size=24&page=1`
-      )
+      .get(`https://api.rawg.io/api/games?key=${key}&page_size=24&page=1`)
       .then((response) => {
         setListAllGames(response.data.results);
       });
@@ -54,7 +54,7 @@ export const GamesProvider = ({ children }) => {
   const listNextPage = () => {
     axios
       .get(
-        `https://api.rawg.io/api/games?key=${key}&page_size=24&page=${page+1}`
+        `https://api.rawg.io/api/games?key=${key}&page_size=24&page=${page + 1}`
       )
       .then((response) => {
         setNextList(response.data.results);
@@ -64,7 +64,7 @@ export const GamesProvider = ({ children }) => {
   const listPreviousPage = () => {
     axios
       .get(
-        `https://api.rawg.io/api/games?key=${key}&page_size=24&page=${page-1}`
+        `https://api.rawg.io/api/games?key=${key}&page_size=24&page=${page - 1}`
       )
       .then((response) => {
         setPrevList(response.data.results);
@@ -72,20 +72,19 @@ export const GamesProvider = ({ children }) => {
   };
 
   const getGameInfo = (game) => {
-    
-      history.push(`/gameInfo/${game.slug}`);
-      window.scrollTo({top:0,behavior:'smooth'})
+    history.push(`/gameInfo/${game.slug}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     listGames();
     listMoreGames();
-  },[])
+  }, []);
 
-  useEffect(()=>{
-    listNextPage()
-    listPreviousPage()
-  },[page])
+  useEffect(() => {
+    listNextPage();
+    listPreviousPage();
+  }, [page]);
 
   return (
     <GamesContext.Provider
@@ -96,6 +95,7 @@ export const GamesProvider = ({ children }) => {
         nextPage,
         previousPage,
         getGameInfo,
+        searchGame,
       }}
     >
       {children}
