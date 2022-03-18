@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Mobile = styled.div`
+export const Profile = styled.div`
   display: flex;
   width: 289px;
   height: 118px;
@@ -53,7 +53,7 @@ export const Mobile = styled.div`
   }
 `;
 
-export const Desktop = styled.div`
+export const Game = styled.div`
   display: flex;
   width: 653px;
   height: 136px;

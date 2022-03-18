@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
-import { Desktop, Mobile } from "./style";
+import { Game, Profile } from "./style";
 
-const CardComment = ({ img, name, comment, likes }) => {
+const CardComment = ({ img, gameName, gameSlug, comment, likes,username ,profile}) => {
   const [width, setWidth] = useState("");
 
   window.onresize = window.onload = () => {
@@ -11,34 +11,35 @@ const CardComment = ({ img, name, comment, likes }) => {
 
   return (
     <>
-      {width < 768 ? (
-        <Mobile className="card-comment">
+      {profile? (
+        <Profile className="card-comment">
           <div className="img-holder">
-            <img src={img} alt={name}></img>
+            <img src={img} alt={username}></img>
           </div>
           <div className="content-holder">
-            <span className="name">{name}</span>
+            <span className="name">{`${username} >`}</span>
+            <span className="game--name">{gameName}</span>
             <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5
               <FaThumbsUp className="like-icon" />
             </span>
           </div>
-        </Mobile>
+        </Profile>
       ) : (
-        <Desktop>
+        <Game>
           <div className="img-holder">
-            <img src={img} alt={name}></img>
+            <img src={img} alt={username}></img>
           </div>
           <div className="content-holder">
-            <span className="name">{name}</span>
+            <span className="name">{username}</span>
             <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5
               <FaThumbsUp className="like-icon" />
             </span>
           </div>
-        </Desktop>
+        </Game>
       )}
     </>
   );
