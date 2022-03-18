@@ -26,7 +26,7 @@ const Header = () => {
 
   useEffect(()=>{
     setWidth(window.innerWidth);
-  })
+  },[])
 
   const [userModal, setUserModal] = useState(false);
 

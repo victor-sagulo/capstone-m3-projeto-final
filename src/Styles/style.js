@@ -19,7 +19,12 @@ export const GlobalStyle = createGlobalStyle`
         --blackComment: #111111;
         --background:#10002B;
         --mainFont: "Inter", sans-serif;
-        --blackOpsFont: "Black Ops One", cursive;
+        --toastify-color-success: #9D4EDD;
+        --toastify-color-error: #9D4EDD;
+        --toastify-color-dark: #0a011b;
+        --toastify-toast-min-height: 85px;
+        --toastify-text-color-dark: #FFF;
+        --toastify-font-family: 'Inter', sans-serif 20px;
     }
 
     body, input, button {

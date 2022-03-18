@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <ToastContainer />
+      <ToastContainer style={{marginTop:"5px"}}/>
       <div className="App">
         <Routes />
       </div>
