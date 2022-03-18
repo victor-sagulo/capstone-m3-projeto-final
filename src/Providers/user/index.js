@@ -81,17 +81,18 @@ export const UserProvider = ({ children }) => {
     plataform = user.plataform,
     img = user.img,
     description = user.description,
+    password,
+    email=user.email
   }) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
-
     app
       .put(
-        "/users",
-        { username, plataform, img, description },
+        `/users/${user.id}`,
+        { username, plataform, img, description, email, password},
         {
           headers: {
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       )
       .then((response) => {
