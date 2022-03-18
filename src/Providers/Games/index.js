@@ -83,7 +83,9 @@ export const GamesProvider = ({ children }) => {
 
   useEffect(() => {
     listNextPage();
-    listPreviousPage();
+    if (page > 1) {
+      listPreviousPage();
+    }
   }, [page]);
 
   return (
