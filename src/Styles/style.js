@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
         --blackComment: #111111;
         --background:#10002B;
         --mainFont: "Inter", sans-serif;
+        --blackOpsFont:'Black Ops One', cursive;
         --toastify-color-success: #9D4EDD;
         --toastify-color-error: #9D4EDD;
         --toastify-color-dark: #0a011b;
