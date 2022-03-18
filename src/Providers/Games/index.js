@@ -50,6 +50,7 @@ export const GamesProvider = ({ children }) => {
       .then((response) => {
         setGameInfo(response.data);
         history.push(`/gameInfo/${game.slug}`);
+        window.scrollTo({top:0,behavior:'smooth'})
       });
   };
 

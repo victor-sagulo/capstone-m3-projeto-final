@@ -1,15 +1,16 @@
 import Header from "../../Components/Header";
 import GamesList from "../../Components/GamesList";
+import { Container } from "./style";
 
 const GamesPage = () =>{
     return(
-        <main>
+        <Container>
             <Header/>
-            <div>
-                <h2>Games</h2>
+            <main>
+                <h2 className="main--title">Games</h2>
                 <GamesList type={"games"}/>
-            </div>
-        </main>
+            </main>
+        </Container>
     )
 
 }

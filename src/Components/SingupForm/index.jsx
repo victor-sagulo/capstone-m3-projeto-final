@@ -1,5 +1,5 @@
 import Input from "../Input";
-import { Body, FormDivContainer } from "./style";
+import { Background, FormDivContainer } from "./style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -51,7 +51,7 @@ const SingupForm = () => {
 
   return (
     <>
-      <Body />
+      <Background />
       <FormDivContainer>
         <h1>Cadastre-se</h1>
         <form onSubmit={handleSubmit(handleFormSubmit)}>
