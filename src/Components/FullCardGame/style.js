@@ -7,7 +7,7 @@ export const Mobile = styled.div`
   margin: 15px auto;
   border-radius: 5px;
   background-color: var(--cleanBlack);
-  height: 450px;
+  height: 400px;
 
   @media(min-width: 768px) {
     height: 310px;
@@ -57,7 +57,7 @@ export const Mobile = styled.div`
   .game-description {
     padding: 5px;
     color: var(--white);
-    font-size: 0.7rem;
+    font-size: 0.53rem;
 
     div {
       margin: 10px 0;
