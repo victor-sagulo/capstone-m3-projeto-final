@@ -17,16 +17,16 @@ import InputHeader from "../InputHeader";
 
 const Header = () => {
   const [width, setWidth] = useState("");
-  const history = useHistory()
-  const { user,handleLogOut } = useContext(UserContext);
+  const history = useHistory();
+  const { user, handleLogOut } = useContext(UserContext);
 
   window.onresize = window.onload = () => {
     setWidth(window.innerWidth);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setWidth(window.innerWidth);
-  },[])
+  }, []);
 
   const [userModal, setUserModal] = useState(false);
 
@@ -42,7 +42,7 @@ const Header = () => {
 
   return (
     <>
-      {width > 768 ?(
+      {width > 768 ? (
         <Desktop>
           <figure>
             <img src={gamesHubLogo} alt="GamesHub logo" />
@@ -69,7 +69,7 @@ const Header = () => {
               <div className="infos">
                 <InputHeader />
                 <figure>
-                  <img src={userImg} alt="user image" className="user--img"/>
+                  <img src={userImg} alt="user image" className="user--img" />
                   <figcaption>user image</figcaption>
                 </figure>
               </div>
@@ -89,7 +89,11 @@ const Header = () => {
               <div className="logged-infos">
                 <InputHeader />
                 <figure>
-                  <img src={user ? user.img : userImg} alt="user image" className="user--img"/>
+                  <img
+                    src={user ? user.img : userImg}
+                    alt="user image"
+                    className="user--img"
+                  />
                   <figcaption>user image</figcaption>
                 </figure>
                 <h3>{user.username}</h3>
@@ -109,7 +113,7 @@ const Header = () => {
               </div>
               {userModal && (
                 <div className="modal--user">
-                  <div onClick={()=>history.push("/profile")}>
+                  <div onClick={() => history.push("/profile")}>
                     <h4>Meu Perfil</h4>
                     <Link to="/profile">
                       <RiFolderUserFill size={"20px"} />
@@ -131,7 +135,11 @@ const Header = () => {
           </figure>
           <div className="infos">
             <figure>
-              <img src={userImg} alt="user image" className="user--img"/>
+              <img
+                src={user ? user.img : userImg}
+                alt="user image"
+                className="user--img"
+              />
               <figcaption>User image</figcaption>
             </figure>
             <FaBars
@@ -145,6 +153,9 @@ const Header = () => {
               <nav>
                 {user === false ? (
                   <ul>
+                    <li>
+                      <InputHeader handleMobileModal={handleMobileModal} />
+                    </li>
                     <li>
                       <AiFillHome size={"25px"} className="nav--icon" />
                       <Link to="/">Home</Link>
@@ -169,12 +180,16 @@ const Header = () => {
                         <img
                           src={user ? user.img : userImg}
                           alt="user image"
+                          className="user--img"
                         />
                         <figcaption>user image</figcaption>
                       </figure>
                       <h3>{user.username}</h3>
                     </div>
                     <ul>
+                      <li>
+                        <InputHeader handleMobileModal={handleMobileModal} />
+                      </li>
                       <li>
                         <AiFillHome size={"25px"} className="nav--icon" />
                         <Link to="/">Home</Link>
@@ -189,8 +204,14 @@ const Header = () => {
                       </li>
                       <li>
                         <BiLogOut size={"25px"} className="nav--icon" />
-                        <button onClick={()=>{handleMobileModal()
-                        handleLogOut()}}>Log out</button>
+                        <button
+                          onClick={() => {
+                            handleMobileModal();
+                            handleLogOut();
+                          }}
+                        >
+                          Log out
+                        </button>
                       </li>
                     </ul>
                   </>
