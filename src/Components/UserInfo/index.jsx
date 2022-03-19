@@ -9,7 +9,7 @@ import { DivInfosContainer, InfosBox, InfosContainer } from "./style";
 
 const UserInfo = () => {
   const [modal, setModal] = useState(true);
-  const { user } = useContext(UserContext);
+  const { user, userPosts } = useContext(UserContext);
   const history = useHistory();
 
   if (!user) {
@@ -28,22 +28,23 @@ const UserInfo = () => {
         <InfosBox>
           <InfosContainer>
             <figure>
-              <img src={user.img} alt="Imagem de perfil do usuário" className="user--profile--img"/>
+              <img src={userPosts.img} alt="Imagem de perfil do usuário" className="user--profile--img"/>
             </figure>
             <div>
-              <h2>{user.username}</h2>
+              <h2>{userPosts.username}</h2>
               <h3>
-                Plataforma favorita: <span>{user.plataform}</span>
+                Plataforma favorita: <span>{userPosts.plataform}</span>
               </h3>
             </div>
           </InfosContainer>
-          <button onClick={handleModal}>
+         {user.id===userPosts.id ? 
+         <button onClick={handleModal}>
             <BsFillPencilFill />
-          </button>
+          </button>: <div></div>}
         </InfosBox>
 
         <div>
-          <p>{user.description}</p>
+          <p>{userPosts.description}</p>
         </div>
       </DivInfosContainer>
     </>
