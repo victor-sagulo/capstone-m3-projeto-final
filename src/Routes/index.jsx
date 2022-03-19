@@ -5,12 +5,16 @@ import HomePage from "../Pages/Home";
 import GamesPage from "../Pages/Games";
 import Game from "../Pages/Game";
 import Profile from "../Pages/Profile";
+import SearchGame from "../Pages/SearchGame";
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
         <HomePage />
+      </Route>
+      <Route exact path="/search">
+        <SearchGame/>
       </Route>
       <Route path="/login">
         <Login />

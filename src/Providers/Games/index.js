@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import key from "../../Services/key";
+import { toast } from "react-toastify";
 
 export const GamesContext = createContext();
 
@@ -9,13 +10,22 @@ export const GamesProvider = ({ children }) => {
   const [page, setPage] = useState(1);
   const [gamesList, setGamesList] = useState([]);
   const [listAllGames, setListAllGames] = useState([]);
+  const [searched, setSearched] = useState([]);
   const [nextList, setNextList] = useState([]);
   const [prevList, setPrevList] = useState([]);
   const [gameInfo, setGameInfo] = useState([]);
   const history = useHistory();
+  const [current,setCurrent] = useState("");
 
   const searchGame = (game) => {
-    `https://api.rawg.io/api/games?key=${key}&search=${game}`;
+    axios
+      .get(`https://api.rawg.io/api/games?key=${key}&search=${game}`)
+      .then((response) => {
+        setCurrent(game)
+        setSearched(response.data.results);
+        history.push("/search")
+      })
+      .catch((_) => toast.error("Ops! Algo deu errado :(", { theme: "dark" }));
   };
 
   const nextPage = () => {
@@ -92,9 +102,12 @@ export const GamesProvider = ({ children }) => {
         gamesList,
         listAllGames,
         gameInfo,
+        searched,
+        current,
         nextPage,
         previousPage,
         getGameInfo,
+        searchGame,
       }}
     >
       {children}
