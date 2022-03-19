@@ -6,12 +6,14 @@ import RecentComents from "../../Components/RecentComents";
 import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const Profile = () => {
 const {listUserPosts} = useContext(UserContext)
 const {id} = useParams()
-  const iniatiteProfile = () => listUserPosts(id)
-  iniatiteProfile()
+useEffect(()=>{
+listUserPosts(id)}, []);
+
 
   return (
     <>
