@@ -29,7 +29,7 @@ const responsive = {
 };
 
 const LikedGames = () => {
-  const { user } = useContext(UserContext);
+  const { userPosts } = useContext(UserContext);
   const { gamesList } = useContext(GamesContext);
 
   return (
@@ -37,13 +37,13 @@ const LikedGames = () => {
       <div>
         <IoLogoGameControllerA />
         <h1>Jogos curtidos</h1>
-        {user.LikedGames ? (
+        {userPosts.LikedGames ? (
           <Carousel
             responsive={responsive}
             autoPlay={false}
             autoPlaySpeed={10000}
           >
-            {user.LikedGames.map((game) => (
+            {userPosts.LikedGames.map((game) => (
               <div>
                 <CardGame game={game} />
               </div>
