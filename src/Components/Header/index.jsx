@@ -121,7 +121,7 @@ const Header = () => {
               </div>
               {userModal && (
                 <div className="modal--user">
-                  <div onClick={() => history.push("/profile")}>
+                  <div onClick={() => history.push(`/profile/${user.id}`)}>
                     <h4>Meu Perfil</h4>
                     <Link to={`/profile/${user.id}`}>
                       <RiFolderUserFill size={"20px"} />
@@ -208,7 +208,7 @@ const Header = () => {
                       </li>
                       <li>
                         <RiFolderUserFill size={"25px"} className="nav--icon" />
-                        <Link to="/profile">Meu Perfil</Link>
+                        <Link to={`/profile/${user.id}`}>Meu Perfil</Link>
                       </li>
                       <li>
                         <BiLogOut size={"25px"} className="nav--icon" />
