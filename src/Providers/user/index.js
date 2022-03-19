@@ -145,7 +145,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     listPosts();
     listUsers();
-    listUserPosts();
+   listUserPosts();
   }, []);
 
   return (
@@ -155,6 +155,7 @@ export const UserProvider = ({ children }) => {
         userPosts,
         postsList,
         userList,
+        listUserPosts,
         handleLogin,
         handleLogOut,
         handleRegister,

@@ -6,14 +6,19 @@ import { FaThumbsUp } from "react-icons/fa";
 import { useEffect } from "react";
 import CommentsList from "../CommentsList";
 import { DivRecentContainer } from "./style";
+import { useParams } from "react-router-dom";
+
 
 const RecentComents = () => {
-  const { userPosts } = useContext(UserContext);
+  const { userPosts, listUserPosts } = useContext(UserContext);
+  const { id } = useParams();
 
+  useEffect(()=>{
+    listUserPosts(id)},[id])
   return (
     <DivRecentContainer>
       <h3 className="comment-tittle">Comentários</h3>
-      {userPosts.posts.length > 0 ? (
+      {userPosts.posts.length && userPosts.posts  > 0 ? (
         <CommentsList
           comments={userPosts.posts}
           profile
