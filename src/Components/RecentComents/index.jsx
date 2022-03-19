@@ -7,21 +7,28 @@ import { useEffect } from "react";
 import CommentsList from "../CommentsList";
 import { DivRecentContainer } from "./style";
 
-const RecentComents = ({id}) => {
-const {userPosts}= useContext(UserContext)
+const RecentComents = () => {
+  const { userPosts } = useContext(UserContext);
 
-
-return(
+  return (
     <DivRecentContainer>
-        <h3 className="comment-tittle">Comentários</h3>
-    {(userPosts.posts).length>0 ? <CommentsList comments={userPosts.posts} profile user={userPosts.username}/>: <div> 
-            <BsFillEmojiDizzyFill className="sad-icon"/>
-            <p className="no-comment-text">Não encontramos nenhum comentário seu</p>
-    </div>
-    }
-</DivRecentContainer>
-)}
+      <h3 className="comment-tittle">Comentários</h3>
+      {userPosts.posts.length > 0 ? (
+        <CommentsList
+          comments={userPosts.posts}
+          profile
+          user={userPosts.username}
+        />
+      ) : (
+        <div>
+          <BsFillEmojiDizzyFill className="sad-icon" />
+          <p className="no-comment-text">
+            Não encontramos nenhum comentário seu
+          </p>
+        </div>
+      )}
+    </DivRecentContainer>
+  );
+};
 
-
-
-export default RecentComents
+export default RecentComents;

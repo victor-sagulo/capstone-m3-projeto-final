@@ -20,12 +20,13 @@ const Header = () => {
   const history = useHistory();
   const { user, handleLogOut } = useContext(UserContext);
 
-  const username = user.username?
-    user.username.split(" ").length > 1
-      ? user.username.split(" ")[0].length> 10
+  const username = user.username
+    ? user.username.split(" ").length > 1
+      ? user.username.split(" ")[0].length > 10
         ? user.username.split(" ")[0].slice(0, 7) + "..."
         : user.username.split(" ")[0]
-      : user.username.slice(0, 7) + "..." : ""
+      : user.username.slice(0, 7) + "..."
+    : "";
 
   window.onresize = window.onload = () => {
     setWidth(window.innerWidth);
@@ -76,7 +77,7 @@ const Header = () => {
               <div className="infos">
                 <InputHeader />
                 <figure>
-                  <img src={userImg} alt="user image" className="user--img" />
+                  <img src={userImg} alt="user figure" className="user--img" />
                   <figcaption>user image</figcaption>
                 </figure>
               </div>
@@ -98,7 +99,7 @@ const Header = () => {
                 <figure>
                   <img
                     src={user ? user.img : userImg}
-                    alt="user image"
+                    alt="user figure"
                     className="user--img"
                   />
                   <figcaption>user image</figcaption>
@@ -122,7 +123,7 @@ const Header = () => {
                 <div className="modal--user">
                   <div onClick={() => history.push("/profile")}>
                     <h4>Meu Perfil</h4>
-                    <Link to="/profile">
+                    <Link to={`/profile/${user.id}`}>
                       <RiFolderUserFill size={"20px"} />
                     </Link>
                   </div>
@@ -144,7 +145,7 @@ const Header = () => {
             <figure>
               <img
                 src={user ? user.img : userImg}
-                alt="user image"
+                alt="user figure"
                 className="user--img"
               />
               <figcaption>User image</figcaption>
@@ -186,7 +187,7 @@ const Header = () => {
                       <figure>
                         <img
                           src={user ? user.img : userImg}
-                          alt="user image"
+                          alt="user figure"
                           className="user--img"
                         />
                         <figcaption>user image</figcaption>
