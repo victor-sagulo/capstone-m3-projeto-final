@@ -173,7 +173,7 @@ export const Mobile = styled.header`
   }
   @media screen and (min-width: 566px) {
     .mobile--modal {
-      padding: min(30vh, 10rem) 100px min(30vh, 10rem) 50px;
+      padding: min(30vh, 10rem) 0 min(30vh, 10rem) 50px;
     }
   }
   @media screen and (min-width: 410px) {
