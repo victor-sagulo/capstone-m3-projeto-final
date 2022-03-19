@@ -76,32 +76,35 @@ export const UserProvider = ({ children }) => {
       .catch((_) => toast.error("Usuário já cadastrado", { theme: "dark" }));
   };
 
-  const handleEditUser = ({
-    username = user.username,
-    plataform = user.plataform,
-    img = user.img,
-    description = user.description,
-    password,
-    email=user.email
-  },handleModal) => {
+  const handleEditUser = (
+    {
+      username = user.username,
+      plataform = user.plataform,
+      img = user.img,
+      description = user.description,
+      password,
+      email = user.email,
+    },
+    handleModal
+  ) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
     app
       .put(
         `/users/${user.id}`,
-        { username, plataform, img, description, email, password},
+        { username, plataform, img, description, email, password },
         {
           headers: {
             Authorization: `Bearer ${token}`,
-          }
+          },
         }
       )
       .then((response) => {
         setUser(response.data);
-        localStorage.setItem("@GamesHub user",JSON.stringify(response.data));
+        localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
         toast.success("Informações de usuário alteradas com sucesso!", {
           theme: "dark",
         });
-        handleModal()
+        handleModal();
       })
       .catch((_) =>
         toast.error("Ops, algo deu errado, revise as infromaçoes passadas", {
@@ -110,10 +113,10 @@ export const UserProvider = ({ children }) => {
       );
   };
 
-  const listUserPosts = () => {
+  const listUserPosts = (id) => {
     app
-      .get(`/users/${user.id}?_embed=posts`)
-      .then((response) => setUserPosts(response.data.posts))
+      .get(`/users/${id}?_embed=posts`)
+      .then((response) => setUserPosts(response.data))
       .catch((err) => console.log(err));
   };
 
@@ -127,7 +130,7 @@ export const UserProvider = ({ children }) => {
       usefullPost: 0,
       comments: [],
       img: user.img,
-      username: user.username
+      username: user.username,
     });
   };
 
