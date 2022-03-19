@@ -20,6 +20,13 @@ const Header = () => {
   const history = useHistory();
   const { user, handleLogOut } = useContext(UserContext);
 
+  const username = user.username?
+    user.username.split(" ").length > 1
+      ? user.username.split(" ")[0].length> 10
+        ? user.username.split(" ")[0].slice(0, 7) + "..."
+        : user.username.split(" ")[0]
+      : user.username.slice(0, 7) + "..." : ""
+
   window.onresize = window.onload = () => {
     setWidth(window.innerWidth);
   };
@@ -96,7 +103,7 @@ const Header = () => {
                   />
                   <figcaption>user image</figcaption>
                 </figure>
-                <h3>{user.username}</h3>
+                <h3>{username}</h3>
                 {userModal ? (
                   <FaAngleUp
                     className="icon"
@@ -184,7 +191,7 @@ const Header = () => {
                         />
                         <figcaption>user image</figcaption>
                       </figure>
-                      <h3>{user.username}</h3>
+                      <h3>{username}</h3>
                     </div>
                     <ul>
                       <li>
