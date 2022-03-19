@@ -113,7 +113,7 @@ export const UserProvider = ({ children }) => {
       );
   };
 
-  const listUserPosts = (id) => {
+  const listUserPosts = (id = user.id) => {
     app
       .get(`/users/${id}?_embed=posts`)
       .then((response) => setUserPosts(response.data))
