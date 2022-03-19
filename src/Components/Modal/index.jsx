@@ -10,7 +10,7 @@ const Modals = () => {
 
     return user ? (
         <Modal>
-            <h2>Seja bem vindo, <span>{user.username}</span></h2>
+            <h2>Seja bem vindo, <span>{user.username}</span>!</h2>
             <p>Pronto para encontrar seu próximo <span>jogo favorito</span>?</p>
         </Modal>
     ) : 
