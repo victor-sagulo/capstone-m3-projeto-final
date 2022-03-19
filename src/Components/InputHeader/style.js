@@ -21,7 +21,12 @@ export const FancyForm = styled.form`
                 color: var(--purple);
                 font-family: var(--mainFont);
                 font-weight: 700;
-                padding-left: 5px
+                padding-left: 5px;
+                &::placeholder{
+                    opacity: 0.6;
+                    font-size: 13px;
+                    color: var(--purple)
+                }
             }
             button{
                 width: 28px;

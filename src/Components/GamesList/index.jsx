@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { GamesContext } from "../../Providers/Games";
 import Buttons from "../Buttons";
 import CardGame from "../CardGame";
-import { GamesListUl,Container } from "./style";
-import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai"
+import { GamesListUl, Container } from "./style";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 const GamesList = ({ type }) => {
-  const { gamesList, listAllGames, previousPage, nextPage } =
+  const { gamesList, listAllGames, previousPage, nextPage, searched } =
     useContext(GamesContext);
 
   return (
@@ -25,11 +25,22 @@ const GamesList = ({ type }) => {
               <CardGame game={game} key={index} />
             </li>
           ))}
+
+        {type === "search" &&
+          searched.map((game, index) => (
+            <li key={index}>
+              <CardGame game={game} key={index} />
+            </li>
+          ))}
       </GamesListUl>
-      {type !== "home" && (
+      {type === "games" && (
         <Container>
-          <Buttons onClick={previousPage} className="btn--games"><AiOutlineArrowLeft size={"30px"}/></Buttons>
-          <Buttons onClick={nextPage} className="btn--games"><AiOutlineArrowRight size={"30px"}/></Buttons>
+          <Buttons onClick={previousPage} className="btn--games">
+            <AiOutlineArrowLeft size={"30px"} />
+          </Buttons>
+          <Buttons onClick={nextPage} className="btn--games">
+            <AiOutlineArrowRight size={"30px"} />
+          </Buttons>
         </Container>
       )}
     </div>
