@@ -9,11 +9,15 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 const Profile = () => {
-  const { listUserPosts } = useContext(UserContext);
+  const { userPosts, listUserPosts } = useContext(UserContext);
   const { id } = useParams();
-  useEffect(() => {
-    listUserPosts(id);
-  }, [id]);
+  
+    
+    useEffect(()=>{
+      
+      listUserPosts(id)},[id])
+
+console.log(userPosts);
 
   return (
     <>
