@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
-import { Mobile, More, MoreHide } from "./style";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { Container, More } from "./style";
 import gamesHubLogo from "../../images/gamesHubLogo.svg";
 import { RiStarFill, RiStarHalfFill, RiStarLine } from "react-icons/ri";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import key from "../../Services/key";
+import ReactHtmlParser from 'react-html-parser'; 
+
 
 const FullCardGame = ({ grade }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -14,6 +16,8 @@ const FullCardGame = ({ grade }) => {
   const [gameInfo, setGameInfo] = useState([]);
   const [plataforms, setPlataforms] = useState([]);
   const [description, setDescription] = useState("");
+  const [release,setRelease] = useState("");
+  const [genres,setGenres] = useState([]);
 
   useEffect(() => {
     axios
@@ -22,6 +26,10 @@ const FullCardGame = ({ grade }) => {
         setGameInfo(response.data);
         setPlataforms(response.data.parent_platforms);
         setDescription(response.data.description);
+        setGenres(response.data.genres)
+        setRelease(new Date(response.data.released).toLocaleDateString("pt-BR", {
+          timeZone: "UTC",
+        }))
       })
       .catch((error) => {
         toast.error("Ops! Página não encontrada", { theme: "dark" });
@@ -36,7 +44,7 @@ const FullCardGame = ({ grade }) => {
     <>
       {gameInfo && (
         <>
-          <Mobile>
+          <Container>
             <div className="img-holder">
               <img
                 className="game-image"
@@ -45,57 +53,62 @@ const FullCardGame = ({ grade }) => {
               />
             </div>
             <div className="info-holder">
-              <div>
-                <span>{gameInfo.name}</span>
-              </div>
-              <div className="game-plataform">
+              <h3 className="game--name">{gameInfo.name}</h3>
+              <div className="single--info">
                 <h4>
                   Plataformas:
-                  {plataforms.map((platforms, index) => (
-                    <span key={index}> {platforms.platform.name}</span>
-                  ))}
                 </h4>
+                <div className="infos--details">
+                  {plataforms.map((platforms, index) => (
+                      index > 0? <span key={index}>,{platforms.platform.name}</span> : <span key={index}>{platforms.platform.name}</span>
+                    ))}
+                </div>
+              </div>
+              <div className="single--info">
+                <h4>Gêneros:</h4>
+                <div className="infos--details">
+                    {genres.map((genre, index) => (
+                        index > 0? <span key={index}>,{genre.name}</span> : <span key={index}>{genre.name}</span>
+                      ))}
+                </div>
+              </div>
+              <div className="single--info">
+                <h4>Lançamento:</h4>
+                <div className="infos--details">
+                    <span>{release}</span>
+                </div>
               </div>
               <div className="game-description">
-                <div>
-                  {description
-                    .replace(/[\\/&/;]/g, "")
-                    .replace(/[q][u][o][t]/g, "")
-                    .replace(/[<][p][>]/g, "")
-                    .replace(/[<][b][r][ ][>]/g, "")
-                    .replace(/[#][3][9]/g, "'")}
-                </div>
-                <div className="arrow-buttom" onClick={handleClick}>
-                  {isClicked ? <AiOutlineDown /> : <AiOutlineUp />}
-                </div>
+                {ReactHtmlParser(description)}
+              </div>
+              <div className="arrow-buttom" onClick={handleClick}>
+                {isClicked ? <IoIosArrowUp size="30px"/> : <IoIosArrowDown size="30px"/>}
               </div>
             </div>
-            <>
-              {isClicked ? (
-                <More>
+          </Container>
+          <>
+            {isClicked && (
+              <More>
+                <div>
                   <div>
-                    <div>
-                      <img src={gamesHubLogo} alt="GamesHub logo" />
-                      <span>{grade}</span>
-                    </div>
-                    <div>
-                      <img
-                        src="https://www.metacritic.com/images/icons/metacritic-icon.svg"
-                        alt="metacritic"
-                      ></img>
-                      <span>{gameInfo.metacritic}</span>
-                    </div>
+                    <img src={gamesHubLogo} alt="GamesHub logo" />
+                    <span>{grade}</span>
                   </div>
                   <div>
-                    <span>Deixe sua nota também</span>
-                    <div></div>
+                    <img
+                      src="https://www.metacritic.com/images/icons/metacritic-icon.svg"
+                      alt="metacritic"
+                    ></img>
+                    <span>{gameInfo.metacritic}</span>
                   </div>
-                </More>
-              ) : (
-                <MoreHide></MoreHide>
-              )}
-            </>
-          </Mobile>
+                </div>
+                <div>
+                  <span>Deixe sua nota também</span>
+                  <div></div>
+                </div>
+              </More>
+            )}
+          </>
         </>
       )}
     </>
