@@ -8,17 +8,18 @@ import CommentsList from "../CommentsList";
 import { DivRecentContainer } from "./style";
 import { useParams } from "react-router-dom";
 
-
 const RecentComents = () => {
   const { userPosts, listUserPosts } = useContext(UserContext);
   const { id } = useParams();
+  console.log(userPosts.posts);
 
-  useEffect(()=>{
-    listUserPosts(id)},[id])
+  useEffect(() => {
+    listUserPosts(id);
+  }, [id]);
   return (
     <DivRecentContainer>
       <h3 className="comment-tittle">Comentários</h3>
-      {userPosts.posts.length && userPosts.posts  > 0 ? (
+      {userPosts.posts.length && userPosts.posts > 0 ? (
         <CommentsList
           comments={userPosts.posts}
           profile

@@ -11,13 +11,10 @@ import { useEffect } from "react";
 const Profile = () => {
   const { userPosts, listUserPosts } = useContext(UserContext);
   const { id } = useParams();
-  
-    
-    useEffect(()=>{
-      
-      listUserPosts(id)},[id])
 
-console.log(userPosts);
+  useEffect(() => {
+    listUserPosts(id);
+  }, [id]);
 
   return (
     <>
