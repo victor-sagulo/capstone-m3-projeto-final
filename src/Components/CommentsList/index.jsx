@@ -1,6 +1,6 @@
 import CardComment from "../CardComment";
 
-const CommentsList = ({ comments ,profile}) => {
+const CommentsList = ({ comments, profile, user }) => {
   return (
     <div>
       {comments.map((comment) => (

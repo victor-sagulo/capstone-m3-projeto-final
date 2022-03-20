@@ -2,7 +2,15 @@ import { useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { Game, Profile } from "./style";
 
-const CardComment = ({ img, gameName, gameSlug, comment, likes,username ,profile}) => {
+const CardComment = ({
+  img,
+  gameName,
+  gameSlug,
+  comment,
+  likes,
+  username,
+  profile,
+}) => {
   const [width, setWidth] = useState("");
 
   window.onresize = window.onload = () => {
@@ -11,7 +19,7 @@ const CardComment = ({ img, gameName, gameSlug, comment, likes,username ,profile
 
   return (
     <>
-      {profile? (
+      {profile ? (
         <Profile className="card-comment">
           <div className="img-holder">
             <img src={img} alt={username}></img>
