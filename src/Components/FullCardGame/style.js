@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 95%;
+  max-width: 1166px;
   display: flex;
   flex-direction: column;
-  max-width: 1166px;
   margin: 50px auto 0 auto;
   border-radius: 5px;
   background-color: var(--cleanBlack);
@@ -69,7 +69,7 @@ export const Container = styled.div`
         font-size: 15px;
         color: var(--purple);
       }
-      .infos--details{
+      .infos--details {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -89,7 +89,7 @@ export const Container = styled.div`
       text-align: left;
       margin-bottom: 10px;
 
-      @media (min-width: 780px) {
+      @media (min-width: 768px) {
         font-size: 0.9rem;
       }
     }
@@ -126,5 +126,121 @@ export const Container = styled.div`
 `;
 
 export const More = styled.div`
+  background-color: var(--blackComment);
+  padding: 10px;
+  z-index: -10;
+  border-radius: 0 0 5px 5px;
+  width: 90%;
+  max-width: 1100px;
+  margin-inline: auto;
   display: flex;
+  justify-content: center;
+  .container--more {
+    width: 50%;
+  }
+  .grades {
+    display: flex;
+    padding-right: 15px;
+    flex-direction: column;
+    height: 100%;
+    border-right: 1px solid var(--purple);
+    gap: 10px;
+    .single--grade {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      .images--container {
+        display: flex;
+        flex-direction: column;
+        .metacritic {
+          height: 35px;
+          width: 120px;
+        }
+      }
+      .grade--box {
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        box-shadow: 0px 0px 4px #a84def;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+          font-size: 1rem;
+          color: var(--purple);
+          font-family: var(--mainFont);
+          -webkit-text-stroke: 0.2px var(--white);
+        }
+      }
+    }
+  }
+  .user--grade {
+    padding-left: 15px;
+    padding-top: 30px;
+    h3 {
+      color: var(--white);
+      span {
+        color: var(--purple);
+      }
+    }
+    .stars--container {
+      margin-top: 30px;
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      .single--star {
+        width: 25px;
+        height: 25px;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    height: 200px;
+    .grades {
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      .single--grade {
+        width: 300px;
+        flex-direction: row;
+        justify-content: space-between;
+        .games--hub {
+          width: 150px;
+        }
+        .images--container {
+          flex-direction: row;
+          width: 150px;
+          .metacritic {
+            height: 50px;
+          }
+        }
+        .grade--box {
+          width: 50px;
+          height: 50px;
+          span {
+            font-size: 1.3rem;
+            -webkit-text-stroke: 0.2px var(--white);
+          }
+        }
+      }
+    }
+    .user--grade {
+      h3 {
+        font-size: 23px;
+        span {
+          color: var(--purple);
+        }
+      }
+      .stars--container {
+        .single--star {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
 `;
