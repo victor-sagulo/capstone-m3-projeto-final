@@ -9,33 +9,22 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("@GamesHub user")) || false
   );
-  const [postsList, setPostsList] = useState([]);
-  const [userList, setUserList] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
 
   const history = useHistory();
 
-  const listPosts = () => {
+  const listPosts = (slug) => {
     app
-      .get("/posts")
+      .get(`/comments/game/${slug}`)
       .then((response) => {
-        setPostsList(response.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const listUsers = () => {
-    app
-      .get("/users/?_embed=posts")
-      .then((response) => {
-        setUserList(response.data);
+        return response.data;
       })
       .catch((err) => console.log(err));
   };
 
   const handleLogin = (email, password) => {
     app
-      .post("/login", {
+      .post("users/login", {
         email,
         password,
       })
@@ -60,16 +49,22 @@ export const UserProvider = ({ children }) => {
 
   const handleRegister = ({ username, email, password, plataform }) => {
     app
-      .post("/register", {
-        username,
-        email,
-        password,
-        plataform,
-        img: userImg,
-        description: "Olá eu estou usando o G4Hub",
-        likedGames: [],
-      })
-      .then((_) => {
+      .post(
+        "users/register",
+        {
+          username,
+          email,
+          password,
+          plataform,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
         toast.success("Conta criada com sucesso!", { theme: "dark" });
         history.push("/login");
       })
@@ -90,14 +85,17 @@ export const UserProvider = ({ children }) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
     app
       .put(
-        `/users/${user.id}`,
+        `/users/${user._id}`,
         { username, plataform, img, description, email, password },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "auth-token": `${token}`,
           },
         }
       )
+      .then((response) => {
+        app.get(`/users/${user._id}`);
+      })
       .then((response) => {
         setUser(response.data);
         localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
@@ -113,24 +111,19 @@ export const UserProvider = ({ children }) => {
       );
   };
 
-  const listUserPosts = (id = user.id) => {
+  const listUserPosts = (id = user._id) => {
     app
-      .get(`/users/${id}?_embed=posts`)
-      .then((response) => setUserPosts(response.data))
+      .get(`/comments/user/${id}`)
+      .then((response) => {return (response.data)})
       .catch((err) => console.log(err));
   };
 
   const handlePost = (text, gameName, gameSlug) => {
-    app.post("/posts", {
+    app.post("/comments", {
       text,
       gameName,
       gameSlug,
-      userId: user.id,
-      likes: 0,
-      usefullPost: 0,
-      comments: [],
-      img: user.img,
-      username: user.username,
+      userId: user._id,
     });
   };
 
@@ -142,18 +135,12 @@ export const UserProvider = ({ children }) => {
     history.push("/");
   };
 
-  useEffect(() => {
-    listPosts();
-    listUsers();
-  }, []);
-
   return (
     <UserContext.Provider
       value={{
         user,
         userPosts,
-        postsList,
-        userList,
+        listPosts,
         listUserPosts,
         handleLogin,
         handleLogOut,

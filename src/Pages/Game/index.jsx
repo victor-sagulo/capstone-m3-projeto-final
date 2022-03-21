@@ -9,8 +9,8 @@ import { useParams } from "react-router-dom";
 const Game = () => {
 
   const { slug } = useParams();
-  const {postsList} = useContext(UserContext)
-  const filteredComments = postsList.filter((post)=>post.game === slug)
+  const {listPosts} = useContext(UserContext)
+  const filteredComments = listPosts(slug)
 
   return (
     <FancyMain>
