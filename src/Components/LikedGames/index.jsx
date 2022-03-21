@@ -38,7 +38,7 @@ const LikedGames = () => {
       <div>
         <IoLogoGameControllerA />
         <h1>Jogos curtidos</h1>
-        {user.likedGames.length > 0 ? (
+        {user.likedGames ? (
           <Carousel
             responsive={responsive}
             autoPlay={false}

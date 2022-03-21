@@ -16,10 +16,10 @@ import key from "../../Services/key";
 
 
 const Game = () => {
-  const [gameInfo,setGameInfo] = useState([])
+  const [gameInfo,setGameInfo] = useState([]);
   const { slug } = useParams();
-  const {user, postsList, handlePost} = useContext(UserContext)
-  const filteredComments = postsList.filter((post)=>post.game === slug)
+  const {user, postsList, handlePost} = useContext(UserContext);
+  const filteredComments = postsList.filter((post)=>post.gameSlug === slug);
   
   useEffect(() => {
     axios
@@ -35,8 +35,6 @@ const Game = () => {
   const schema = yup.object().shape({
     text: yup.string().required("Seu comentário está vazio"),
   });
-
-  console.log (gameInfo)
 
   const {
     register,
@@ -60,7 +58,7 @@ const Game = () => {
       <FullCardGame grade={5} />
       <div>
         <figure>
-          <img src={user.img}/>
+          <img className="img-user" src={user.img} alt="Imagem escolhida pelo usuário"/>
         </figure>
         <form className="form" onSubmit={handleSubmit(handleComment)}>
           <div>
@@ -70,7 +68,7 @@ const Game = () => {
           <textarea placeholder="Digite aqui seu comentário" {...register("text")}/>
         </form>
       </div>
-      <CommentsList comments={filteredComments} profile/>
+      <CommentsList comments={filteredComments}/>
     </FancyMain>
   );
 };
