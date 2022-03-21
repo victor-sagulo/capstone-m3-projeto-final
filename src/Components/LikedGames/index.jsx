@@ -7,20 +7,21 @@ import CardGame from "../CardGame";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import "./style.css";
 
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 1701 },
-    items: 5,
+    items: 2,
   },
   desktop: {
-    breakpoint: { max: 1600, min: 1024 },
-    items: 3,
+    breakpoint: { max: 1600, min: 1150 },
+    items: 2,
   },
   tablet: {
     breakpoint: { max: 1024, min: 745 },
-    items: 2,
+    items: 1,
   },
   mobile: {
     breakpoint: { max: 744, min: 0 },
@@ -29,7 +30,7 @@ const responsive = {
 };
 
 const LikedGames = () => {
-  const { userPosts } = useContext(UserContext);
+  const { userPosts, user } = useContext(UserContext);
   const { gamesList } = useContext(GamesContext);
 
   return (
@@ -37,14 +38,18 @@ const LikedGames = () => {
       <div>
         <IoLogoGameControllerA />
         <h1>Jogos curtidos</h1>
-        {userPosts.LikedGames ? (
+        {user.likedGames.length > 0 ? (
           <Carousel
             responsive={responsive}
             autoPlay={false}
-            autoPlaySpeed={10000}
+            autoPlaySpeed={100000}
+            itemClass="carouselItem"
+            partialVisible={true}
+            swipeable={true}
+            draggable={true}
           >
-            {userPosts.LikedGames.map((game) => (
-              <div>
+            {user.likedGames.map((game) => (
+              <div key={game.slug}>
                 <CardGame game={game} />
               </div>
             ))}
