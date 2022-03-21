@@ -123,21 +123,24 @@ export const UserProvider = ({ children }) => {
   const handlePost = (text, gameName, gameSlug) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
 
-    app.post("/posts", {
-      text,
-      gameName,
-      gameSlug,
-      userId: user.id,
-      likes: 0,
-      usefullPost: 0,
-      comments: [],
-      img: user.img,
-      username: user.username,
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    app.post(
+      "/posts",
+      {
+        text,
+        gameName,
+        gameSlug,
+        userId: user.id,
+        likes: 0,
+        usefullPost: 0,
+        comments: [],
+        img: user.img,
+        username: user.username,
       },
-    }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
   };
 
@@ -147,6 +150,53 @@ export const UserProvider = ({ children }) => {
     toast(`Até mais, ${user.username}! 👋`, { theme: "dark" });
     setUser(false);
     history.push("/");
+  };
+
+  const getUserPassword = () => {
+    app
+      .get(`https://games-hub-api.herokuapp.com/users/${user.id}`)
+      .then((response) => setUserPassword(response.data.password));
+  };
+
+  const [userPassword, setUserPassword] = useState(getUserPassword());
+
+  const handleGameLike = (game) => {
+    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+
+    const removeGameFromList = user.likedGames.filter(
+      (element) => element.slug !== game.slug
+    );
+
+    const findGameInList = user.likedGames.some(
+      (element) => element.slug === game.slug
+    );
+
+    app
+      .put(
+        `/users/${user.id}`,
+        {
+          ...user,
+          likedGames: !findGameInList
+            ? [...user.likedGames, game]
+            : removeGameFromList,
+          password: userPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
+        setUser(JSON.parse(localStorage.getItem("@GamesHub user")));
+
+        console.log(response.data);
+        toast.success("Jogo Curtido :D", {
+          theme: "dark",
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -167,6 +217,7 @@ export const UserProvider = ({ children }) => {
         handleRegister,
         handleEditUser,
         handlePost,
+        handleGameLike,
       }}
     >
       {children}
