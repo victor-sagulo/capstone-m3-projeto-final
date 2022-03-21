@@ -12,7 +12,6 @@ export const UserProvider = ({ children }) => {
   const [postsList, setPostsList] = useState([]);
   const [userList, setUserList] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
-  const [gameExist, setGameExist] = useState(false);
 
   const history = useHistory();
 
@@ -172,8 +171,6 @@ export const UserProvider = ({ children }) => {
       (element) => element.slug === game.slug
     );
 
-    setGameExist(findGameInList);
-
     app
       .put(
         `/users/${user.id}`,
@@ -221,7 +218,6 @@ export const UserProvider = ({ children }) => {
         handleEditUser,
         handlePost,
         handleGameLike,
-        gameExist,
       }}
     >
       {children}
