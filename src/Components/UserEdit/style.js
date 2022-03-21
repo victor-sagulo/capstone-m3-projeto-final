@@ -4,7 +4,7 @@ export const FormDivContainer = styled.div`
   position: absolute;
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
-  height: 100%;
+  height: 147vh;
   display: flex;
   justify-content: center;
   align-items: center;
