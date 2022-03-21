@@ -121,6 +121,8 @@ export const UserProvider = ({ children }) => {
   };
 
   const handlePost = (text, gameName, gameSlug) => {
+    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+
     app.post("/posts", {
       text,
       gameName,
@@ -131,7 +133,12 @@ export const UserProvider = ({ children }) => {
       comments: [],
       img: user.img,
       username: user.username,
-    });
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+    );
   };
 
   const handleLogOut = () => {
