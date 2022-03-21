@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { Container, More } from "./style";
+import { ButtonNameContainer, Container, More } from "./style";
 import g4HUB from "../../images/g4HUB.svg";
 import star from "../../images/star.png";
 import starFill from "../../images/starFill.png";
@@ -90,8 +90,10 @@ const FullCardGame = ({ grade }) => {
               />
             </div>
             <div className="info-holder">
-              <h3 className="game--name">{gameInfo.name}</h3>
-              <LikeButton gameInfo={gameInfo} />
+              <ButtonNameContainer>
+                <h3 className="game--name">{gameInfo.name}</h3>
+                <LikeButton gameInfo={gameInfo} />
+              </ButtonNameContainer>
               <div className="single--info">
                 <h4>Plataformas:</h4>
                 <div className="infos--details">
