@@ -11,12 +11,12 @@ import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import key from "../../Services/key";
 import ReactHtmlParser from "react-html-parser";
-import { UserContext } from "../../Providers/user";
+import LikeButton from "../LikeButton";
 
 const FullCardGame = ({ grade }) => {
   const [isClicked, setIsClicked] = useState(false);
   const { slug } = useParams();
-  const { handleGameLike } = useContext(UserContext);
+
   const [gameInfo, setGameInfo] = useState([]);
   const [plataforms, setPlataforms] = useState([]);
   const [description, setDescription] = useState("");
@@ -91,7 +91,7 @@ const FullCardGame = ({ grade }) => {
             </div>
             <div className="info-holder">
               <h3 className="game--name">{gameInfo.name}</h3>
-              <button onClick={() => handleGameLike(gameInfo)}>Teste</button>
+              <LikeButton gameInfo={gameInfo} />
               <div className="single--info">
                 <h4>Plataformas:</h4>
                 <div className="infos--details">
