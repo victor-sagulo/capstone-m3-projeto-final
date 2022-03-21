@@ -4,27 +4,27 @@ import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { FaThumbsUp } from "react-icons/fa";
 import { useEffect } from "react";
-import CommentsList from "../CommentsList";
+import CardComment from "../CardComment"
 import { DivRecentContainer } from "./style";
 import { useParams } from "react-router-dom";
 
-const RecentComents = () => {
-  const { userPosts, listUserPosts } = useContext(UserContext);
-  const { id } = useParams();
-  console.log(userPosts.posts);
-
-  useEffect(() => {
-    listUserPosts(id);
-  }, [id]);
+const RecentComents = ({userPosts}) => {
+ 
   return (
     <DivRecentContainer>
       <h3 className="comment-tittle">Comentários</h3>
-      {userPosts.posts.length && userPosts.posts > 0 ? (
-        <CommentsList
-          comments={userPosts.posts}
-          profile
-          user={userPosts.username}
-        />
+      {userPosts.posts && userPosts.posts.length !==0 ? (
+        <div>
+        {userPosts.posts.map((comment, index)=>{
+          return <CardComment
+            profile
+            gameName={comment.game}
+            comment = {comment.text}
+            likes = {comment.likes}
+            key = {index}/>
+            
+        })}
+        </div>
       ) : (
         <div>
           <BsFillEmojiDizzyFill className="sad-icon" />

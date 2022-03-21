@@ -3,12 +3,12 @@ import { FaThumbsUp } from "react-icons/fa";
 import { Game, Profile } from "./style";
 
 const CardComment = ({
-  img,
+  img = "",
   gameName,
   gameSlug,
   comment,
   likes,
-  username,
+  username="",
   profile,
 }) => {
   const [width, setWidth] = useState("");
@@ -21,11 +21,7 @@ const CardComment = ({
     <>
       {profile ? (
         <Profile className="card-comment">
-          <div className="img-holder">
-            <img src={img} alt={username}></img>
-          </div>
           <div className="content-holder">
-            <span className="name">{`${username} >`}</span>
             <span className="game--name">{gameName}</span>
             <p className="comment">{comment}</p>
             <span className="like-holder">

@@ -14,7 +14,7 @@ const Profile = () => {
 
   useEffect(() => {
     listUserPosts(id);
-  }, [id]);
+  }, []);
 
   return (
     <>
@@ -24,7 +24,7 @@ const Profile = () => {
           <UserInfo />
           <LikedGames />
         </ContentWraper>
-        <RecentComents />
+        <RecentComents userPosts={userPosts}/>
       </DivProfileContainer>
     </>
   );

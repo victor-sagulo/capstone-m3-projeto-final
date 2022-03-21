@@ -145,7 +145,6 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     listPosts();
     listUsers();
-   listUserPosts();
   }, []);
 
   return (
