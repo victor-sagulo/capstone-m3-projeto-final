@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LikeButtonContainer = styled.div`
-  width: 100px;
+  width: 80px;
 
   button {
     width: 100%;
@@ -11,8 +11,12 @@ export const LikeButtonContainer = styled.div`
 
     svg {
       color: var(--purple);
-      width: 100px;
-      height: 100px;
+      width: 100%;
+      height: 100%;
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 100px;
   }
 `;

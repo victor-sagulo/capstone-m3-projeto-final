@@ -244,3 +244,10 @@ export const More = styled.div`
     }
   }
 `;
+
+export const ButtonNameContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
