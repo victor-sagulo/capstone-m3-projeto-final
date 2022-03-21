@@ -64,10 +64,15 @@ export const Game = styled.div`
   .img-holder {
     width: 55px;
     height: 55px;
-    background-color: var(--purple);
     border-radius: 50px;
     margin-left: 5px;
     margin-right: 5px;
+  }
+
+  .img-user-comment {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
   }
 
   .content-holder {

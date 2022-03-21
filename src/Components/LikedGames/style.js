@@ -23,3 +23,7 @@ export const DivContainer = styled.div`
 export const GamesListContainer = styled.div`
   display: flex;
 `;
+
+export const carouselItem = styled.div`
+  padding-right: 10px;
+`;

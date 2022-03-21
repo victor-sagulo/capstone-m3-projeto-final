@@ -18,7 +18,7 @@ const RecentComents = ({userPosts}) => {
         {userPosts.posts.map((comment, index)=>{
           return <CardComment
             profile
-            gameName={comment.game}
+            gameName={comment.gameName}
             comment = {comment.text}
             likes = {comment.likes}
             key = {index}/>

@@ -33,7 +33,7 @@ const CardComment = ({
       ) : (
         <Game>
           <div className="img-holder">
-            <img src={img} alt={username}></img>
+            <img className="img-user-comment" src={img} alt={username}></img>
           </div>
           <div className="content-holder">
             <span className="name">{username}</span>

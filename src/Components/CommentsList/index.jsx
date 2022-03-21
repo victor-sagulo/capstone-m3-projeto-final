@@ -1,10 +1,15 @@
 import CardComment from "../CardComment";
 
-const CommentsList = ({ comments, profile, user }) => {
+const CommentsList = ({ comments, profile }) => {
+
+  console.log(comments);
+  console.log(profile);
+
   return (
     <div>
-      {comments.map((comment) => (
+      {comments.map((comment, index) => (
         <CardComment
+          key={index}
           profile={profile}
           img={comment.img}
           username={comment.username}
