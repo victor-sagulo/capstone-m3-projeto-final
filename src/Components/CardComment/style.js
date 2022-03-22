@@ -2,48 +2,55 @@ import styled from "styled-components";
 
 export const Profile = styled.div`
   display: flex;
-  width: 289px;
-  height: 118px;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+  gap: 10px;
+  width: 60%;
+  max-width: 800px;
+  min-width: 300px;
+  margin-inline: auto;
+  min-height: 136px;
   border-radius: 5px;
   padding-top: 15px;
   background-color: var(--blackComment);
-
-  .img-holder {
-    width: 40px;
-    height: 40px;
-    background-color: var(--purple);
-    border-radius: 50px;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
 
   .content-holder {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 235px;
+    width: 100%;
     margin-top: -6px;
-    margin-right: 10px;
   }
 
-  .name {
+  .game--name {
     font-size: 16px;
     color: var(--white);
     font-weight: bold;
+    a {
+      color: var(--white);
+      text-decoration: none;
+      &:hover {
+        color: var(--purple);
+      }
+    }
   }
 
   .comment {
-    font-size: 7px;
+    font-size: 10px;
     color: var(--grey);
     text-align: start;
-    min-height: 80px;
-    overflow-y: scroll;
+    margin-top: 5px;
+    min-height: 85px;
   }
 
   .like-holder {
     align-self: end;
     color: var(--white);
-    font-size: 12px;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: 10px;
   }
 
   .like-icon {
@@ -57,7 +64,7 @@ export const Game = styled.div`
   display: flex;
   width: 60%;
   max-width: 800px;
-  min-width:300px;
+  min-width: 300px;
   margin-inline: auto;
   min-height: 136px;
   border-radius: 5px;
@@ -91,10 +98,10 @@ export const Game = styled.div`
     margin-top: 10px;
     color: var(--white);
     font-weight: bold;
-    &:hover{
-      color: var(--purple)
+    &:hover {
+      color: var(--purple);
     }
-    a{
+    a {
       text-decoration: none;
     }
   }
@@ -121,12 +128,12 @@ export const Game = styled.div`
     margin-top: 5px;
     margin-left: 10px;
   }
-  @media screen and (min-width: 768px){
-    .name{
+  @media screen and (min-width: 768px) {
+    .name {
       font-size: 18px;
     }
-    .comment{
-      font-size:14px;
+    .comment {
+      font-size: 14px;
     }
   }
 `;
