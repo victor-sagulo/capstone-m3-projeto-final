@@ -19,12 +19,12 @@ const Header = () => {
   const [width, setWidth] = useState("");
   const history = useHistory();
   const { user, handleLogOut } = useContext(UserContext);
-  const [nameuser,setNameUser] = useState("")
-  const [img,setImg] = useState("")
+  const [nameuser, setNameUser] = useState("");
+  const [img, setImg] = useState("");
 
   useEffect(() => {
-    setImg(user.img)
-  },[user])
+    setImg(user.img);
+  }, [user]);
 
   const username = user.username
     ? user.username.split(" ").length > 1

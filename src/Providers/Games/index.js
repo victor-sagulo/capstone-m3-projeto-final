@@ -15,15 +15,15 @@ export const GamesProvider = ({ children }) => {
   const [prevList, setPrevList] = useState([]);
   const [gameInfo, setGameInfo] = useState([]);
   const history = useHistory();
-  const [current,setCurrent] = useState("");
+  const [current, setCurrent] = useState("");
 
   const searchGame = (game) => {
     axios
       .get(`https://api.rawg.io/api/games?key=${key}&search=${game}`)
       .then((response) => {
-        setCurrent(game)
+        setCurrent(game);
         setSearched(response.data.results);
-        history.push("/search")
+        history.push("/search");
       })
       .catch((_) => toast.error("Ops! Algo deu errado :(", { theme: "dark" }));
   };
