@@ -33,7 +33,9 @@ const CardComment = ({
             <img className="img-user-comment" src={img} alt={username}></img>
           </div>
           <div className="content-holder">
-            <Link to={`/profile/${id}`}><span className="name">{username}</span></Link>
+            <h3 className="name">
+              <Link to={`/profile/${id}`}><span className="name">{username}</span></Link>
+            </h3>
             <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5

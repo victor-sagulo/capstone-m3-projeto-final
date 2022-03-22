@@ -91,6 +91,12 @@ export const Game = styled.div`
     margin-top: 10px;
     color: var(--white);
     font-weight: bold;
+    &:hover{
+      color: var(--purple)
+    }
+    a{
+      text-decoration: none;
+    }
   }
 
   .comment {
