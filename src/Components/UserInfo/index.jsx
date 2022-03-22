@@ -31,7 +31,7 @@ const UserInfo = ({ id }) => {
         setUserId(response.data.user._id);
       })
       .catch((err) => console.log(err));
-  }, [user]);
+  }, [user,id]);
 
   if (!user) {
     history.push("/login");

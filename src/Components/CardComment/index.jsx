@@ -11,7 +11,7 @@ const CardComment = ({
   username = "",
   profile,
   gameSlug = "",
-  id,
+  userId,
 }) => {
   return (
     <>
@@ -35,7 +35,7 @@ const CardComment = ({
           </div>
           <div className="content-holder">
             <h3 className="name">
-              <Link to={`/profile/${id}`}>
+              <Link to={`/profile/${userId}`}>
                 <span className="name">{username}</span>
               </Link>
             </h3>
