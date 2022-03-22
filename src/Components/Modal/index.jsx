@@ -12,7 +12,7 @@ const Modals = () => {
       <h2>
         Seja bem vindo, <span>{user.username}</span>!
       </h2>
-      <p>
+      <p className="user">
         Pronto para encontrar seu próximo <span>jogo favorito</span>?
       </p>
     </Modal>
