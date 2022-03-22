@@ -7,9 +7,16 @@ export const Modal = styled.div`
     background-color: var(--cleanBlack);
     padding: 15px;
     width: 95%;
+    height: 231px;
     max-width: 500px;
     margin: 50px auto;
     border-radius: 5px;
+
+    .user{
+        font-size: 23px;
+        align-text: center;
+        margin-top: 33px;
+    }
 
     h2 {
         margin: 15px;

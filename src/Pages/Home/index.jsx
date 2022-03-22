@@ -1,11 +1,12 @@
 import Header from "../../Components/Header";
 import GamesList from "../../Components/GamesList";
 import Modals from "../../Components/Modal";
-import { Container } from "./style";
+import { Container, Background } from "./style";
 
 const HomePage = () => {
   return (
     <Container>
+      <Background/>
       <div className="home--top">
         <Header />
         <Modals />
