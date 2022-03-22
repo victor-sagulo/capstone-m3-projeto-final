@@ -32,13 +32,15 @@ const responsive = {
 const LikedGames = () => {
   const { userPosts, user } = useContext(UserContext);
   const { gamesList } = useContext(GamesContext);
+  const gamesLiked =
+    JSON.parse(localStorage.getItem("@GamesHub likedGames")) || [];
 
   return (
     <DivContainer>
       <div>
         <IoLogoGameControllerA />
         <h1>Jogos curtidos</h1>
-        {user.likedGames ? (
+        {gamesLiked.length > 0 ? (
           <Carousel
             responsive={responsive}
             autoPlay={false}
@@ -48,9 +50,9 @@ const LikedGames = () => {
             swipeable={true}
             draggable={true}
           >
-            {user.likedGames.map((game) => (
-              <div key={game.slug}>
-                <CardGame game={game} />
+            {gamesLiked.map((game) => (
+              <div key={game.gameSlug}>
+                <CardGame game={game.gameLiked} />
               </div>
             ))}
           </Carousel>

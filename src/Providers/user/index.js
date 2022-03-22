@@ -11,6 +11,7 @@ export const UserProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("@GamesHub user")) || false
   );
   const [userPosts, setUserPosts] = useState([]);
+  const [userGameLikes, setUserGameLikes] = useState([]);
 
   const history = useHistory();
 
@@ -40,6 +41,8 @@ export const UserProvider = ({ children }) => {
           JSON.stringify(response.data.user)
         );
         setUser(response.data.user);
+
+        getGamesLikes(response.data.user._id);
 
         toast.success("Usuário logado com sucesso!", { theme: "dark" });
 
@@ -157,57 +160,83 @@ export const UserProvider = ({ children }) => {
   const handleLogOut = () => {
     localStorage.removeItem("@GamesHub Token");
     localStorage.removeItem("@GamesHub user");
+    localStorage.removeItem("@GamesHub likedGames");
     toast(`Até mais, ${user.username}! 👋`, { theme: "dark" });
     setUser(false);
     history.push("/");
   };
 
-  // const getUserPassword = () => {
-  //   app
-  //     .get(`https://games-hub-api.herokuapp.com/users/${user.id}`)
-  //     .then((response) => setUserPassword(response.data.password));
-  // };
+  const getGamesLikes = (id) => {
+    app.get(`/likes/user/${id}`).then((response) => {
+      localStorage.setItem(
+        "@GamesHub likedGames",
+        JSON.stringify(response.data.likedGames)
+      );
+    });
+  };
 
-  // const [userPassword, setUserPassword] = useState(getUserPassword());
+  const handleGameLike = (game) => {
+    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+    const gamesLikedList = JSON.parse(
+      localStorage.getItem("@GamesHub likedGames")
+    );
 
-  // const handleGameLike = (game) => {
-  //   const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+    const removeGameFromList = gamesLikedList.filter(
+      (element) => element.gameSlug !== game.slug
+    );
 
-  //   const removeGameFromList = user.likedGames.filter(
-  //     (element) => element.slug !== game.slug
-  //   );
+    const findGameInList = gamesLikedList.some(
+      (element) => element.gameSlug === game.slug
+    );
 
-  //   const findGameInList = user.likedGames.some(
-  //     (element) => element.slug === game.slug
-  //   );
+    const newGame = {
+      name: game.name,
+      genres: game.genres,
+      parent_platforms: game.parent_platforms,
+      release: game.release,
+      id: game.id,
+      background_image: game.background_image,
+    };
+    console.log(game);
+    // const likeMessage = !findGameInList ? "Jogo curtido :D" : "Jogo descurtido";
+    console.log(findGameInList);
+    if (findGameInList === true) {
+      app
+        .delete(`/likes/game/${game.slug}`, {
+          headers: {
+            "auth-token": `${token}`,
+          },
+        })
+        .then(() => {
+          getGamesLikes(user._id);
 
-  //   app
-  //     .put(
-  //       `/users/${user.id}`,
-  //       {
-  //         ...user,
-  //         likedGames: !findGameInList
-  //           ? [...user.likedGames, game]
-  //           : removeGameFromList,
-  //         password: userPassword,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
-  //       setUser(JSON.parse(localStorage.getItem("@GamesHub user")));
-
-  //       console.log(response.data);
-  //       toast.success("Jogo Curtido :D", {
-  //         theme: "dark",
-  //       });
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+          toast.success("Jogo descurtido", {
+            theme: "dark",
+          });
+        });
+    } else {
+      app
+        .post(
+          `/likes`,
+          {
+            gameSlug: game.slug,
+            gameLiked: !findGameInList ? newGame : removeGameFromList,
+          },
+          {
+            headers: {
+              "auth-token": `${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          getGamesLikes(response.data.userId);
+          toast.success("Jogo curtido :D", {
+            theme: "dark",
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+  };
 
   return (
     <UserContext.Provider
@@ -222,7 +251,7 @@ export const UserProvider = ({ children }) => {
         handleRegister,
         handleEditUser,
         handlePost,
-        // handleGameLike,
+        handleGameLike,
       }}
     >
       {children}
