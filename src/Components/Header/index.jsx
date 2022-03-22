@@ -19,6 +19,12 @@ const Header = () => {
   const [width, setWidth] = useState("");
   const history = useHistory();
   const { user, handleLogOut } = useContext(UserContext);
+  const [nameuser,setNameUser] = useState("")
+  const [img,setImg] = useState("")
+
+  useEffect(() => {
+    setImg(user.img)
+  },[user])
 
   const username = user.username
     ? user.username.split(" ").length > 1
@@ -98,7 +104,7 @@ const Header = () => {
                 <InputHeader />
                 <figure>
                   <img
-                    src={user ? user.img : userImg}
+                    src={user ? img : userImg}
                     alt="user figure"
                     className="user--img"
                   />
@@ -121,9 +127,9 @@ const Header = () => {
               </div>
               {userModal && (
                 <div className="modal--user">
-                  <div onClick={() => history.push(`/profile/${user.id}`)}>
+                  <div onClick={() => history.push(`/profile/${user._id}`)}>
                     <h4>Meu Perfil</h4>
-                    <Link to={`/profile/${user.id}`}>
+                    <Link to={`/profile/${user._id}`}>
                       <RiFolderUserFill size={"20px"} />
                     </Link>
                   </div>
@@ -144,7 +150,7 @@ const Header = () => {
           <div className="infos">
             <figure>
               <img
-                src={user ? user.img : userImg}
+                src={user ? img : userImg}
                 alt="user figure"
                 className="user--img"
               />
@@ -186,7 +192,7 @@ const Header = () => {
                     <div className="infos--mobile">
                       <figure>
                         <img
-                          src={user ? user.img : userImg}
+                          src={user ? img : userImg}
                           alt="user figure"
                           className="user--img"
                         />

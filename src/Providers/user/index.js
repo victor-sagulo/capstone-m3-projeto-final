@@ -3,39 +3,29 @@ import { useState, createContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import userImg from "../../images/userImg.svg";
+import { type } from "@testing-library/user-event/dist/type";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("@GamesHub user")) || false
   );
-  const [postsList, setPostsList] = useState([]);
-  const [userList, setUserList] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
 
   const history = useHistory();
 
-  const listPosts = () => {
+  const listPosts = (slug) => {
     app
-      .get("/posts")
+      .get(`/comments/game/${slug}`)
       .then((response) => {
-        setPostsList(response.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const listUsers = () => {
-    app
-      .get("/users/?_embed=posts")
-      .then((response) => {
-        setUserList(response.data);
+        return response.data;
       })
       .catch((err) => console.log(err));
   };
 
   const handleLogin = (email, password) => {
     app
-      .post("/login", {
+      .post("users/login", {
         email,
         password,
       })
@@ -60,16 +50,21 @@ export const UserProvider = ({ children }) => {
 
   const handleRegister = ({ username, email, password, plataform }) => {
     app
-      .post("/register", {
-        username,
-        email,
-        password,
-        plataform,
-        img: userImg,
-        description: "Olá eu estou usando o G4Hub",
-        likedGames: [],
-      })
-      .then((_) => {
+      .post(
+        "users/register",
+        {
+          username,
+          email,
+          password,
+          plataform,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
         toast.success("Conta criada com sucesso!", { theme: "dark" });
         history.push("/login");
       })
@@ -88,60 +83,75 @@ export const UserProvider = ({ children }) => {
     handleModal
   ) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+    const waintingToast = toast.loading("Atualizando o usuário...", {
+      theme: "dark",
+    });
     app
       .put(
-        `/users/${user.id}`,
+        `/users/${user._id}`,
         { username, plataform, img, description, email, password },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "auth-token": `${token}`,
           },
         }
       )
       .then((response) => {
-        setUser(response.data);
-        localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
-        toast.success("Informações de usuário alteradas com sucesso!", {
-          theme: "dark",
+        app.get(`/users/${user._id}`).then((response) => {
+          setUser(response.data);
+          localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
+          toast.update(waintingToast, {
+            render: "Informações de usuário alteradas com sucesso!",
+            type: "success",
+            isLoading: false,
+            autoClose: 5000,
+          });
+          handleModal();
         });
-        handleModal();
       })
       .catch((_) =>
-        toast.error("Ops, algo deu errado, revise as infromaçoes passadas", {
-          theme: "dark",
+        toast.update(waintingToast, {
+          render: "Verifique a sua senha e tente novamente",
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
         })
       );
   };
 
-  const listUserPosts = (id = user.id) => {
+  const listUserPosts = (id = user._id) => {
     app
-      .get(`/users/${id}?_embed=posts`)
-      .then((response) => setUserPosts(response.data))
+      .get(`/comments/user/${id}`)
+      .then((response) => {
+        return response.data;
+      })
       .catch((err) => console.log(err));
   };
 
-  const handlePost = (text, gameName, gameSlug) => {
+  const handlePost = (text, gameName, gameSlug, comments, setComments) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
-
-    app.post(
-      "/posts",
-      {
-        text,
-        gameName,
-        gameSlug,
-        userId: user.id,
-        likes: 0,
-        usefullPost: 0,
-        comments: [],
-        img: user.img,
-        username: user.username,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    app
+      .post(
+        "/comments",
+        {
+          text,
+          gameName,
+          gameSlug,
         },
-      }
-    );
+        {
+          headers: {
+            "auth-token": `${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        toast.success("Comentário postado com sucesso!", { theme: "dark" });
+        setComments([...comments, response.data]);
+        document.getElementById("textAreaValue").value = "";
+      })
+      .catch((_) =>
+        toast.error("Ops! Algo deu errado, tente novamente.", { theme: "dark" })
+      );
   };
 
   const handleLogOut = () => {
@@ -152,72 +162,67 @@ export const UserProvider = ({ children }) => {
     history.push("/");
   };
 
-  const getUserPassword = () => {
-    app
-      .get(`https://games-hub-api.herokuapp.com/users/${user.id}`)
-      .then((response) => setUserPassword(response.data.password));
-  };
+  // const getUserPassword = () => {
+  //   app
+  //     .get(`https://games-hub-api.herokuapp.com/users/${user.id}`)
+  //     .then((response) => setUserPassword(response.data.password));
+  // };
 
-  const [userPassword, setUserPassword] = useState(getUserPassword());
+  // const [userPassword, setUserPassword] = useState(getUserPassword());
 
-  const handleGameLike = (game) => {
-    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+  // const handleGameLike = (game) => {
+  //   const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
 
-    const removeGameFromList = user.likedGames.filter(
-      (element) => element.slug !== game.slug
-    );
+  //   const removeGameFromList = user.likedGames.filter(
+  //     (element) => element.slug !== game.slug
+  //   );
 
-    const findGameInList = user.likedGames.some(
-      (element) => element.slug === game.slug
-    );
+  //   const findGameInList = user.likedGames.some(
+  //     (element) => element.slug === game.slug
+  //   );
 
-    app
-      .put(
-        `/users/${user.id}`,
-        {
-          ...user,
-          likedGames: !findGameInList
-            ? [...user.likedGames, game]
-            : removeGameFromList,
-          password: userPassword,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
-        setUser(JSON.parse(localStorage.getItem("@GamesHub user")));
+  //   app
+  //     .put(
+  //       `/users/${user.id}`,
+  //       {
+  //         ...user,
+  //         likedGames: !findGameInList
+  //           ? [...user.likedGames, game]
+  //           : removeGameFromList,
+  //         password: userPassword,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
+  //       setUser(JSON.parse(localStorage.getItem("@GamesHub user")));
 
-        console.log(response.data);
-        toast.success("Jogo Curtido :D", {
-          theme: "dark",
-        });
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    listPosts();
-    listUsers();
-  }, []);
+  //       console.log(response.data);
+  //       toast.success("Jogo Curtido :D", {
+  //         theme: "dark",
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <UserContext.Provider
       value={{
         user,
         userPosts,
-        postsList,
-        userList,
+        setUserPosts,
+        listPosts,
         listUserPosts,
         handleLogin,
         handleLogOut,
         handleRegister,
         handleEditUser,
         handlePost,
-        handleGameLike,
+        // handleGameLike,
       }}
     >
       {children}

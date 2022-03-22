@@ -13,9 +13,9 @@ const RecentComents = ({userPosts}) => {
   return (
     <DivRecentContainer>
       <h3 className="comment-tittle">Comentários</h3>
-      {userPosts.posts && userPosts.posts.length !==0 ? (
+      {userPosts && userPosts.length !==0 ? (
         <div>
-        {userPosts.posts.map((comment, index)=>{
+        {userPosts.map((comment, index)=>{
           return <CardComment
             profile
             gameName={comment.gameName}

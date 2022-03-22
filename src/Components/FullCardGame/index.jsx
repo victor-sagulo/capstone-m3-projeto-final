@@ -90,10 +90,8 @@ const FullCardGame = ({ grade }) => {
               />
             </div>
             <div className="info-holder">
-              <ButtonNameContainer>
-                <h3 className="game--name">{gameInfo.name}</h3>
-                <LikeButton gameInfo={gameInfo} />
-              </ButtonNameContainer>
+              <h3 className="game--name">{gameInfo.name}</h3>
+              <LikeButton className="like--button" gameInfo={gameInfo}/>
               <div className="single--info">
                 <h4>Plataformas:</h4>
                 <div className="infos--details">
