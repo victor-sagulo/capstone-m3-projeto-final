@@ -12,7 +12,7 @@ import { Background, FormDivContainer } from "./style";
 
 const LoginForm = () => {
   const { user, handleLogin } = useContext(UserContext);
-  const history = useHistory()
+  const history = useHistory();
 
   const schema = yup.object().shape({
     email: yup.string().required("E-mail obrigatório").email("E-mail invalido"),
@@ -28,7 +28,7 @@ const LoginForm = () => {
   });
 
   if (user) {
-    history.push("/")
+    history.push("/");
   }
 
   const submitLogin = (data) => {
@@ -37,35 +37,34 @@ const LoginForm = () => {
 
   return (
     <>
-    <Background />
-        <FormDivContainer>
-      <h1>Login</h1>
-      <form className="form" onSubmit={handleSubmit(submitLogin)}>
-        <Input
-          name="email"
-          register={register}
-          label="Email"
-          placeholder="Insira o seu email"
-          error={errors.email?.message}
-        />
-        <Input
-          name="password"
-          register={register}
-          label="Senha"
-          icon
-          placeholder="Insira a sua senha"
-          type="password"
-          error={errors.password?.message}
-        />
-        <Buttons type="submit">Login</Buttons>
-      </form>
-      <span>
-        Ainda não possui uma conta?
-        <Link to="/signup">Cadastre-se</Link>
-      </span>
-    </FormDivContainer>
+      <Background />
+      <FormDivContainer>
+        <h1>Login</h1>
+        <form className="form" onSubmit={handleSubmit(submitLogin)}>
+          <Input
+            name="email"
+            register={register}
+            label="Email"
+            placeholder="Insira o seu email"
+            error={errors.email?.message}
+          />
+          <Input
+            name="password"
+            register={register}
+            label="Senha"
+            icon
+            placeholder="Insira a sua senha"
+            type="password"
+            error={errors.password?.message}
+          />
+          <Buttons type="submit">Login</Buttons>
+        </form>
+        <span>
+          Ainda não possui uma conta?
+          <Link to="/signup">Cadastre-se</Link>
+        </span>
+      </FormDivContainer>
     </>
-    
   );
 };
 export default LoginForm;

@@ -1,14 +1,13 @@
 import { InputContainer } from "./style";
-import {MdVisibility,MdVisibilityOff} from "react-icons/md"
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { useState } from "react";
 
 const Input = ({ icon, register, name, label, error, ...rest }) => {
+  const [show, setShow] = useState(false);
 
-  const [show,setShow] = useState(false)
-
-  const toggleShow = () =>{
-    setShow(!show)
-  }
+  const toggleShow = () => {
+    setShow(!show);
+  };
 
   return (
     <InputContainer>
@@ -31,7 +30,11 @@ const Input = ({ icon, register, name, label, error, ...rest }) => {
           )}
         </div>
       )}
-      {!!error && <div className="error"><span>{error}</span></div>}
+      {!!error && (
+        <div className="error">
+          <span>{error}</span>
+        </div>
+      )}
     </InputContainer>
   );
 };

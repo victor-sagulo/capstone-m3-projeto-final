@@ -15,7 +15,7 @@ const UserEdit = ({ handleModal }) => {
     plataform: yup.string(),
     img: yup.string(),
     description: yup.string(),
-    password: yup.string().required()
+    password: yup.string().required(),
   });
 
   const {

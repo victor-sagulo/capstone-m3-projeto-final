@@ -35,7 +35,7 @@ const Game = () => {
       .then((response) => {
         setFilteredComments(response.data);
       })
-      .catch((err) => toast.error("jogo não encontrado", { theme: "dark"}));
+      .catch((err) => toast.error("jogo não encontrado", { theme: "dark" }));
   }, []);
 
   const schema = yup.object().shape({
@@ -53,7 +53,7 @@ const Game = () => {
   const handleComment = (data) => {
     const text = data.text;
     const name = gameInfo.name;
-    handlePost(text, name, slug, filteredComments, setFilteredComments)
+    handlePost(text, name, slug, filteredComments, setFilteredComments);
   };
 
   return (
