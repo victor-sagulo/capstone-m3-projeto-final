@@ -11,16 +11,16 @@ const CardComment = ({
   username = "",
   profile,
   gameSlug = "",
-  id = "",
+  id,
 }) => {
   return (
     <>
       {profile ? (
         <Profile className="card-comment">
+          <h3 className="game--name">
+            <Link to={`/gameInfo/${gameSlug}`}>{gameName}</Link>
+          </h3>
           <div className="content-holder">
-            <span className="game--name">
-              <Link to={`/gameInfo/${gameSlug}`}>{gameName}</Link>
-            </span>
             <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5
@@ -34,9 +34,11 @@ const CardComment = ({
             <img className="img-user-comment" src={img} alt={username}></img>
           </div>
           <div className="content-holder">
-            <Link to={`/profile/${id}`}>
-              <span className="name">{username}</span>
-            </Link>
+            <h3 className="name">
+              <Link to={`/profile/${id}`}>
+                <span className="name">{username}</span>
+              </Link>
+            </h3>
             <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5
