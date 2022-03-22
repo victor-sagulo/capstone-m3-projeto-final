@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import InputHeader from "../InputHeader";
 
+
 const Header = () => {
   const [width, setWidth] = useState("");
   const history = useHistory();
@@ -58,10 +59,12 @@ const Header = () => {
     <>
       {width > 768 ? (
         <Desktop>
+          <Link to="/">
           <figure>
             <img src={gamesHubLogo} alt="GamesHub logo" />
             <figcaption>GamesHub logo</figcaption>
           </figure>
+          </Link>
           {user === false ? (
             <div className="container">
               <DefaultNav>
@@ -143,10 +146,12 @@ const Header = () => {
         </Desktop>
       ) : (
         <Mobile>
+          <Link to="/">
           <figure>
             <img src={g4HUB} alt="GamesHub logo" />
             <figcaption>GamesHub logo</figcaption>
           </figure>
+          </Link>
           <div className="infos">
             <figure>
               <img
