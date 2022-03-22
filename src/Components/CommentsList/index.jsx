@@ -15,6 +15,7 @@ const CommentsList = ({ comments, profile }) => {
             gameSlug={comment.gameSlug}
             comment={comment.text}
             likes={comment.likes}
+            id={comment.user._id}
           />
         ))}
       </ul>
