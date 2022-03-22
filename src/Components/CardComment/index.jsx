@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { Game, Profile } from "./style";
+import { Link } from "react-router-dom";
 
 const CardComment = ({
   img = "",
@@ -9,6 +10,8 @@ const CardComment = ({
   likes,
   username="",
   profile,
+  gameSlug="",
+  id = ""
 }) => {
 
   return (
@@ -16,7 +19,7 @@ const CardComment = ({
       {profile ? (
         <Profile className="card-comment">
           <div className="content-holder">
-            <span className="game--name">{gameName}</span>
+            <span className="game--name"><Link to={`/gameInfo/${gameSlug}`}>{gameName}</Link></span>
             <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5
@@ -30,7 +33,7 @@ const CardComment = ({
             <img className="img-user-comment" src={img} alt={username}></img>
           </div>
           <div className="content-holder">
-            <span className="name">{username}</span>
+            <Link to={`/profile/${id}`}><span className="name">{username}</span></Link>
             <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5
