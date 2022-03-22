@@ -63,7 +63,7 @@ const Game = () => {
       </div>
       <FullCardGame grade={5} />
       <div>
-        <form className="form--comment" onSubmit={handleSubmit(handleComment)}>
+     { user && <form className="form--comment" onSubmit={handleSubmit(handleComment)}>
           <div className="basic--infos">
             <figure>
               <img
@@ -84,7 +84,7 @@ const Game = () => {
               Enviar
             </Buttons>
           </div>
-        </form>
+        </form>}
       </div>
       <CommentsList comments={filteredComments} />
     </FancyMain>
