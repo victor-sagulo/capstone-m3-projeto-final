@@ -11,7 +11,7 @@ const UserEdit = ({ handleModal }) => {
   const { user, handleEditUser } = useContext(UserContext);
 
   const schema = yup.object().shape({
-    username: yup.string().max(18),
+    username: yup.string().max(18).min(4),
     plataform: yup.string(),
     img: yup.string(),
     description: yup.string(),
