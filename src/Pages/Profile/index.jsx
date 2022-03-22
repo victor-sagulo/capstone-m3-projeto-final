@@ -7,17 +7,19 @@ import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import app from "../../Services/api"
+import app from "../../Services/api";
 
 const Profile = () => {
-  const { userPosts, setUserPosts} = useContext(UserContext);
+  const { userPosts, setUserPosts } = useContext(UserContext);
   const { id } = useParams();
 
   useEffect(() => {
     app
-    .get(`/comments/user/${id}`)
-    .then((response) => {setUserPosts(response.data.comments)})
-    .catch((err) => console.log(err));
+      .get(`/comments/user/${id}`)
+      .then((response) => {
+        setUserPosts(response.data.comments);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -25,10 +27,10 @@ const Profile = () => {
       <Header />
       <DivProfileContainer>
         <ContentWraper>
-          <UserInfo id={id}/> 
+          <UserInfo id={id} />
           <LikedGames />
         </ContentWraper>
-        <RecentComents userPosts={userPosts}/>
+        <RecentComents userPosts={userPosts} />
       </DivProfileContainer>
     </>
   );

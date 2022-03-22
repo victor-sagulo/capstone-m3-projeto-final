@@ -35,7 +35,7 @@ const Game = () => {
       .then((response) => {
         setFilteredComments(response.data);
       })
-      .catch((err) => toast.error("jogo não encontrado", { theme: "dark"}));
+      .catch((err) => toast.error("jogo não encontrado", { theme: "dark" }));
   }, []);
 
   const schema = yup.object().shape({
@@ -53,7 +53,7 @@ const Game = () => {
   const handleComment = (data) => {
     const text = data.text;
     const name = gameInfo.name;
-    handlePost(text, name, slug, filteredComments, setFilteredComments)
+    handlePost(text, name, slug, filteredComments, setFilteredComments);
   };
 
   return (
@@ -63,7 +63,7 @@ const Game = () => {
       </div>
       <FullCardGame grade={5} />
       <div>
-        <form className="form--comment" onSubmit={handleSubmit(handleComment)}>
+     { user && <form className="form--comment" onSubmit={handleSubmit(handleComment)}>
           <div className="basic--infos">
             <figure>
               <img
@@ -84,7 +84,7 @@ const Game = () => {
               Enviar
             </Buttons>
           </div>
-        </form>
+        </form>}
       </div>
       <CommentsList comments={filteredComments} />
     </FancyMain>

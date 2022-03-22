@@ -25,7 +25,10 @@ const SearchGame = () => {
         <div className="home--bottom">
           {current !== "" ? (
             <h2 className="main--title">
-              Resultados da pesquisa por <div><h4>{current}</h4></div>
+              Resultados da pesquisa por{" "}
+              <div>
+                <h4>{current}</h4>
+              </div>
             </h2>
           ) : (
             <h2 className="main--title">Resultados da pesquisa</h2>

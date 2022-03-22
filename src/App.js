@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <ToastContainer style={{marginTop:"5px",fontSize:"18px"}}/>
+      <ToastContainer style={{ marginTop: "5px", fontSize: "18px" }} />
       <div className="App">
         <Routes />
       </div>

@@ -8,18 +8,19 @@ const CardComment = ({
   gameName,
   comment,
   likes,
-  username="",
+  username = "",
   profile,
-  gameSlug="",
-  id = ""
+  gameSlug = "",
+  id = "",
 }) => {
-
   return (
     <>
       {profile ? (
         <Profile className="card-comment">
           <div className="content-holder">
-            <span className="game--name"><Link to={`/gameInfo/${gameSlug}`}>{gameName}</Link></span>
+            <span className="game--name">
+              <Link to={`/gameInfo/${gameSlug}`}>{gameName}</Link>
+            </span>
             <p className="comment">{comment}</p>
             <span className="like-holder">
               {likes}5

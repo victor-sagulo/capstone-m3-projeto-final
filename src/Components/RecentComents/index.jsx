@@ -4,28 +4,28 @@ import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { FaThumbsUp } from "react-icons/fa";
 import { useEffect } from "react";
-import CardComment from "../CardComment"
+import CardComment from "../CardComment";
 import { DivRecentContainer } from "./style";
 import { useParams } from "react-router-dom";
 
-const RecentComents = ({userPosts}) => {
- 
+const RecentComents = ({ userPosts }) => {
   return (
     <DivRecentContainer>
       <h3 className="comment-tittle">Comentários</h3>
-      {userPosts && userPosts.length !==0 ? (
+      {userPosts && userPosts.length !== 0 ? (
         <div>
-        {userPosts.map((comment, index)=>{
-          
-          return <CardComment
-            profile
-            gameSlug = {comment.gameSlug}
-            gameName={comment.gameName}
-            comment = {comment.text}
-            likes = {comment.likes}
-            key = {index}/>
-            
-        })}
+          {userPosts.map((comment, index) => {
+            return (
+              <CardComment
+                profile
+                gameSlug={comment.gameSlug}
+                gameName={comment.gameName}
+                comment={comment.text}
+                likes={comment.likes}
+                key={index}
+              />
+            );
+          })}
         </div>
       ) : (
         <div>
