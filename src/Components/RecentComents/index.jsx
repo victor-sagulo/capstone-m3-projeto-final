@@ -11,9 +11,9 @@ import { useParams } from "react-router-dom";
 const RecentComents = ({ userPosts }) => {
   return (
     <DivRecentContainer>
-      <h3 className="comment-tittle">Comentários</h3>
+      <h3 className="comment-tittle">Principais Comentários</h3>
       {userPosts && userPosts.length !== 0 ? (
-        <div>
+        <ul>
           {userPosts.map((comment, index) => {
             return (
               <CardComment
@@ -26,7 +26,7 @@ const RecentComents = ({ userPosts }) => {
               />
             );
           })}
-        </div>
+        </ul>
       ) : (
         <div>
           <BsFillEmojiDizzyFill className="sad-icon" />
