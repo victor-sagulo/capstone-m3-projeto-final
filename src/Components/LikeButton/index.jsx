@@ -3,7 +3,7 @@ import { UserContext } from "../../Providers/user";
 import { LikeButtonContainer } from "./style";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 
-const LikeButton = ({ gameInfo }) => {
+const LikeButton = ({ gameInfo,...rest }) => {
   const { handleGameLike, user } = useContext(UserContext);
 
   const findGame = user.likedGames.some(
@@ -11,10 +11,8 @@ const LikeButton = ({ gameInfo }) => {
   );
 
   return (
-    <LikeButtonContainer>
-      <button onClick={() => handleGameLike(gameInfo)}>
-        {findGame ? <AiFillLike /> : <AiOutlineLike />}
-      </button>
+    <LikeButtonContainer onClick={() => handleGameLike(gameInfo)} {...rest}>
+      {findGame ? <AiFillLike /> : <AiOutlineLike />}
     </LikeButtonContainer>
   );
 };

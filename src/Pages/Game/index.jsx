@@ -1,6 +1,6 @@
 import Header from "../../Components/Header";
 import FullCardGame from "../../Components/FullCardGame";
-import {useContext, useState} from "react"
+import { useContext, useState } from "react";
 import { UserContext } from "../../Providers/user";
 import CommentsList from "../../Components/CommentsList";
 import { FancyMain } from "./style";
@@ -13,15 +13,14 @@ import { useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import key from "../../Services/key";
-
+import app from "../../Services/api";
 
 const Game = () => {
-  const [gameInfo,setGameInfo] = useState([]);
+  const [gameInfo, setGameInfo] = useState([]);
+  const [filteredComments, setFilteredComments] = useState([]);
+  const { user, handlePost } = useContext(UserContext);
   const { slug } = useParams();
-  const {listPosts} = useContext(UserContext)
-  const filteredComments = listPosts(slug)
-  const {user, postsList, handlePost} = useContext(UserContext);
-  
+
   useEffect(() => {
     axios
       .get(`https://api.rawg.io/api/games/${slug}?key=${key}`)
@@ -31,6 +30,12 @@ const Game = () => {
       .catch((error) => {
         toast.error("Ops! Página não encontrada", { theme: "dark" });
       });
+    app
+      .get(`/comments/game/${slug}`)
+      .then((response) => {
+        setFilteredComments(response.data);
+      })
+      .catch((err) => toast.error("jogo não encontrado", { theme: "dark"}));
   }, []);
 
   const schema = yup.object().shape({
@@ -46,10 +51,10 @@ const Game = () => {
   });
 
   const handleComment = (data) => {
-    const text = data.text
-    const name = gameInfo.name
-    handlePost(text, name, slug)
-  }
+    const text = data.text;
+    const name = gameInfo.name;
+    handlePost(text, name, slug, filteredComments, setFilteredComments)
+  };
 
   return (
     <FancyMain>
@@ -58,18 +63,30 @@ const Game = () => {
       </div>
       <FullCardGame grade={5} />
       <div>
-        <figure>
-          <img className="img-user" src={user.img} alt="Imagem escolhida pelo usuário"/>
-        </figure>
-        <form className="form" onSubmit={handleSubmit(handleComment)}>
-          <div>
-          <h3>{user.username}</h3>
-          <Buttons type="input">Enviar Comentário</Buttons>
+        <form className="form--comment" onSubmit={handleSubmit(handleComment)}>
+          <div className="basic--infos">
+            <figure>
+              <img
+                className="img-user"
+                src={user.img}
+                alt="Imagem escolhida pelo usuário"
+              />
+            </figure>
+            <h3>{user.username}</h3>
           </div>
-          <textarea placeholder="Digite aqui seu comentário" {...register("text")}/>
+          <div className="send--control">
+            <textarea
+              id="textAreaValue"
+              placeholder="Digite aqui seu comentário"
+              {...register("text")}
+            />
+            <Buttons type="submit" className="button--send">
+              Enviar
+            </Buttons>
+          </div>
         </form>
       </div>
-      <CommentsList comments={filteredComments}/>
+      <CommentsList comments={filteredComments} />
     </FancyMain>
   );
 };

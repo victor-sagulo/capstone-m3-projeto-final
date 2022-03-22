@@ -3,6 +3,7 @@ import { useState, createContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import userImg from "../../images/userImg.svg";
+import { type } from "@testing-library/user-event/dist/type";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -64,7 +65,6 @@ export const UserProvider = ({ children }) => {
         }
       )
       .then((res) => {
-        console.log(res);
         toast.success("Conta criada com sucesso!", { theme: "dark" });
         history.push("/login");
       })
@@ -83,6 +83,9 @@ export const UserProvider = ({ children }) => {
     handleModal
   ) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+    const waintingToast = toast.loading("Atualizando o usuário...", {
+      theme: "dark",
+    });
     app
       .put(
         `/users/${user._id}`,
@@ -94,19 +97,24 @@ export const UserProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        app.get(`/users/${user._id}`);
-      })
-      .then((response) => {
-        setUser(response.data);
-        localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
-        toast.success("Informações de usuário alteradas com sucesso!", {
-          theme: "dark",
+        app.get(`/users/${user._id}`).then((response) => {
+          setUser(response.data);
+          localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
+          toast.update(waintingToast, {
+            render: "Informações de usuário alteradas com sucesso!",
+            type: "success",
+            isLoading: false,
+            autoClose: 5000,
+          });
+          handleModal();
         });
-        handleModal();
       })
       .catch((_) =>
-        toast.error("Ops, algo deu errado, revise as infromaçoes passadas", {
-          theme: "dark",
+        toast.update(waintingToast, {
+          render: "Verifique a sua senha e tente novamente",
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
         })
       );
   };
@@ -114,17 +122,36 @@ export const UserProvider = ({ children }) => {
   const listUserPosts = (id = user._id) => {
     app
       .get(`/comments/user/${id}`)
-      .then((response) => {return (response.data)})
+      .then((response) => {
+        return response.data;
+      })
       .catch((err) => console.log(err));
   };
 
-  const handlePost = (text, gameName, gameSlug) => {
-    app.post("/comments", {
-      text,
-      gameName,
-      gameSlug,
-      userId: user._id,
-    });
+  const handlePost = (text, gameName, gameSlug, comments, setComments) => {
+    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+    app
+      .post(
+        "/comments",
+        {
+          text,
+          gameName,
+          gameSlug,
+        },
+        {
+          headers: {
+            "auth-token": `${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        toast.success("Comentário postado com sucesso!", { theme: "dark" });
+        setComments([...comments, response.data]);
+        document.getElementById("textAreaValue").value = "";
+      })
+      .catch((_) =>
+        toast.error("Ops! Algo deu errado, tente novamente.", { theme: "dark" })
+      );
   };
 
   const handleLogOut = () => {
@@ -135,63 +162,59 @@ export const UserProvider = ({ children }) => {
     history.push("/");
   };
 
-  const getUserPassword = () => {
-    app
-      .get(`https://games-hub-api.herokuapp.com/users/${user.id}`)
-      .then((response) => setUserPassword(response.data.password));
-  };
+  // const getUserPassword = () => {
+  //   app
+  //     .get(`https://games-hub-api.herokuapp.com/users/${user.id}`)
+  //     .then((response) => setUserPassword(response.data.password));
+  // };
 
-  const [userPassword, setUserPassword] = useState(getUserPassword());
+  // const [userPassword, setUserPassword] = useState(getUserPassword());
 
-  const handleGameLike = (game) => {
-    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+  // const handleGameLike = (game) => {
+  //   const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
 
-    const removeGameFromList = user.likedGames.filter(
-      (element) => element.slug !== game.slug
-    );
+  //   const removeGameFromList = user.likedGames.filter(
+  //     (element) => element.slug !== game.slug
+  //   );
 
-    const findGameInList = user.likedGames.some(
-      (element) => element.slug === game.slug
-    );
+  //   const findGameInList = user.likedGames.some(
+  //     (element) => element.slug === game.slug
+  //   );
 
-    app
-      .put(
-        `/users/${user.id}`,
-        {
-          ...user,
-          likedGames: !findGameInList
-            ? [...user.likedGames, game]
-            : removeGameFromList,
-          password: userPassword,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
-        setUser(JSON.parse(localStorage.getItem("@GamesHub user")));
+  //   app
+  //     .put(
+  //       `/users/${user.id}`,
+  //       {
+  //         ...user,
+  //         likedGames: !findGameInList
+  //           ? [...user.likedGames, game]
+  //           : removeGameFromList,
+  //         password: userPassword,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       localStorage.setItem("@GamesHub user", JSON.stringify(response.data));
+  //       setUser(JSON.parse(localStorage.getItem("@GamesHub user")));
 
-        console.log(response.data);
-        toast.success("Jogo Curtido :D", {
-          theme: "dark",
-        });
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    listPosts();
-    listUsers();
-  }, []);
+  //       console.log(response.data);
+  //       toast.success("Jogo Curtido :D", {
+  //         theme: "dark",
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <UserContext.Provider
       value={{
         user,
         userPosts,
+        setUserPosts,
         listPosts,
         listUserPosts,
         handleLogin,
@@ -199,7 +222,7 @@ export const UserProvider = ({ children }) => {
         handleRegister,
         handleEditUser,
         handlePost,
-        handleGameLike,
+        // handleGameLike,
       }}
     >
       {children}

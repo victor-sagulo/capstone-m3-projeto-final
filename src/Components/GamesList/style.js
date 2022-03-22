@@ -20,6 +20,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   button.btn--games{
+    &:hover{
+      border: 0;
+    }
       margin: 50px 0;
       width: 150px;
   }

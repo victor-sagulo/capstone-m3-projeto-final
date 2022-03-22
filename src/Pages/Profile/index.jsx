@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import app from "../../Services/api"
 
 const Profile = () => {
-  const { listUserPosts,userPosts, setUserPosts} = useContext(UserContext);
+  const { userPosts, setUserPosts} = useContext(UserContext);
   const { id } = useParams();
 
   useEffect(() => {

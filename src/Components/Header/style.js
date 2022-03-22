@@ -50,6 +50,7 @@ export const Desktop = styled.header`
     }
     .modal--user {
       position: absolute;
+      z-index:9000;
       display: flex;
       flex-direction: column;
       right: -20px;

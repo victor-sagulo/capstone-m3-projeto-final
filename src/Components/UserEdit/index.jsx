@@ -15,6 +15,7 @@ const UserEdit = ({ handleModal }) => {
     plataform: yup.string(),
     img: yup.string(),
     description: yup.string(),
+    password: yup.string().required()
   });
 
   const {
@@ -79,7 +80,7 @@ const UserEdit = ({ handleModal }) => {
         <Input
           name="password"
           register={register}
-          label="Para sua segurança, coloque sua senha"
+          label="Insira a sua senha"
           icon
           placeholder="Insira a sua senha"
           type="password"

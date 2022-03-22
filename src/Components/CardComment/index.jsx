@@ -5,17 +5,11 @@ import { Game, Profile } from "./style";
 const CardComment = ({
   img = "",
   gameName,
-  gameSlug,
   comment,
   likes,
   username="",
   profile,
 }) => {
-  const [width, setWidth] = useState("");
-
-  window.onresize = window.onload = () => {
-    setWidth(window.innerWidth);
-  };
 
   return (
     <>

@@ -52,6 +52,14 @@ export const Container = styled.div`
       padding: 5px;
       border-radius: 3px;
     }
+    button.like--button {
+      margin: 5px 5px;
+      svg{
+        color: var(--purple);
+        height: 30px;
+        width: 30px;
+      }
+    }
 
     h3 {
       color: var(--purple);
@@ -95,7 +103,7 @@ export const Container = styled.div`
     }
     @media screen and (min-width: 768px) {
       div.single--info {
-        margin: 10px 0 10px 25px;
+        margin: 0 0 10px 25px;
         h4 {
           font-size: 18px;
         }
@@ -110,6 +118,14 @@ export const Container = styled.div`
         padding: 10px;
         background-color: var(--purple);
       }
+      button.like--button {
+      margin: 10px 0 10px 25px;
+      svg{
+        color: var(--purple);
+        height: 40px;
+        width: 40px;
+      }
+    }
       h3 {
         font-size: 16px;
       }
