@@ -20,7 +20,7 @@ const Profile = () => {
         setUserPosts(response.data.comments);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   return (
     <>
