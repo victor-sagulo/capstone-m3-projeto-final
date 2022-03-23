@@ -1,17 +1,15 @@
 import { DivContainer, GamesListContainer } from "./style";
 import { IoLogoGameControllerA } from "react-icons/io";
-import { useContext } from "react";
-import { UserContext } from "../../Providers/user";
-import { GamesContext } from "../../Providers/Games";
+import app from "../../Services/api"
 import CardGame from "../CardGame";
-
+import {useParams} from "react-router-dom"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./style.css";
+import { useEffect, useState } from "react";
 
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 1701 },
     items: 2,
   },
@@ -30,10 +28,16 @@ const responsive = {
 };
 
 const LikedGames = () => {
-  const { userPosts, user } = useContext(UserContext);
-  const { gamesList } = useContext(GamesContext);
-  const gamesLiked =
-    JSON.parse(localStorage.getItem("@GamesHub likedGames")) || [];
+
+  const {id} = useParams();
+  const [gamesLiked,setGamesLiked] = useState([]);
+  
+  useEffect(() =>{
+    app.get(`/likes/user/${id}`).then((response) => {
+      setGamesLiked(response.data.likedGames);
+    });
+  },[id])
+  
 
   return (
     <DivContainer>
@@ -51,7 +55,7 @@ const LikedGames = () => {
             draggable={true}
           >
             {gamesLiked.map((game) => (
-              <div key={game.gameSlug}>
+              <div key={game._id}>
                 <CardGame game={game.gameLiked} />
               </div>
             ))}
