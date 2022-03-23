@@ -93,6 +93,22 @@ export const Game = styled.div`
     margin-top: -6px;
   }
 
+  .title-and-btn-rmv {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button {
+    padding: 10px 9.5px;
+    width: 5%;
+    text-align: left;
+    background: var(--blackComment);
+    border: 1px solid var(--purple);
+    color: var(--purple);
+    transition: 0.3s;
+  }
+
   .name {
     font-size: 16px;
     margin-top: 10px;

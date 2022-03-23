@@ -181,12 +181,11 @@ export const UserProvider = ({ children }) => {
       localStorage.getItem("@GamesHub likedGames")
     );
 
-    const removeGameFromList = gamesLikedList.filter(
-      (element) => element.gameSlug !== game.slug
-    );
-
     const findGameInList = gamesLikedList.some(
       (element) => element.gameSlug === game.slug
+    );
+    const removeGameFromList = gamesLikedList.filter(
+      (element) => element.gameSlug !== game.slug
     );
 
     const newGame = {
