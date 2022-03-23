@@ -13,6 +13,12 @@ export const UserProvider = ({ children }) => {
   const [userPosts, setUserPosts] = useState([]);
   const [userGameLikes, setUserGameLikes] = useState([]);
 
+  useEffect(() => {
+    if(user._id !== undefined){
+      getGamesLikes()
+    }
+  }, [user]);
+
   const history = useHistory();
 
   const listPosts = (slug) => {
@@ -41,8 +47,6 @@ export const UserProvider = ({ children }) => {
           JSON.stringify(response.data.user)
         );
         setUser(response.data.user);
-
-        getGamesLikes(response.data.user._id);
 
         toast.success("Usuário logado com sucesso!", { theme: "dark" });
 
@@ -160,81 +164,66 @@ export const UserProvider = ({ children }) => {
   const handleLogOut = () => {
     localStorage.removeItem("@GamesHub Token");
     localStorage.removeItem("@GamesHub user");
-    localStorage.removeItem("@GamesHub likedGames");
     toast(`Até mais, ${user.username}! 👋`, { theme: "dark" });
     setUser(false);
     history.push("/");
   };
 
-  const getGamesLikes = (id) => {
-    app.get(`/likes/user/${id}`).then((response) => {
-      localStorage.setItem(
-        "@GamesHub likedGames",
-        JSON.stringify(response.data.likedGames)
-      );
+  const getGamesLikes = () => {
+    app.get(`/likes/user/${user._id}`).then((response) => {
+      setUserGameLikes(response.data.likedGames);
     });
   };
 
   const handleGameLike = (game) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
-    const gamesLikedList = JSON.parse(
-      localStorage.getItem("@GamesHub likedGames")
-    );
-
-    const findGameInList = gamesLikedList.some(
-      (element) => element.gameSlug === game.slug
-    );
-    const removeGameFromList = gamesLikedList.filter(
-      (element) => element.gameSlug !== game.slug
-    );
-
-    const newGame = {
-      name: game.name,
-      genres: game.genres,
-      parent_platforms: game.parent_platforms,
-      release: game.release,
-      id: game.id,
-      background_image: game.background_image,
-    };
-    console.log(game);
-    // const likeMessage = !findGameInList ? "Jogo curtido :D" : "Jogo descurtido";
-    console.log(findGameInList);
-    if (findGameInList === true) {
-      app
-        .delete(`/likes/game/${game.slug}`, {
+    const likeToast = toast.loading("Atualizando...", { theme: "dark" });
+    app
+      .post(
+        `/likes`,
+        {
+          slug: game.slug,
+          gameLiked: game,
+        },
+        {
           headers: {
             "auth-token": `${token}`,
           },
-        })
-        .then(() => {
-          getGamesLikes(user._id);
-
-          toast.success("Jogo descurtido", {
-            theme: "dark",
+        }
+      )
+      .then((response) => {
+        if (response.data.slug) {
+          getGamesLikes();
+          toast.update(likeToast, {
+            render: `Você curtiu ${game.name}`,
+            type: "success",
+            autoClose: 5000,
+            closeButton: true,
+            closeOnClick: true,
+            isLoading: false,
           });
-        });
-    } else {
-      app
-        .post(
-          `/likes`,
-          {
-            gameSlug: game.slug,
-            gameLiked: !findGameInList ? newGame : removeGameFromList,
-          },
-          {
-            headers: {
-              "auth-token": `${token}`,
-            },
-          }
-        )
-        .then((response) => {
-          getGamesLikes(response.data.userId);
-          toast.success("Jogo curtido :D", {
-            theme: "dark",
+        } else {
+          getGamesLikes();
+          toast.update(likeToast, {
+            render: `Você descurtiu ${game.name}`,
+            type: "success",
+            autoClose: 5000,
+            isLoading: false,
+            closeButton: true,
+            closeOnClick: true,
           });
+        }
+      })
+      .catch((err) =>
+        toast.update(likeToast, {
+          render: "Algo deu errado, tente novamente.",
+          type: "error",
+          autoClose: 5000,
+          isLoading: false,
+          closeButton: true,
+          closeOnClick: true,
         })
-        .catch((err) => console.log(err));
-    }
+      );
   };
 
   return (
@@ -242,6 +231,7 @@ export const UserProvider = ({ children }) => {
       value={{
         user,
         userPosts,
+        userGameLikes,
         setUserPosts,
         listPosts,
         listUserPosts,
