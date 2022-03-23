@@ -4,7 +4,13 @@ import { Desktop, Mobile, DefaultNav, LoggedNav } from "./style";
 import g4HUB from "../../images/g4HUB.svg";
 import userImg from "../../images/userImg.svg";
 import gamesHubLogo from "../../images/gamesHubLogo.svg";
-import { FaBars, FaAngleDown, FaAngleUp, FaArrowRight } from "react-icons/fa";
+import {
+  FaBars,
+  FaAngleDown,
+  FaAngleUp,
+  FaArrowRight,
+  FaAddressCard,
+} from "react-icons/fa";
 import { BiLogOut, BiLogInCircle } from "react-icons/bi";
 import { RiFolderUserFill } from "react-icons/ri";
 import { AiFillHome } from "react-icons/ai";
@@ -14,7 +20,6 @@ import { VscChromeClose } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import InputHeader from "../InputHeader";
-
 
 const Header = () => {
   const [width, setWidth] = useState("");
@@ -60,10 +65,10 @@ const Header = () => {
       {width > 768 ? (
         <Desktop>
           <Link to="/">
-          <figure>
-            <img src={gamesHubLogo} alt="GamesHub logo" />
-            <figcaption>GamesHub logo</figcaption>
-          </figure>
+            <figure>
+              <img src={gamesHubLogo} alt="GamesHub logo" />
+              <figcaption>GamesHub logo</figcaption>
+            </figure>
           </Link>
           {user === false ? (
             <div className="container">
@@ -80,6 +85,9 @@ const Header = () => {
                   </li>
                   <li>
                     <Link to="/signup">Signup</Link>
+                  </li>
+                  <li>
+                    <Link to="/aboutus">Sobre nós</Link>
                   </li>
                 </ul>
               </DefaultNav>
@@ -100,6 +108,9 @@ const Header = () => {
                   </li>
                   <li>
                     <Link to="/games">Games</Link>
+                  </li>
+                  <li>
+                    <Link to="/aboutus">Sobre nós</Link>
                   </li>
                 </ul>
               </LoggedNav>
@@ -147,10 +158,10 @@ const Header = () => {
       ) : (
         <Mobile>
           <Link to="/">
-          <figure>
-            <img src={g4HUB} alt="GamesHub logo" />
-            <figcaption>GamesHub logo</figcaption>
-          </figure>
+            <figure>
+              <img src={g4HUB} alt="GamesHub logo" />
+              <figcaption>GamesHub logo</figcaption>
+            </figure>
           </Link>
           <div className="infos">
             <figure>
@@ -191,6 +202,10 @@ const Header = () => {
                       <MdAccountBox size={"25px"} className="nav--icon" />
                       <Link to="/signup">Signup</Link>
                     </li>
+                    <li>
+                      <FaAddressCard />
+                      <Link to="/aboutus">Sobre nós</Link>
+                    </li>
                   </ul>
                 ) : (
                   <>
@@ -220,6 +235,10 @@ const Header = () => {
                       <li>
                         <RiFolderUserFill size={"25px"} className="nav--icon" />
                         <Link to={`/profile/${user.id}`}>Meu Perfil</Link>
+                      </li>
+                      <li>
+                        <FaAddressCard size={"25px"} className="nav--icon" />
+                        <Link to="/aboutus">Sobre nós</Link>
                       </li>
                       <li>
                         <BiLogOut size={"25px"} className="nav--icon" />
