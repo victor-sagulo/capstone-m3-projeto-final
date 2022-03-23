@@ -15,16 +15,7 @@ const RecentComents = ({ userPosts }) => {
       {userPosts && userPosts.length !== 0 ? (
         <ul>
           {userPosts.map((comment, index) => {
-            return (
-              <CardComment
-                profile
-                gameSlug={comment.gameSlug}
-                gameName={comment.gameName}
-                comment={comment.text}
-                likes={comment.likes}
-                key={index}
-              />
-            );
+            return <CardComment profile comment={comment} key={index} />;
           })}
         </ul>
       ) : (

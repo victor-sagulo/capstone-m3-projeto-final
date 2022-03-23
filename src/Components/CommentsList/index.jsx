@@ -6,18 +6,7 @@ const CommentsList = ({ comments, profile }) => {
     <Container>
       <ul>
         {comments.map((comment, index) => (
-          <CardComment
-            key={index}
-            profile={profile}
-            img={comment.user.img}
-            username={comment.user.username}
-            gameName={comment.gameName}
-            gameSlug={comment.gameSlug}
-            comment={comment.text}
-            likes={comment.likes}
-            userId={comment.user._id}
-            id={comment._id}
-          />
+          <CardComment key={index} profile={profile} comment={comment} />
         ))}
       </ul>
     </Container>
