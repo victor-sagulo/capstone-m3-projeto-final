@@ -1,12 +1,7 @@
 import { BsFillEmojiDizzyFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../Providers/user";
-import { FaThumbsUp } from "react-icons/fa";
-import { useEffect } from "react";
 import CardComment from "../CardComment";
 import { DivRecentContainer } from "./style";
-import { useParams } from "react-router-dom";
+
 
 const RecentComents = ({ userPosts }) => {
 

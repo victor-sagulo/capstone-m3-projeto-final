@@ -7,7 +7,6 @@ import Buttons from "../Buttons";
 import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 import { useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const SingupForm = () => {
   const schema = yup.object().shape({
@@ -34,7 +33,6 @@ const SingupForm = () => {
 
   const RegisterContext = () => useContext(UserContext);
   const { handleRegister } = RegisterContext();
-  const history = useHistory();
 
   const {
     register,
