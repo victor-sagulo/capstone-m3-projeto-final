@@ -9,12 +9,15 @@ import { DivRecentContainer } from "./style";
 import { useParams } from "react-router-dom";
 
 const RecentComents = ({ userPosts }) => {
+
+  const filteredComments = userPosts.sort((a,b)=> b.likes - a.likes).slice(0,3)
+
   return (
     <DivRecentContainer>
       <h3 className="comment-tittle">Principais Comentários</h3>
-      {userPosts && userPosts.length !== 0 ? (
+      {filteredComments && filteredComments.length !== 0 ? (
         <ul>
-          {userPosts.map((comment, index) => {
+          {filteredComments.map((comment, index) => {
             return <CardComment profile comment={comment} key={index} />;
           })}
         </ul>

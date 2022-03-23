@@ -14,8 +14,8 @@ export const UserProvider = ({ children }) => {
   const [userGameLikes, setUserGameLikes] = useState([]);
 
   useEffect(() => {
-    if(user._id !== undefined){
-      getGamesLikes()
+    if (user._id !== undefined) {
+      getGamesLikes();
     }
   }, [user]);
 
@@ -214,16 +214,116 @@ export const UserProvider = ({ children }) => {
           });
         }
       })
-      .catch((err) =>
-        toast.update(likeToast, {
-          render: "Algo deu errado, tente novamente.",
+      .catch((err) => {
+        if (user) {
+          toast.update(likeToast, {
+            render: "Algo deu errado, tente novamente.",
+            type: "error",
+            autoClose: 5000,
+            isLoading: false,
+            closeButton: true,
+            closeOnClick: true,
+          });
+        } else {
+          toast.update(likeToast, {
+            render: "Você precisa estar logado para curtir um jogo",
+            type: "error",
+            autoClose: 5000,
+            isLoading: false,
+            closeButton: true,
+            closeOnClick: true,
+          });
+        }
+      });
+  };
+
+  const handleRemoveComment = (id) => {
+    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+    const remove = toast.loading("Atualizando...", { theme: "dark" });
+    app
+      .delete(`/comments/${id}`, {
+        headers: {
+          "auth-token": `${token}`,
+        },
+      })
+      .then((response) => {
+        toast.update(remove, {
+          render: `Comentário excluído`,
+          type: "success",
+          autoClose: 5000,
+          isLoading: false,
+          closeButton: true,
+          closeOnClick: true,
+        });
+      })
+      .catch((error) => {
+        toast.update(remove, {
+          render: `Algo deu errado, tente novamente`,
           type: "error",
           autoClose: 5000,
           isLoading: false,
           closeButton: true,
           closeOnClick: true,
-        })
-      );
+        });
+      });
+  };
+
+  const handleLikeComment = (id) => {
+    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+    const like = toast.loading("Atualizando...", { theme: "dark" });
+    if(user){
+      app
+      .post(
+        `/comments/${id}/like`,
+        { userId: user._id },
+        {
+          headers: {
+            "auth-token": `${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.liked) {
+          toast.update(like, {
+            render: `Você curtiu o comentário`,
+            type: "success",
+            autoClose: 5000,
+            isLoading: false,
+            closeButton: true,
+            closeOnClick: true,
+          });
+        } else {
+          toast.update(like, {
+            render: `Você descurtiu o comentário`,
+            type: "success",
+            autoClose: 5000,
+            isLoading: false,
+            closeButton: true,
+            closeOnClick: true,
+          });
+        }
+      })
+      .catch((err) => {
+        toast.update(like, {
+          render: `Algo deu errado, tente novamente`,
+          type: "error",
+          autoClose: 5000,
+          isLoading: false,
+          closeButton: true,
+          closeOnClick: true,
+        });
+      });
+    }else{
+      toast.update(like, {
+        render: `Você precisa estar logado para curtir um comentário`,
+        type: "error",
+        autoClose: 5000,
+        isLoading: false,
+        closeButton: true,
+        closeOnClick: true,
+      });
+    }
+    
   };
 
   return (
@@ -240,7 +340,9 @@ export const UserProvider = ({ children }) => {
         handleRegister,
         handleEditUser,
         handlePost,
+        handleRemoveComment,
         handleGameLike,
+        handleLikeComment,
       }}
     >
       {children}

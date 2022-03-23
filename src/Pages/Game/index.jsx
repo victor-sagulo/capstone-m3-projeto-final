@@ -18,6 +18,7 @@ import app from "../../Services/api";
 const Game = () => {
   const [gameInfo, setGameInfo] = useState([]);
   const [filteredComments, setFilteredComments] = useState([]);
+  const [reloadParam, setReloadParam] = useState(true);
   const { user, handlePost } = useContext(UserContext);
   const { slug } = useParams();
 
@@ -30,13 +31,19 @@ const Game = () => {
       .catch((error) => {
         toast.error("Ops! Página não encontrada", { theme: "dark" });
       });
+  }, []);
+  useEffect(() => {
     app
       .get(`/comments/game/${slug}`)
       .then((response) => {
         setFilteredComments(response.data);
       })
       .catch((err) => toast.error("jogo não encontrado", { theme: "dark" }));
-  }, []);
+  },[reloadParam])
+
+  const reload = () => {
+    setReloadParam(!reloadParam);
+  };
 
   const schema = yup.object().shape({
     text: yup.string().required("Seu comentário está vazio"),
@@ -63,30 +70,39 @@ const Game = () => {
       </div>
       <FullCardGame grade={5} />
       <div>
-     { user && <form className="form--comment" onSubmit={handleSubmit(handleComment)}>
-          <div className="basic--infos">
-            <figure>
-              <img
-                className="img-user"
-                src={user.img}
-                alt="Imagem escolhida pelo usuário"
+        {user && (
+          <form
+            className="form--comment"
+            onSubmit={handleSubmit(handleComment)}
+          >
+            <div className="basic--infos">
+              <figure>
+                <img
+                  className="img-user"
+                  src={user.img}
+                  alt="Imagem escolhida pelo usuário"
+                />
+              </figure>
+              <h3>{user.username}</h3>
+            </div>
+            <div className="send--control">
+              <textarea
+                id="textAreaValue"
+                placeholder="Digite aqui seu comentário"
+                {...register("text")}
               />
-            </figure>
-            <h3>{user.username}</h3>
-          </div>
-          <div className="send--control">
-            <textarea
-              id="textAreaValue"
-              placeholder="Digite aqui seu comentário"
-              {...register("text")}
-            />
-            <Buttons type="submit" className="button--send">
-              Enviar
-            </Buttons>
-          </div>
-        </form>}
+              <Buttons type="submit" className="button--send">
+                Enviar
+              </Buttons>
+            </div>
+          </form>
+        )}
       </div>
-      <CommentsList comments={filteredComments} />
+      <CommentsList
+        comments={filteredComments}
+        setFilteredComments={setFilteredComments}
+        reload={reload}
+      />
     </FancyMain>
   );
 };

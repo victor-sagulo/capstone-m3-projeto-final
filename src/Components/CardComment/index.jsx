@@ -1,9 +1,22 @@
 import { FaThumbsUp, FaTrash } from "react-icons/fa";
+import { BsHandThumbsUp, BsHandThumbsUpFill } from "react-icons/bs";
 import Buttons from "../Buttons";
 import { Game, Profile } from "./style";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../Providers/user";
+import { useContext } from "react";
 
-const CardComment = ({ comment, profile }) => {
+const CardComment = ({
+  comment,
+  profile,
+  setFilteredComments,
+  comments,
+  reload,
+}) => {
+  const { handleRemoveComment, handleLikeComment, user } =
+    useContext(UserContext);
+  const fill = comment.whoLiked.some((id) => id === user._id);
+
   return (
     <>
       {profile ? (
@@ -14,7 +27,7 @@ const CardComment = ({ comment, profile }) => {
           <div className="content-holder">
             <p className="comment">{comment.text}</p>
             <span className="like-holder">
-              {comment.likes}5
+              {comment.likes}
               <FaThumbsUp className="like-icon" />
             </span>
           </div>
@@ -35,14 +48,39 @@ const CardComment = ({ comment, profile }) => {
                   <span className="name">{comment.user.username}</span>
                 </Link>
               </h3>
-              <Buttons>
-                <FaTrash />
-              </Buttons>
+              {comment.user._id === user._id && (
+                <button
+                  onClick={() => {
+                    handleRemoveComment(comment._id);
+                    setFilteredComments(
+                      comments.filter((el) => el._id !== comment._id)
+                    );
+                  }}
+                >
+                  <FaTrash />
+                </button>
+              )}
             </div>
             <p className="comment">{comment.text}</p>
             <span className="like-holder">
-              {comment.likes}5
-              <FaThumbsUp className="like-icon" />
+              {comment.likes}
+              {fill ? (
+                <BsHandThumbsUpFill
+                  className="like-icon"
+                  onClick={() => {
+                    handleLikeComment(comment._id);
+                    setTimeout(reload, 1000);
+                  }}
+                />
+              ) : (
+                <BsHandThumbsUp
+                  className="like-icon"
+                  onClick={() => {
+                    handleLikeComment(comment._id);
+                    setTimeout(reload, 1000);
+                  }}
+                />
+              )}
             </span>
           </div>
         </Game>
