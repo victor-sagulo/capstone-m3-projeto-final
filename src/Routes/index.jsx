@@ -6,6 +6,7 @@ import GamesPage from "../Pages/Games";
 import Game from "../Pages/Game";
 import Profile from "../Pages/Profile";
 import SearchGame from "../Pages/SearchGame";
+import AboutUs from "../Pages/AboutUs";
 
 const Routes = () => {
   return (
@@ -30,6 +31,9 @@ const Routes = () => {
       </Route>
       <Route path="/gameInfo/:slug">
         <Game />
+      </Route>
+      <Route path="/aboutus">
+        <AboutUs />
       </Route>
     </Switch>
   );
