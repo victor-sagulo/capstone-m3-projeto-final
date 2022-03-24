@@ -21,15 +21,15 @@ const AboutUs = () => {
         <h1>Equipe de Desenvolvedores</h1>
         <section>
           <motion.div
-            initial={{ marginRight: "-400px" }}
-            animate={{ marginRight: "0px" }}
+            initial={{ marginLeft: "-400px" }}
+            animate={{ marginLeft: "0px" }}
             transition={{ duration: 1 }}
           >
             <ul className="list-developers">
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.5 }}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Marcos} alt="" />
@@ -67,7 +67,7 @@ const AboutUs = () => {
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 1.5 }}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Nicollas} alt="" />
@@ -86,7 +86,7 @@ const AboutUs = () => {
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 2 }}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Guilherme} alt="" />
@@ -105,7 +105,7 @@ const AboutUs = () => {
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 2.5 }}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Oswaldo} alt="" />
@@ -124,7 +124,7 @@ const AboutUs = () => {
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 3 }}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Juan} alt="" />
