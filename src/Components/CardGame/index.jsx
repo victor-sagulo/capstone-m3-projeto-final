@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { GamesContext } from "../../Providers/Games";
 import noImage from "../../images/noImage.svg";
 
-const CardGame = ({ game }) => {
+const CardGame = ({ game, ...rest }) => {
   const { background_image, name, genres, released, parent_platforms } = game;
 
   const { getGameInfo } = useContext(GamesContext);
@@ -32,7 +32,7 @@ const CardGame = ({ game }) => {
   const nameStyle = nameLength > 28 ? "min" : "regular";
 
   return (
-    <ContainerCardGame nameStyle={nameStyle}>
+    <ContainerCardGame {...rest} nameStyle={nameStyle}>
       <img
         src={background_image ? background_image : noImage}
         alt="Game card"

@@ -18,6 +18,14 @@ export const DivContainer = styled.div`
     margin-top: 100px;
     font-size: 30px;
   }
+  .react-multi-carousel-track {
+    border-radius: 8px;
+  }
+  .Liked-game-card {
+    filter: drop-shadow(0px 0px 0px var(--purple)) !important;
+    margin-right: 10px;
+    width: 250px !important;
+  }
 `;
 
 export const GamesListContainer = styled.div`
@@ -25,5 +33,5 @@ export const GamesListContainer = styled.div`
 `;
 
 export const carouselItem = styled.div`
-  padding-right: 10px;
+  padding: 10px;
 `;
