@@ -1,4 +1,5 @@
 import { Switch, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Login from "../Pages/Login";
 import SignUp from "../Pages/Signup";
 import HomePage from "../Pages/Home";
@@ -10,32 +11,34 @@ import AboutUs from "../Pages/AboutUs";
 
 const Routes = () => {
   return (
-    <Switch>
-      <Route exact path="/">
-        <HomePage />
-      </Route>
-      <Route exact path="/search">
-        <SearchGame />
-      </Route>
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/signup">
-        <SignUp />
-      </Route>
-      <Route path="/profile/:id">
-        <Profile />
-      </Route>
-      <Route path="/games">
-        <GamesPage />
-      </Route>
-      <Route path="/gameInfo/:slug">
-        <Game />
-      </Route>
-      <Route path="/aboutus">
-        <AboutUs />
-      </Route>
-    </Switch>
+    <AnimatePresence>
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route exact path="/search">
+          <SearchGame />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+        <Route path="/profile/:id">
+          <Profile />
+        </Route>
+        <Route path="/games">
+          <GamesPage />
+        </Route>
+        <Route path="/gameInfo/:slug">
+          <Game />
+        </Route>
+        <Route path="/aboutus">
+          <AboutUs />
+        </Route>
+      </Switch>
+    </AnimatePresence>
   );
 };
 
