@@ -8,6 +8,7 @@ import { UserContext } from "../../Providers/user";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import app from "../../Services/api";
+import { motion } from "framer-motion";
 
 const Profile = () => {
   const { userPosts, setUserPosts } = useContext(UserContext);
@@ -23,16 +24,22 @@ const Profile = () => {
   }, [id]);
 
   return (
-    <div>
-      <Header />
-      <DivProfileContainer>
-        <ContentWraper>
-          <UserInfo id={id} />
-          <LikedGames />
-        </ContentWraper>
-        <RecentComents userPosts={userPosts} />
-      </DivProfileContainer>
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2 }}
+    >
+      <div>
+        <Header />
+        <DivProfileContainer>
+          <ContentWraper>
+            <UserInfo id={id} />
+            <LikedGames />
+          </ContentWraper>
+          <RecentComents userPosts={userPosts} />
+        </DivProfileContainer>
+      </div>
+    </motion.div>
   );
 };
 

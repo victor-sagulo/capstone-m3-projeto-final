@@ -4,12 +4,7 @@ import { Desktop, Mobile, DefaultNav, LoggedNav } from "./style";
 import g4HUB from "../../images/g4HUB.svg";
 import userImg from "../../images/userImg.svg";
 import gamesHubLogo from "../../images/gamesHubLogo.svg";
-import {
-  FaBars,
-  FaAngleDown,
-  FaAngleUp,
-  FaAddressCard,
-} from "react-icons/fa";
+import { FaBars, FaAngleDown, FaAngleUp, FaAddressCard } from "react-icons/fa";
 import { BiLogOut, BiLogInCircle } from "react-icons/bi";
 import { RiFolderUserFill } from "react-icons/ri";
 import { AiFillHome } from "react-icons/ai";
@@ -19,6 +14,7 @@ import { VscChromeClose } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import InputHeader from "../InputHeader";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [width, setWidth] = useState("");
@@ -83,7 +79,7 @@ const Header = () => {
                     <Link to="/signup">Signup</Link>
                   </li>
                   <li>
-                    <Link to="/aboutus">Sobre nós</Link>
+                    <Link to="/aboutus">About Us</Link>
                   </li>
                 </ul>
               </DefaultNav>
@@ -103,7 +99,7 @@ const Header = () => {
                     <Link to="/games">Games</Link>
                   </li>
                   <li>
-                    <Link to="/aboutus">Sobre nós</Link>
+                    <Link to="/aboutus">About Us</Link>
                   </li>
                 </ul>
               </LoggedNav>
@@ -132,19 +128,35 @@ const Header = () => {
                   />
                 )}
               </div>
-              {userModal && (
-                <div className="modal--user">
-                  <div onClick={() => history.push(`/profile/${user._id}`)}>
-                    <h4>Meu Perfil</h4>
-                    <Link to={`/profile/${user._id}`}>
-                      <RiFolderUserFill size={"20px"} />
-                    </Link>
-                  </div>
-                  <div onClick={handleLogOut}>
-                    <h4>Log out</h4> <BiLogOut size={"20px"} />
-                  </div>
-                </div>
-              )}
+              <AnimatePresence>
+                {userModal && (
+                  <motion.div
+                    style={{
+                      position: "absolute",
+                      zIndex: 9000,
+                      right: "0",
+                      top: 0,
+                    }}
+                    key="modal--user--desktop"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                  >
+                    <div className="modal--user">
+                      <div onClick={() => history.push(`/profile/${user._id}`)}>
+                        <h4>Meu Perfil</h4>
+                        <Link to={`/profile/${user._id}`}>
+                          <RiFolderUserFill size={"20px"} />
+                        </Link>
+                      </div>
+                      <div onClick={handleLogOut}>
+                        <h4>Log out</h4> <BiLogOut size={"20px"} />
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           )}
         </Desktop>
@@ -171,88 +183,115 @@ const Header = () => {
               onClick={handleMobileModal}
             />
           </div>
-          {mobileModal && (
-            <div className="mobile--modal">
-              <nav>
-                {user === false ? (
-                  <ul>
-                    <li>
-                      <InputHeader handleMobileModal={handleMobileModal} />
-                    </li>
-                    <li>
-                      <AiFillHome size={"25px"} className="nav--icon" />
-                      <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                      <CgGames size={"25px"} className="nav--icon" />
-                      <Link to="/games">Games</Link>
-                    </li>
-                    <li>
-                      <BiLogInCircle size={"25px"} className="nav--icon" />
-                      <Link to="/login">Login</Link>
-                    </li>
-                    <li>
-                      <MdAccountBox size={"25px"} className="nav--icon" />
-                      <Link to="/signup">Signup</Link>
-                    </li>
-                    <li>
-                      <FaAddressCard />
-                      <Link to="/aboutus">Sobre nós</Link>
-                    </li>
-                  </ul>
-                ) : (
-                  <>
-                    <div className="infos--mobile">
-                      <figure>
-                        <img
-                          src={user ? img : userImg}
-                          alt="user figure"
-                          className="user--img"
-                        />
-                        <figcaption>user image</figcaption>
-                      </figure>
-                      <h3>{username}</h3>
-                    </div>
-                    <ul>
-                      <li>
-                        <InputHeader handleMobileModal={handleMobileModal} />
-                      </li>
-                      <li>
-                        <AiFillHome size={"25px"} className="nav--icon" />
-                        <Link to="/">Home</Link>
-                      </li>
-                      <li>
-                        <CgGames size={"25px"} className="nav--icon" />
-                        <Link to="/games">Games</Link>
-                      </li>
-                      <li>
-                        <RiFolderUserFill size={"25px"} className="nav--icon" />
-                        <Link to={`/profile/${user._id}`}>Meu Perfil</Link>
-                      </li>
-                      <li>
-                        <FaAddressCard size={"25px"} className="nav--icon" />
-                        <Link to="/aboutus">Sobre nós</Link>
-                      </li>
-                      <li>
-                        <BiLogOut size={"25px"} className="nav--icon" />
-                        <button
-                          onClick={() => {
-                            handleMobileModal();
-                            handleLogOut();
-                          }}
-                        >
-                          Log out
-                        </button>
-                      </li>
-                    </ul>
-                  </>
-                )}
-                <button onClick={handleMobileModal} className="close--btn">
-                  <VscChromeClose size={"40px"} className="close--icon" />
-                </button>
-              </nav>
-            </div>
-          )}
+          <AnimatePresence>
+            {mobileModal && (
+              <motion.div
+                style={{ position: "absolute" }}
+                key="modal--user--mobile"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+              >
+                <div className="mobile--modal">
+                  <nav>
+                    {user === false ? (
+                      <ul>
+                        <li>
+                          <InputHeader handleMobileModal={handleMobileModal} />
+                        </li>
+                        <li>
+                          <AiFillHome size={"25px"} className="nav--icon" />
+                          <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                          <CgGames size={"25px"} className="nav--icon" />
+                          <Link to="/games">Games</Link>
+                        </li>
+                        <li>
+                          <BiLogInCircle size={"25px"} className="nav--icon" />
+                          <Link to="/login">Login</Link>
+                        </li>
+                        <li>
+                          <MdAccountBox size={"25px"} className="nav--icon" />
+                          <Link to="/signup">Signup</Link>
+                        </li>
+                        <li>
+                          <FaAddressCard />
+                          <Link to="/aboutus">About Us</Link>
+                        </li>
+                      </ul>
+                    ) : (
+                      <>
+                        <div className="infos--mobile">
+                          <figure>
+                            <img
+                              src={user ? img : userImg}
+                              alt="user figure"
+                              className="user--img"
+                            />
+                            <figcaption>user image</figcaption>
+                          </figure>
+                          <h3>{username}</h3>
+                        </div>
+                        <ul>
+                          <li>
+                            <InputHeader
+                              handleMobileModal={handleMobileModal}
+                            />
+                          </li>
+                          <li>
+                            <AiFillHome size={"25px"} className="nav--icon" />
+                            <Link to="/">Home</Link>
+                          </li>
+                          <li>
+                            <CgGames size={"25px"} className="nav--icon" />
+                            <Link to="/games">Games</Link>
+                          </li>
+                          <li>
+                            <RiFolderUserFill
+                              size={"25px"}
+                              className="nav--icon"
+                            />
+                            <Link to={`/profile/${user._id}`}>Meu Perfil</Link>
+                          </li>
+                          <li>
+                            <FaAddressCard
+                              size={"25px"}
+                              className="nav--icon"
+                            />
+                            <Link to="/aboutus">About Us</Link>
+                          </li>
+                          <li>
+                            <BiLogOut size={"25px"} className="nav--icon" />
+                            <button
+                              onClick={() => {
+                                handleMobileModal();
+                                handleLogOut();
+                              }}
+                            >
+                              Log out
+                            </button>
+                          </li>
+                        </ul>
+                      </>
+                    )}
+                    <button onClick={handleMobileModal} className="close--btn">
+                      <motion.div
+                        key="modal--user--mobile--close"
+                        initial={{ rotate: 180}}
+                        animate={{ rotate: 360 }}
+                        exit={{ rotate: 180 }}
+                        transition={{ duration: 1 }}
+                      >
+                        <VscChromeClose size={"40px"} className="close--icon" />
+                      </motion.div>
+                    </button>
+                  </nav>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </Mobile>
       )}
     </>

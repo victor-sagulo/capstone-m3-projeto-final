@@ -75,15 +75,15 @@ const Game = () => {
           <Header />
         </div>
         <motion.div
-          initial={{ marginLeft: "-300px" }}
-          animate={{ marginLeft: "0px" }}
+          initial={{ marginTop: "-50px" }}
+          animate={{ marginTop: "0px" }}
           transition={{ duration: 1 }}
         >
           <FullCardGame />
         </motion.div>
         <motion.div
-          initial={{ marginLeft: "-300px" }}
-          animate={{ marginLeft: "0px" }}
+          initial={{ marginTop: "-100px" }}
+          animate={{ marginTop: "0px" }}
           transition={{ duration: 0.7 }}
         >
           <div className="comments--container">
