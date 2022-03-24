@@ -13,15 +13,15 @@ export const Modal = styled.div`
     border-radius: 5px;
 
     .user{
-        font-size: 23px;
-        align-text: center;
-        margin-top: 33px;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 15px;
     }
 
     h2 {
-        margin: 15px;
+        margin: 20px 0 15px 0;
         color: var(--white);
-        padding: 5px;
+        padding-bottom: 30px;
         border-bottom: 2px solid var(--purple);
     }
 

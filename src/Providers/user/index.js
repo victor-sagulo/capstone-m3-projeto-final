@@ -237,7 +237,7 @@ export const UserProvider = ({ children }) => {
       });
   };
 
-  const handleRemoveComment = (id) => {
+  const handleRemoveComment = (id,comments,setFilteredComments) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
     const remove = toast.loading("Atualizando...", { theme: "dark" });
     app
@@ -255,6 +255,9 @@ export const UserProvider = ({ children }) => {
           closeButton: true,
           closeOnClick: true,
         });
+        setFilteredComments(
+          comments.filter((el) => el._id !== id)
+        );
       })
       .catch((error) => {
         toast.update(remove, {
@@ -271,49 +274,49 @@ export const UserProvider = ({ children }) => {
   const handleLikeComment = (id) => {
     const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
     const like = toast.loading("Atualizando...", { theme: "dark" });
-    if(user){
+    if (user) {
       app
-      .post(
-        `/comments/${id}/like`,
-        { userId: user._id },
-        {
-          headers: {
-            "auth-token": `${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        if (response.data.liked) {
+        .post(
+          `/comments/${id}/like`,
+          { userId: user._id },
+          {
+            headers: {
+              "auth-token": `${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data.liked) {
+            toast.update(like, {
+              render: `Você curtiu o comentário`,
+              type: "success",
+              autoClose: 5000,
+              isLoading: false,
+              closeButton: true,
+              closeOnClick: true,
+            });
+          } else {
+            toast.update(like, {
+              render: `Você descurtiu o comentário`,
+              type: "success",
+              autoClose: 5000,
+              isLoading: false,
+              closeButton: true,
+              closeOnClick: true,
+            });
+          }
+        })
+        .catch((err) => {
           toast.update(like, {
-            render: `Você curtiu o comentário`,
-            type: "success",
+            render: `Algo deu errado, tente novamente`,
+            type: "error",
             autoClose: 5000,
             isLoading: false,
             closeButton: true,
             closeOnClick: true,
           });
-        } else {
-          toast.update(like, {
-            render: `Você descurtiu o comentário`,
-            type: "success",
-            autoClose: 5000,
-            isLoading: false,
-            closeButton: true,
-            closeOnClick: true,
-          });
-        }
-      })
-      .catch((err) => {
-        toast.update(like, {
-          render: `Algo deu errado, tente novamente`,
-          type: "error",
-          autoClose: 5000,
-          isLoading: false,
-          closeButton: true,
-          closeOnClick: true,
         });
-      });
-    }else{
+    } else {
       toast.update(like, {
         render: `Você precisa estar logado para curtir um comentário`,
         type: "error",
@@ -323,7 +326,52 @@ export const UserProvider = ({ children }) => {
         closeOnClick: true,
       });
     }
-    
+  };
+
+  const handleGradeGame = (slug, grade) => {
+    const token = JSON.parse(localStorage.getItem("@GamesHub Token"));
+    const gradeToast = toast.loading("Atualizando...", { theme: "dark" });
+    if (user) {
+      app
+        .post(
+          "/grades",
+          { slug: slug, grade: grade },
+          {
+            headers: {
+              "auth-token": `${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          toast.update(gradeToast, {
+            render: `Nota enviada :D`,
+            type: "success",
+            autoClose: 5000,
+            isLoading: false,
+            closeButton: true,
+            closeOnClick: true,
+          });
+        })
+        .catch((err) => {
+          toast.update(gradeToast, {
+            render: `Algo deu errado, tente novamente`,
+            type: "error",
+            autoClose: 5000,
+            isLoading: false,
+            closeButton: true,
+            closeOnClick: true,
+          });
+        });
+    } else {
+      toast.update(gradeToast, {
+        render: `Você precisa estar logado para dar uma nota`,
+        type: "error",
+        autoClose: 5000,
+        isLoading: false,
+        closeButton: true,
+        closeOnClick: true,
+      });
+    }
   };
 
   return (
@@ -343,6 +391,7 @@ export const UserProvider = ({ children }) => {
         handleRemoveComment,
         handleGameLike,
         handleLikeComment,
+        handleGradeGame
       }}
     >
       {children}

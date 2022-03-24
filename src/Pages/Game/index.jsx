@@ -68,7 +68,7 @@ const Game = () => {
       <div className="home-top">
         <Header />
       </div>
-      <FullCardGame grade={5} />
+      <FullCardGame/>
       <div>
         {user && (
           <form
