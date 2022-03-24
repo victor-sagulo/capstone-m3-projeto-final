@@ -8,7 +8,7 @@ export const Main = styled.div`
     color: var(--purple);
     font-family: var(--blackOpsFont);
     font-weight: 500;
-    font-size: 36px;
+    font-size: 30px;
     margin: 50px auto;
   }
 

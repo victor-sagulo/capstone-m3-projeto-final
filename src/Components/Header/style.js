@@ -26,6 +26,9 @@ export const Desktop = styled.header`
       margin-left: 4px;
       a{
         font-size: 10px;
+        &:hover{
+          color: var(--purple)
+        }
       }
     }
     .user--img{
@@ -181,12 +184,6 @@ export const Mobile = styled.header`
           color: var(--white);
         }
       }
-    }
-  }
-  @supports (backdrop-filter: blur(1rem)) {
-    div.mobile--modal {
-      background-color: hsl(0 0% 100% / 0.1);
-      backdrop-filter: blur(1rem);
     }
   }
   @media screen and (min-width: 566px) {

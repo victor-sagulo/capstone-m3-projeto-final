@@ -15,7 +15,7 @@ const GamesPage = () => {
         <motion.div
           initial={{ marginTop: "400px" }}
           animate={{ marginTop: "0px" }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 1 }}
         >
           <main>
             <h2 className="main--title">Games</h2>

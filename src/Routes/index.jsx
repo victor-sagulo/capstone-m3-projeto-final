@@ -8,11 +8,16 @@ import Game from "../Pages/Game";
 import Profile from "../Pages/Profile";
 import SearchGame from "../Pages/SearchGame";
 import AboutUs from "../Pages/AboutUs";
+import { useLocation } from "react-router-dom";
+
 
 const Routes = () => {
+
+  const location = useLocation()
+
   return (
     <AnimatePresence>
-      <Switch>
+      <Switch location={location} key={location.pathname}>
         <Route exact path="/">
           <HomePage />
         </Route>
