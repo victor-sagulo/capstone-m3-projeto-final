@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Container, More } from "./style";
 import g4HUB from "../../images/g4HUB.svg";
@@ -38,10 +38,14 @@ const FullCardGame = () => {
     app.get(`/grades/${slug}`).then((response) => {
       const allGrades = response.data;
       setUserGraded(allGrades.some((el) => el.userId === user._id));
-      const finalGrade =
+      if(allGrades.length > 0){
+        const finalGrade =
         (allGrades.reduce((acc, grade) => acc + grade.grade, 0) /
         allGrades.length).toFixed(1)
-      setGrade(finalGrade);
+        setGrade(finalGrade);
+      }else{
+        setGrade(grade.toFixed(1))
+      }
     });
   }, [reloadParam]);
 

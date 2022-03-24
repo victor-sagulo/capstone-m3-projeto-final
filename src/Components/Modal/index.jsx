@@ -10,10 +10,10 @@ const Modals = () => {
   return user ? (
     <Modal>
       <h2>
-        Seja bem vindo, <span>{user.username}</span>!
+        Seja bem vindo, <span>{user.username}!</span>
       </h2>
       <p className="user">
-        Pronto para encontrar seu próximo <span>jogo favorito</span>?
+        Pronto para encontrar seu próximo <span>jogo favorito?</span>
       </p>
     </Modal>
   ) : (
