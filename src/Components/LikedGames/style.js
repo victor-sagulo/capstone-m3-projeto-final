@@ -21,6 +21,7 @@ export const DivContainer = styled.div`
   .react-multi-carousel-track {
     border-radius: 8px;
   }
+
   .Liked-game-card {
     filter: drop-shadow(0px 0px 0px var(--purple)) !important;
     margin-right: 10px;
