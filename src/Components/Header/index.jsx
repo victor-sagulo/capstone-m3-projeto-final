@@ -75,9 +75,6 @@ const Header = () => {
               <DefaultNav>
                 <ul>
                   <li>
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li>
                     <Link to="/games">Games</Link>
                   </li>
                   <li>
@@ -103,9 +100,6 @@ const Header = () => {
             <div className="container">
               <LoggedNav>
                 <ul>
-                  <li>
-                    <Link to="/">Home</Link>
-                  </li>
                   <li>
                     <Link to="/games">Games</Link>
                   </li>
@@ -234,7 +228,7 @@ const Header = () => {
                       </li>
                       <li>
                         <RiFolderUserFill size={"25px"} className="nav--icon" />
-                        <Link to={`/profile/${user.id}`}>Meu Perfil</Link>
+                        <Link to={`/profile/${user._id}`}>Meu Perfil</Link>
                       </li>
                       <li>
                         <FaAddressCard size={"25px"} className="nav--icon" />

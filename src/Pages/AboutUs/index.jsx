@@ -33,7 +33,7 @@ const AboutUs = () => {
             <h2>Victor Luiz Sagulo</h2>
             <span>Scrum Master</span>
             <div className="links-holder">
-              <a href="https://www.linkedin.com/in/marcosvin%C3%ADciusmafeimachado">
+              <a href="https://www.linkedin.com/in/victor-luiz-sagulo-de-aquino-campos-5845a3212/">
                 <BsLinkedin size={"20px"} />
               </a>
               <a href="https://github.com/victor-sagulo">
@@ -46,10 +46,10 @@ const AboutUs = () => {
             <h2>Nicollas Anderson</h2>
             <span>Product Owner</span>
             <div className="links-holder">
-              <a href="https://www.linkedin.com/in/marcosvin%C3%ADciusmafeimachado">
+              <a href="https://www.linkedin.com/in/nicollas-anderson/">
                 <BsLinkedin size={"20px"} />
               </a>
-              <a href="https://github.com/victor-sagulo">
+              <a href="https://github.com/nicollasanderson">
                 <BsGithub size={"20px"} />
               </a>
             </div>
@@ -59,7 +59,7 @@ const AboutUs = () => {
             <h2>Guilherme Silva</h2>
             <span>QA</span>
             <div className="links-holder">
-              <a href="https://www.linkedin.com/in/marcosvin%C3%ADciusmafeimachado">
+              <a href="https://www.linkedin.com/in/guilherme-augusto-da-silva-11a424202/">
                 <BsLinkedin size={"20px"} />
               </a>
               <a href="https://github.com/guisix18">
@@ -72,10 +72,10 @@ const AboutUs = () => {
             <h2>Oswaldo Deco</h2>
             <span>QA</span>
             <div className="links-holder">
-              <a href="https://www.linkedin.com/in/marcosvin%C3%ADciusmafeimachado">
+              <a href="https://www.linkedin.com/in/oswaldo-deco-31824021b/">
                 <BsLinkedin size={"20px"} />
               </a>
-              <a href="https://github.com/victor-sagulo">
+              <a href="https://github.com/oswaldo-deco">
                 <BsGithub size={"20px"} />
               </a>
             </div>
@@ -85,10 +85,10 @@ const AboutUs = () => {
             <h2>Juan Rego</h2>
             <span>QA</span>
             <div className="links-holder">
-              <a href="https://www.linkedin.com/in/marcosvin%C3%ADciusmafeimachado">
+              <a href="https://www.linkedin.com/in/juanrego/">
                 <BsLinkedin size={"20px"} />
               </a>
-              <a href="https://github.com/victor-sagulo">
+              <a href="https://github.com/JuanRego">
                 <BsGithub size={"20px"} />
               </a>
             </div>
