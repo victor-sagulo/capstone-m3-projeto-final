@@ -3,12 +3,12 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import Buttons from "../Buttons";
-import { Body, FormDivContainer } from "./style";
+import { FormDivContainer } from "./style";
 import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 
 const UserEdit = ({ handleModal }) => {
-  const { user, handleEditUser } = useContext(UserContext);
+  const { handleEditUser } = useContext(UserContext);
 
   const schema = yup.object().shape({
     username: yup.string().max(18).min(4),

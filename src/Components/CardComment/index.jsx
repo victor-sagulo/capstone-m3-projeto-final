@@ -1,6 +1,5 @@
 import { FaThumbsUp, FaTrash } from "react-icons/fa";
 import { BsHandThumbsUp, BsHandThumbsUpFill } from "react-icons/bs";
-import Buttons from "../Buttons";
 import { Game, Profile } from "./style";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../Providers/user";

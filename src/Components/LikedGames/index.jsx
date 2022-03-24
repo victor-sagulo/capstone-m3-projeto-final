@@ -1,4 +1,4 @@
-import { DivContainer, GamesListContainer } from "./style";
+import { DivContainer } from "./style";
 import { IoLogoGameControllerA } from "react-icons/io";
 import app from "../../Services/api";
 import CardGame from "../CardGame";

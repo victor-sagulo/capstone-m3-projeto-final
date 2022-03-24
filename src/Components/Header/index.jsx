@@ -8,7 +8,6 @@ import {
   FaBars,
   FaAngleDown,
   FaAngleUp,
-  FaArrowRight,
   FaAddressCard,
 } from "react-icons/fa";
 import { BiLogOut, BiLogInCircle } from "react-icons/bi";
