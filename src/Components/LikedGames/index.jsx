@@ -1,16 +1,15 @@
 import { DivContainer } from "./style";
 import { IoLogoGameControllerA } from "react-icons/io";
-import app from "../../Services/api"
+import app from "../../Services/api";
 import CardGame from "../CardGame";
-import {useParams} from "react-router-dom"
+import { useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import "./style.css";
 import { useEffect, useState } from "react";
 
 const responsive = {
   superLargeDesktop: {
-    breakpoint: { max: 4000, min: 1701 },
+    breakpoint: { max: 4000, min: 1601 },
     items: 2,
   },
   desktop: {
@@ -18,26 +17,28 @@ const responsive = {
     items: 2,
   },
   tablet: {
-    breakpoint: { max: 1024, min: 745 },
+    breakpoint: { max: 1149, min: 1045 },
+    items: 2,
+  },
+  alternativeTablet: {
+    breakpoint: { max: 1044, min: 769 },
     items: 1,
   },
   mobile: {
-    breakpoint: { max: 744, min: 0 },
+    breakpoint: { max: 768, min: 0 },
     items: 1,
   },
 };
 
 const LikedGames = () => {
+  const { id } = useParams();
+  const [gamesLiked, setGamesLiked] = useState([]);
 
-  const {id} = useParams();
-  const [gamesLiked,setGamesLiked] = useState([]);
-  
-  useEffect(() =>{
+  useEffect(() => {
     app.get(`/likes/user/${id}`).then((response) => {
       setGamesLiked(response.data.likedGames);
     });
-  },[id])
-  
+  }, [id]);
 
   return (
     <DivContainer>
@@ -55,9 +56,11 @@ const LikedGames = () => {
             draggable={true}
           >
             {gamesLiked.map((game) => (
-              <div key={game._id}>
-                <CardGame game={game.gameLiked} />
-              </div>
+              <CardGame
+                key={game._id}
+                className="Liked-game-card"
+                game={game.gameLiked}
+              />
             ))}
           </Carousel>
         ) : (
