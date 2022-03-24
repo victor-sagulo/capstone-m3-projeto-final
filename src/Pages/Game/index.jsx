@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Buttons from "../../Components/Buttons";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-toastify";
 import key from "../../Services/key";
@@ -39,7 +40,7 @@ const Game = () => {
         setFilteredComments(response.data);
       })
       .catch((err) => toast.error("jogo não encontrado", { theme: "dark" }));
-  },[reloadParam])
+  }, [reloadParam]);
 
   const reload = () => {
     setReloadParam(!reloadParam);
@@ -64,46 +65,64 @@ const Game = () => {
   };
 
   return (
-    <FancyMain>
-      <div className="home-top">
-        <Header />
-      </div>
-      <FullCardGame/>
-      <div className="comments--container">
-        {user && (
-          <form
-            className="form--comment"
-            onSubmit={handleSubmit(handleComment)}
-          >
-            <div className="basic--infos">
-              <figure>
-                <img
-                  className="img-user"
-                  src={user.img}
-                  alt="Imagem escolhida pelo usuário"
-                />
-              </figure>
-              <h3>{user.username}</h3>
-            </div>
-            <div className="send--control">
-              <textarea
-                id="textAreaValue"
-                placeholder="Digite aqui seu comentário"
-                {...register("text")}
-              />
-              <Buttons type="submit" className="button--send">
-                Enviar
-              </Buttons>
-            </div>
-          </form>
-        )}
-        <CommentsList
-        comments={filteredComments}
-        setFilteredComments={setFilteredComments}
-        reload={reload}
-      />
-      </div>
-    </FancyMain>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.7 }}
+    >
+      <FancyMain>
+        <div className="home-top">
+          <Header />
+        </div>
+        <motion.div
+          initial={{ marginLeft: "-300px" }}
+          animate={{ marginLeft: "0px" }}
+          transition={{ duration: 1 }}
+        >
+          <FullCardGame />
+        </motion.div>
+        <motion.div
+          initial={{ marginLeft: "-300px" }}
+          animate={{ marginLeft: "0px" }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="comments--container">
+            {user && (
+              <form
+                className="form--comment"
+                onSubmit={handleSubmit(handleComment)}
+              >
+                <div className="basic--infos">
+                  <figure>
+                    <img
+                      className="img-user"
+                      src={user.img}
+                      alt="Imagem escolhida pelo usuário"
+                    />
+                  </figure>
+                  <h3>{user.username}</h3>
+                </div>
+                <div className="send--control">
+                  <textarea
+                    id="textAreaValue"
+                    placeholder="Digite aqui seu comentário"
+                    {...register("text")}
+                  />
+                  <Buttons type="submit" className="button--send">
+                    Enviar
+                  </Buttons>
+                </div>
+              </form>
+            )}
+            <CommentsList
+            comments={filteredComments}
+            setFilteredComments={setFilteredComments}
+            reload={reload}
+          />
+          </div>
+        </motion.div>
+      </FancyMain>
+    </motion.div>
   );
 };
 

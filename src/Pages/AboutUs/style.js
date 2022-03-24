@@ -14,6 +14,7 @@ export const Main = styled.div`
 
   .list-developers {
     width: 90%;
+    max-width:900px;
     margin: 0px auto;
     display: flex;
     justify-content: center;
