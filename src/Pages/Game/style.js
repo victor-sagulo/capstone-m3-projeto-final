@@ -6,8 +6,10 @@ export const FancyMain = styled.main`
     height: 50px;
     border-radius: 50%;
   }
-  .form--comment {
+  .comments--container{
     margin-top: 50px;
+  }
+  .form--comment {
     margin-bottom: 5px;
     display: flex;
     flex-direction: column;

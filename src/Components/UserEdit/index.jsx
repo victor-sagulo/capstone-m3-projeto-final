@@ -8,10 +8,10 @@ import { useContext } from "react";
 import { UserContext } from "../../Providers/user";
 
 const UserEdit = ({ handleModal }) => {
-  const { handleEditUser } = useContext(UserContext);
+  const { handleEditUser ,user} = useContext(UserContext);
 
   const schema = yup.object().shape({
-    username: yup.string().max(18).min(4),
+    username: yup.string().min(4).max(18),
     plataform: yup.string(),
     img: yup.string(),
     description: yup.string(),
@@ -52,6 +52,7 @@ const UserEdit = ({ handleModal }) => {
           placeholder="Altere seu nome de usuário"
           error={errors.username?.message}
           type="text"
+          defaultValue={user.username}
         />
         <Input
           name="plataform"

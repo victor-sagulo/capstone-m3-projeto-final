@@ -24,6 +24,9 @@ export const Desktop = styled.header`
       align-items: center;
       justify-content: space-between;
       margin-left: 4px;
+      a{
+        font-size: 10px;
+      }
     }
     .user--img{
       width: 50px;
@@ -73,6 +76,20 @@ export const Desktop = styled.header`
         color: var(--white);
         a {
           color: var(--white);
+        }
+      }
+    }
+    @media screen and (min-width: 810px) {
+      nav{
+        a{
+          font-size: 12px;
+        }
+      }
+    }
+    @media screen and (min-width: 900px) {
+      nav{
+        a{
+          font-size: 14px;
         }
       }
     }

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const DivContainer = styled.div`
   width: 90%;
+  max-width: 670px;
   height: 550px;
   color: white;
   margin: auto;
@@ -17,6 +18,9 @@ export const DivContainer = styled.div`
   h3 {
     margin-top: 100px;
     font-size: 30px;
+  }
+  .react-multi-carousel-list{
+    max-width:670px;
   }
   .react-multi-carousel-track {
     border-radius: 8px;

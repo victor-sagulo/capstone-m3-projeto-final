@@ -16,4 +16,7 @@ export const DivRecentContainer = styled.div`
     flex-direction: column;
     gap: 15px;
   }
+  @media screen and (min-width: 1200px) {
+    margin: 30px 0 0 0;
+  }
 `;

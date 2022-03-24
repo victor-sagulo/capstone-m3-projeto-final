@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const DivInfosContainer = styled.div`
   width: 100%;
-  height: 10%;
+  max-width: 700px;
   min-height: 215px;
   padding: 10px;
   background-color: var(--cleanBlack);
@@ -13,7 +13,7 @@ export const DivInfosContainer = styled.div`
   gap: 15px;
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  .user--profile--img{
+  .user--profile--img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -40,14 +40,12 @@ export const InfosBox = styled.div`
     font-size: 12px;
     margin-top: 10px;
   }
-  > div {
-    display: flex;
-  }
   button {
     height: 25px;
     width: 25px;
+    background-color: transparent;
 
-    border-radius: 7px;
+    border-radius: 2px;
     border: none;
     cursor: pointer;
 
@@ -55,6 +53,10 @@ export const InfosBox = styled.div`
       width: 13px;
       color: var(--purple);
       margin-top: 3px;
+    }
+    @media screen and (min-width: 700px) {
+      background-color:var(--white);
+      border-radius: 7px;
     }
   }
 
@@ -70,15 +72,30 @@ export const InfosBox = styled.div`
 `;
 
 export const InfosContainer = styled.div`
-  > div {
-    padding-left: 10px;
-    margin-top: 25px;
+  max-width: 100%;
+  display: flex;
+  gap: 10px;
+  position: relative;
+  div.img--description {
+    display: flex;
+    flex-direction: column;
+    .description {
+      margin-top: 10px;
+    }
+  }
+  div.username--plataform {
+    position: absolute;
+    left: 80px;
+    padding-left: 30px;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
 
     @media (min-width: 700px) {
       display: flex;
       justify-content: space-between;
-      padding-left: 30px;
       width: 80%;
+      top: 0;
     }
   }
   span {

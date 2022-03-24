@@ -69,7 +69,7 @@ const Game = () => {
         <Header />
       </div>
       <FullCardGame/>
-      <div>
+      <div className="comments--container">
         {user && (
           <form
             className="form--comment"
@@ -97,12 +97,12 @@ const Game = () => {
             </div>
           </form>
         )}
-      </div>
-      <CommentsList
+        <CommentsList
         comments={filteredComments}
         setFilteredComments={setFilteredComments}
         reload={reload}
       />
+      </div>
     </FancyMain>
   );
 };
