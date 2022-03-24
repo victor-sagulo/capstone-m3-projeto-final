@@ -29,7 +29,7 @@ const UserInfo = ({ id }) => {
         setUserId(response.data.user._id);
       })
       .catch((err) => console.log(err));
-  }, [user,id]);
+  }, [user, id]);
 
   if (!user) {
     history.push("/login");
@@ -46,14 +46,17 @@ const UserInfo = ({ id }) => {
       <DivInfosContainer>
         <InfosBox>
           <InfosContainer>
-            <figure>
-              <img
-                src={img}
-                alt="Imagem de perfil do usuário"
-                className="user--profile--img"
-              />
-            </figure>
-            <div>
+            <div className="img--description">
+              <figure>
+                <img
+                  src={img}
+                  alt="Imagem de perfil do usuário"
+                  className="user--profile--img"
+                />
+              </figure>
+              <p className="description">{description}</p>
+            </div>
+            <div className="username--plataform">
               <h2>{username}</h2>
               <h3>
                 Plataforma favorita: <span>{plataform}</span>
@@ -66,10 +69,6 @@ const UserInfo = ({ id }) => {
             </button>
           )}
         </InfosBox>
-
-        <div>
-          <p>{description}</p>
-        </div>
       </DivInfosContainer>
     </>
   );

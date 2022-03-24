@@ -23,7 +23,7 @@ const Profile = () => {
   }, [id]);
 
   return (
-    <>
+    <div>
       <Header />
       <DivProfileContainer>
         <ContentWraper>
@@ -32,7 +32,7 @@ const Profile = () => {
         </ContentWraper>
         <RecentComents userPosts={userPosts} />
       </DivProfileContainer>
-    </>
+    </div>
   );
 };
 

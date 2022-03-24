@@ -29,7 +29,7 @@ const AboutUs = () => {
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 1}}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Marcos} alt="" />
@@ -67,7 +67,7 @@ const AboutUs = () => {
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1.5 }}
+                transition={{ duration: 1 }}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Nicollas} alt="" />
@@ -86,7 +86,7 @@ const AboutUs = () => {
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 2 }}
+                transition={{ duration: 1 }}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Guilherme} alt="" />
@@ -105,7 +105,7 @@ const AboutUs = () => {
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 2.5 }}
+                transition={{ duration: 1 }}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Oswaldo} alt="" />
@@ -124,7 +124,7 @@ const AboutUs = () => {
               <motion.div
                 initial={{ rotate: 180 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 3 }}
+                transition={{ duration: 1 }}
               >
                 <li className="developer-card">
                   <img className="developer-img" src={Juan} alt="" />

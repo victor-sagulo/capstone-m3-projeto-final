@@ -22,7 +22,7 @@ const responsive = {
   },
   alternativeTablet: {
     breakpoint: { max: 1044, min: 769 },
-    items: 1,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 768, min: 0 },

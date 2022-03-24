@@ -86,7 +86,7 @@ const Game = () => {
           animate={{ marginLeft: "0px" }}
           transition={{ duration: 0.7 }}
         >
-          <div>
+          <div className="comments--container">
             {user && (
               <form
                 className="form--comment"
@@ -114,13 +114,12 @@ const Game = () => {
                 </div>
               </form>
             )}
-          </div>
-
-          <CommentsList
+            <CommentsList
             comments={filteredComments}
             setFilteredComments={setFilteredComments}
             reload={reload}
           />
+          </div>
         </motion.div>
       </FancyMain>
     </motion.div>

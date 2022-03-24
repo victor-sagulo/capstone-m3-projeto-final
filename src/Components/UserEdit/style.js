@@ -11,7 +11,7 @@ export const FormDivContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: +1001;
+  z-index: 9999;
 
   form {
     margin-top: 50px;
