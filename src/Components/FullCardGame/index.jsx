@@ -12,9 +12,12 @@ import { useParams } from "react-router-dom";
 import key from "../../Services/key";
 import ReactHtmlParser from "react-html-parser";
 import LikeButton from "../LikeButton";
+import { UserContext } from "../../Providers/user";
+import app from "../../Services/api";
 
-const FullCardGame = ({ grade }) => {
+const FullCardGame = () => {
   const [isClicked, setIsClicked] = useState(false);
+  const { handleGradeGame, user } = useContext(UserContext);
   const { slug } = useParams();
 
   const [gameInfo, setGameInfo] = useState([]);
@@ -27,6 +30,20 @@ const FullCardGame = ({ grade }) => {
   const [star3, setStar3] = useState(star);
   const [star4, setStar4] = useState(star);
   const [star5, setStar5] = useState(star);
+  const [grade, setGrade] = useState(5);
+  const [userGraded, setUserGraded] = useState(false);
+  const [reloadParam, setReloadParam] = useState(false);
+
+  useEffect(() => {
+    app.get(`/grades/${slug}`).then((response) => {
+      const allGrades = response.data;
+      setUserGraded(allGrades.some((el) => el.userId === user._id));
+      const finalGrade =
+        (allGrades.reduce((acc, grade) => acc + grade.grade, 0) /
+        allGrades.length).toFixed(1)
+      setGrade(finalGrade);
+    });
+  }, [reloadParam]);
 
   useEffect(() => {
     axios
@@ -46,6 +63,10 @@ const FullCardGame = ({ grade }) => {
         toast.error("Ops! Página não encontrada", { theme: "dark" });
       });
   }, []);
+
+  const reload = () => {
+    setTimeout(()=>setReloadParam(!reloadParam),1000)
+  }
 
   const handleClick = () => {
     setIsClicked(!isClicked);
@@ -169,39 +190,56 @@ const FullCardGame = ({ grade }) => {
                   </div>
                 </div>
                 <div className="user--grade container--more">
-                  <h3>
-                    Deixe sua <span>nota</span> também
-                  </h3>
+                  {userGraded ? (
+                    <h3>
+                      Reavalie sua <span>nota</span>
+                    </h3>
+                  ) : (
+                    <h3>
+                      Deixe sua <span>nota</span> também
+                    </h3>
+                  )}
+
                   <div className="stars--container">
                     <div
                       className="single--star star1"
                       style={{ backgroundImage: `url(${star1})` }}
                       onMouseOver={handleStar1}
                       onMouseOut={handleStar1}
+                      onClick={() => {handleGradeGame(slug, 1)
+                      reload()}}
                     ></div>
                     <div
                       className="single--star star2"
                       style={{ backgroundImage: `url(${star2})` }}
                       onMouseOver={handleStar2}
                       onMouseOut={handleStar2}
+                      onClick={() => {handleGradeGame(slug, 2)
+                      reload()}}
                     ></div>
                     <div
                       className="single--star star3"
                       style={{ backgroundImage: `url(${star3})` }}
                       onMouseOver={handleStar3}
                       onMouseOut={handleStar3}
+                      onClick={() => {handleGradeGame(slug, 3)
+                      reload()}}
                     ></div>
                     <div
                       className="single--star star4"
                       style={{ backgroundImage: `url(${star4})` }}
                       onMouseOver={handleStar4}
                       onMouseOut={handleStar4}
+                      onClick={() => {handleGradeGame(slug, 4)
+                      reload()}}
                     ></div>
                     <div
                       className="single--star star5"
                       style={{ backgroundImage: `url(${star5})` }}
                       onMouseOver={handleStar5}
                       onMouseOut={handleStar5}
+                      onClick={() => {handleGradeGame(slug, 5)
+                      reload()}}
                     ></div>
                   </div>
                 </div>

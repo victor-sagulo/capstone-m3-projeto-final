@@ -99,17 +99,19 @@ export const Game = styled.div`
     justify-content: space-between;
   }
 
-  button {
-    padding: 10px 9.5px;
-    width: 5%;
-    text-align: left;
-    background: var(--blackComment);
-    border: 1px solid var(--purple);
+  button.button--delete {
+    border: 0;
     color: var(--purple);
-    transition: 0.3s;
+    background-color: transparent;
+    margin-right: 5px;
+    filter: brightness(0.8);
+    &:hover{
+      filter: brightness(1.2);
+    }
   }
 
   .name {
+    max-width: 95%;
     font-size: 16px;
     margin-top: 10px;
     color: var(--white);
@@ -123,6 +125,7 @@ export const Game = styled.div`
   }
 
   .comment {
+    max-width: 95%;
     font-size: 10px;
     color: var(--grey);
     text-align: start;

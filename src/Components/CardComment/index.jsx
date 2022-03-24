@@ -50,11 +50,9 @@ const CardComment = ({
               </h3>
               {comment.user._id === user._id && (
                 <button
+                  className="button--delete"
                   onClick={() => {
-                    handleRemoveComment(comment._id);
-                    setFilteredComments(
-                      comments.filter((el) => el._id !== comment._id)
-                    );
+                    handleRemoveComment(comment._id,comments,setFilteredComments);
                   }}
                 >
                   <FaTrash />
