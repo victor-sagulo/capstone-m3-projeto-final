@@ -4,9 +4,7 @@ import { UserContext } from "../../Providers/user";
 import { useState } from "react";
 import { BsFillPencilFill } from "react-icons/bs";
 import UserEdit from "../UserEdit";
-import Buttons from "../Buttons";
 import { DivInfosContainer, InfosBox, InfosContainer } from "./style";
-import { set } from "react-hook-form";
 import app from "../../Services/api";
 import userImg from "../../images/userImg.svg";
 
