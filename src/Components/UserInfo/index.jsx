@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../Providers/user";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { BsFillPencilFill } from "react-icons/bs";
 import UserEdit from "../UserEdit";
 import { DivInfosContainer, InfosBox, InfosContainer } from "./style";
@@ -42,34 +43,39 @@ const UserInfo = ({ id }) => {
   return (
     <>
       {!modal && <UserEdit handleModal={handleModal} />}
-
-      <DivInfosContainer>
-        <InfosBox>
-          <InfosContainer>
-            <div className="img--description">
-              <figure>
-                <img
-                  src={img}
-                  alt="Imagem de perfil do usuário"
-                  className="user--profile--img"
-                />
-              </figure>
-              <p className="description">{description}</p>
-            </div>
-            <div className="username--plataform">
-              <h2>{username}</h2>
-              <h3>
-                Plataforma favorita: <span>{plataform}</span>
-              </h3>
-            </div>
-          </InfosContainer>
-          {user._id === userId && (
-            <button onClick={handleModal}>
-              <BsFillPencilFill />
-            </button>
-          )}
-        </InfosBox>
-      </DivInfosContainer>
+      <motion.div
+        initial={{ marginLeft: "-200px" }}
+        animate={{ marginLeft: "0px" }}
+        transition={{ duration: 1 }}
+      >
+        <DivInfosContainer>
+          <InfosBox>
+            <InfosContainer>
+              <div className="img--description">
+                <figure>
+                  <img
+                    src={img}
+                    alt="Imagem de perfil do usuário"
+                    className="user--profile--img"
+                  />
+                </figure>
+                <p className="description">{description}</p>
+              </div>
+              <div className="username--plataform">
+                <h2>{username}</h2>
+                <h3>
+                  Plataforma favorita: <span>{plataform}</span>
+                </h3>
+              </div>
+            </InfosContainer>
+            {user._id === userId && (
+              <button onClick={handleModal}>
+                <BsFillPencilFill />
+              </button>
+            )}
+          </InfosBox>
+        </DivInfosContainer>
+      </motion.div>
     </>
   );
 };
