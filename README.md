@@ -1,4 +1,4 @@
-<h2 align="center"><img src="../capstone-m3-projeto-final/src/images/g4HUB.svg" alt="G4Hub" width="150px"></h2>
+<h2 align="center"><img src="./src/images/g4HUB.svg" alt="G4Hub" width="150px"></h2>
 
 **<h1 align="center">GamesHub</h1>**
 
