@@ -1,4 +1,6 @@
-<h1 align="center">GamesHub</h1>
+<h2 align="center"><img src="../capstone-m3-projeto-final/src/images/g4HUB.svg" alt="G4Hub" width="150px"></h2>
+
+**<h1 align="center">GamesHub</h1>**
 
 <div>
     <p>## Nossa aplicação GamesHub foi feita para suprir a necessidade de contato dos gamers.</p>
@@ -8,6 +10,7 @@
 
 <div>
     <p>Dê uma olhada no nosso projeto por si só por aqui => <span><a href="https://capstone-m3-projeto-final.vercel.app/">GamesHub</a></span></p>
+    <p>Documentação G4mes Hub - API => <a href="https://github.com/marcos-vinicius-mafei/G4-Hub-API">G4HUB-API</a></p>
 </div>
 
 <div>
@@ -26,7 +29,8 @@
         <li>Perfil próprio de cada usuário [x]</li>
         <li>Capacidade de alterar informações do usuário [x]</li>
         <li>Seção de "jogos curtidos" [x]</li>
-        <li>Escrever e apagar comentários, como desejar [x]</li>
+        <li>Escrever e apagar seus comentários, como desejar [x]</li>
+        <li>Curtir outros comentários [x]</li>
         <li>Logout da conta [x]</li>
     </ul>
 </div>
