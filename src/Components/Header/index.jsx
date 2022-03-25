@@ -141,7 +141,7 @@ const Header = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 1 }}
+                    transition={{ duration: 0.5 }}
                   >
                     <div className="modal--user">
                       <div onClick={() => history.push(`/profile/${user._id}`)}>
@@ -279,7 +279,7 @@ const Header = () => {
                     <button onClick={handleMobileModal} className="close--btn">
                       <motion.div
                         key="modal--user--mobile--close"
-                        initial={{ rotate: 180}}
+                        initial={{ rotate: 180 }}
                         animate={{ rotate: 360 }}
                         exit={{ rotate: 180 }}
                         transition={{ duration: 1 }}

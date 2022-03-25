@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const responsive = {
   superLargeDesktop: {
@@ -41,33 +42,39 @@ const LikedGames = () => {
   }, [id]);
 
   return (
-    <DivContainer>
-      <div>
-        <IoLogoGameControllerA />
-        <h1>Jogos curtidos</h1>
-        {gamesLiked.length > 0 ? (
-          <Carousel
-            responsive={responsive}
-            autoPlay={false}
-            autoPlaySpeed={100000}
-            itemClass="carouselItem"
-            partialVisible={true}
-            swipeable={true}
-            draggable={true}
-          >
-            {gamesLiked.map((game) => (
-              <CardGame
-                key={game._id}
-                className="Liked-game-card"
-                game={game.gameLiked}
-              />
-            ))}
-          </Carousel>
-        ) : (
-          <h3>Nenhum jogo curtido :c</h3>
-        )}
-      </div>
-    </DivContainer>
+    <motion.div
+      initial={{ marginLeft: "-200px" }}
+      animate={{ marginLeft: "0px" }}
+      transition={{ duration: 1 }}
+    >
+      <DivContainer>
+        <div>
+          <IoLogoGameControllerA />
+          <h1>Jogos curtidos</h1>
+          {gamesLiked.length > 0 ? (
+            <Carousel
+              responsive={responsive}
+              autoPlay={false}
+              autoPlaySpeed={100000}
+              itemClass="carouselItem"
+              partialVisible={true}
+              swipeable={true}
+              draggable={true}
+            >
+              {gamesLiked.map((game) => (
+                <CardGame
+                  key={game._id}
+                  className="Liked-game-card"
+                  game={game.gameLiked}
+                />
+              ))}
+            </Carousel>
+          ) : (
+            <h3>Nenhum jogo curtido :c</h3>
+          )}
+        </div>
+      </DivContainer>
+    </motion.div>
   );
 };
 
