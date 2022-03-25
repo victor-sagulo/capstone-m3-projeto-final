@@ -51,6 +51,7 @@ export const Desktop = styled.header`
         color: var(--white);
       }
       .icon {
+        cursor: pointer;
         color: var(--white);
       }
     }
@@ -69,6 +70,7 @@ export const Desktop = styled.header`
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
       div {
+        cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -77,6 +79,10 @@ export const Desktop = styled.header`
         height: 30px;
         background-color: var(--purple);
         color: var(--white);
+        filter: brightness(0.9);
+        &:hover {
+          filter: brightness(1.1);
+        }
         a {
           color: var(--white);
         }
